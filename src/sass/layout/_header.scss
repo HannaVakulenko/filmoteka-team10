@@ -10,13 +10,13 @@
   background-repeat: no-repeat;
   background-size: cover;
   @include mobile() {
-    padding: 40px 20px;
+    padding: 40px 0px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/abstract-background-with-red-lines_320.jpg);
     height: 230px;
   }
   @include tablet() {
-    padding: 40px 32px;
+    padding: 40px 0px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/abstract-background-with-red-lines_768.jpg);
     height: 216px;
@@ -47,6 +47,7 @@
   display: flex;
   align-items: center;
   gap: 40px;
+ 
 }
 .nav__text {
   font-size: 30px;
