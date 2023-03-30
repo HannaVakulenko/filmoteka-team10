@@ -1,31 +1,33 @@
+const refs = {
+    modal: document.querySelector(".modal"),
+    modalHeader: document.querySelector(".modal-title"),
+    modalForm: document.querySelector(".modal-form"),
+    registerText: document.querySelector(".modal-form__text-register"),
+    registerButton: document.getElementById("register-btn"),
+    openModalBtn: document.getElementById("open-modal-btn"),
+    closeModalBtn: document.getElementById("close-modal-btn"),
+    loginButton: document.querySelector(".modal-button__send"),
+}
 
-const modal = document.querySelector(".modal");
-const modalHeader = document.querySelector(".modal-title");
-const modalForm = document.querySelector(".modal-form");
-const registerText = document.querySelector(".modal-form__text-register")
-const registerButton = document.getElementById("register-btn");
-const openModalBtn = document.getElementById("open-modal-btn");
-const closeModalBtn = document.getElementById("close-modal-btn");
-const loginButton = document.querySelector(".modal-button__send")
+const initialModalHeaderText = refs.modalHeader.textContent;
+const initialRegisterText = refs.registerText.textContent;
+const initialRegisterButton = refs.loginButton.textContent;
 
-const initialModalHeaderText = modalHeader.textContent;
-const initialRegisterText = registerText.textContent;
-const initialRegisterButton = loginButton.textContent;
-let inputField;
 
-openModalBtn.addEventListener("click", openModal);
-closeModalBtn.addEventListener("click", closeModal);
+refs.openModalBtn.addEventListener("click", openModal);
+refs.closeModalBtn.addEventListener("click", closeModal);
+refs.registerButton.addEventListener("click", register);
 
 function openModal() {
-modal.style.display = "block";
+refs.modal.style.display = "block";
 }
 
 function closeModal() {
-modal.style.display = "none";
+refs.modal.style.display = "none";
 }
 
 window.onclick = function(event) {
-if (event.target === modal) {
+if (event.target === refs.modal) {
 closeModal();
 }
 }
@@ -37,31 +39,47 @@ closeModal();
 });
 
 
+// function register(e) {
+//   e.preventDefault();
+//   let inputField;
+
+//   if (refs.modalHeader.textContent !== "Register") {
+//     refs.modalHeader.textContent = "Register";
+//     refs.registerText.textContent = "I have an account";
+//     refs.registerButton.textContent = "Auth";
+//     refs.loginButton.textContent = "Register";
+
+//     registerRender();
+//   } else {
+//     refs.modalHeader.textContent = initialModalHeaderText;
+//     refs.registerText.textContent = initialRegisterText;
+//     refs.registerButton.textContent = "Register";
+//     refs.loginButton.textContent = initialRegisterButton;
+//     inputField = document.getElementById("input-name");
+//     inputField.parentNode.removeChild(inputField);
+//   }
+// }
 function register(e) {
-  e.preventDefault();
-
-  if (modalHeader.textContent !== "Register") {
-    modalHeader.textContent = "Register";
-    registerText.textContent = "I have an account";
-    registerButton.textContent = "Auth";
-    loginButton.textContent = "Register";
-
-    
-    registerRender();
-    
-  } else {
-    modalHeader.textContent = initialModalHeaderText;
-    inputField = document.getElementById("input-name");
-    inputField.parentNode.removeChild(inputField);
-    registerText.textContent = initialRegisterText;
-    registerButton.textContent = "Register";
-    loginButton.textContent = initialRegisterButton;
+    e.preventDefault();
+  
+    const isRegistering = refs.modalHeader.textContent !== "Register";
+  
+    refs.modalHeader.textContent = isRegistering ? "Register" : initialModalHeaderText;
+    refs.registerText.textContent = isRegistering ? "I have an account" : initialRegisterText;
+    refs.registerButton.textContent = isRegistering ? "Auth" : "Register";
+    refs.loginButton.textContent = isRegistering ? "Register" : initialRegisterButton;
+  
+    if (isRegistering) {
+      registerRender();
+    } else {
+      const inputField = document.getElementById("input-name");
+      inputField?.parentNode.removeChild(inputField);
+    }
   }
-}
 
-registerButton.addEventListener("click", register);
+
   
   function registerRender(){
     const inputHtml = '<input class="modal-form__input" type="text" placeholder="Name*" id="input-name" minlength="4" maxlength="25">';
-    modalForm.insertAdjacentHTML("afterbegin", inputHtml);
+    refs.modalForm.insertAdjacentHTML("afterbegin", inputHtml);
   }
