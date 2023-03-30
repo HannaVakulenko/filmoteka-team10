@@ -15,7 +15,6 @@
     background-color: $AccentColorRed;
     margin: 15% auto;
     padding: 40px;
-    border: 1px solid #888;
     border-radius: 10px;
     width: 80%;
     max-width: 650px;
@@ -27,7 +26,7 @@
     color:$textColorWhite;
     text-align: center;
 
-font-family: 'Roboto';
+font-family: $roboto-font;
 font-style: normal;
 font-weight: 400;
 font-size: 30px;
@@ -50,18 +49,20 @@ line-height: 35px;
   border-bottom: 1px solid$textColorWhite;
   outline: transparent;
 
-}
-.modal-form__input::placeholder {
-color:$textColorWhite;
-}
-.modal-form__input:hover::placeholder,
-.modal-form__input:focus::placeholder {
-color: $textColorBlack;
-}
+    &:hover,
+    &:focus {
+        border-color:$textColorBlack;
+        transition: $main-transition-duration;
+    }
+    &::placeholder {
+        color:$textColorWhite;
+        transition: $main-transition-duration;
+    }
+    &:hover::placeholder,
+    &:focus::placeholder {
+        color: $textColorBlack;
 
-.modal-form__input:hover,
-.modal-form__input:focus {
-    border-color:$textColorBlack;
+    }
 }
 
 .close {
@@ -72,16 +73,15 @@ color: $textColorBlack;
     position: absolute;
     right: 10px;
     top: 0;
+
+    &:hover,
+    &:focus {
+        color:$textColorBlack;
+        text-decoration: none;
+        cursor: pointer;
+        transition: $main-transition-duration;
+    }
 }
-
-.close:hover,
-.close:focus {
-    color:$textColorBlack;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
 
 .modal-button__send {
     background-color: $textColorWhite;
@@ -93,12 +93,15 @@ color: $textColorBlack;
     font-size: 16px;
 
     margin-top: 30px;
+
+    &:hover {
+        background-color: $textColorBlack;
+        color: $textColorWhite;
+        transition: $main-transition-duration;
+    }
 }
 
-.modal-button__send:hover {
-    background-color: $textColorBlack;
-    color: $textColorWhite;
-}
+
 
 
 .modal-form__wraper-register {
@@ -115,11 +118,10 @@ color: $textColorBlack;
     border: none;
     cursor: pointer;
     font-size: 16px;
-
-}
-
-.modal-form__button-register:hover {
-    color: $textColorBlack;
+    &:hover {
+        color: $textColorBlack;
+        transition: $main-transition-duration;
+    }
 }
 
 .modal-form__text-register {

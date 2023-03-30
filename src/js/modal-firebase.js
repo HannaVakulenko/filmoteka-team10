@@ -40,12 +40,12 @@ closeModal();
 function register(e) {
   e.preventDefault();
 
-  console.log('111');
-
   if (modalHeader.textContent !== "Register") {
     modalHeader.textContent = "Register";
     registerText.textContent = "I have an account";
     registerButton.textContent = "Auth";
+    loginButton.textContent = "Register";
+
     
     registerRender();
     
@@ -55,12 +55,13 @@ function register(e) {
     inputField.parentNode.removeChild(inputField);
     registerText.textContent = initialRegisterText;
     registerButton.textContent = "Register";
+    loginButton.textContent = initialRegisterButton;
   }
 }
 
 registerButton.addEventListener("click", register);
   
   function registerRender(){
-    const inputHtml = '<input class="modal-form__input" type="text" placeholder="Name*" id="input-name">';
+    const inputHtml = '<input class="modal-form__input" type="text" placeholder="Name*" id="input-name" minlength="4" maxlength="25">';
     modalForm.insertAdjacentHTML("afterbegin", inputHtml);
   }
