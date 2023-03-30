@@ -4,6 +4,7 @@ const modalHeader = document.querySelector(".modal-title");
 const modalForm = document.querySelector(".modal-form");
 const registerText = document.querySelector(".modal-form__text-register")
 const registerButton = document.getElementById("register-btn");
+console.log(registerButton)
 
 
 const initialModalHeaderText = modalHeader.textContent;
@@ -26,34 +27,34 @@ closeModal();
 }
 
 document.addEventListener('keydown', function(event) {
-if (event.key === 'Escape' || event.keyCode === 27) {
+if (event.key === 'Escape' || event.code === 27) {
 closeModal();
 }
 });
 
+
 function register(e) {
-    e.preventDefault();
-  
-    console.log('111');
-  
-    if (modalHeader.textContent !== "Register") {
-      modalHeader.textContent = "Register";
-      registerText.textContent = "I have an account";
-      registerButton.textContent = "Auth";
-      
-      registerRender();
-      
-    } else {
-      modalHeader.textContent = initialModalHeaderText;
-      inputField = document.getElementById("input-name");
-      inputField.parentNode.removeChild(inputField);
-      registerText.textContent = initialRegisterText;
-      registerButton.textContent = "Register";
-    }
+  e.preventDefault();
+
+  console.log('111');
+
+  if (modalHeader.textContent !== "Register") {
+    modalHeader.textContent = "Register";
+    registerText.textContent = "I have an account";
+    registerButton.textContent = "Auth";
+    
+    registerRender();
+    
+  } else {
+    modalHeader.textContent = initialModalHeaderText;
+    inputField = document.getElementById("input-name");
+    inputField.parentNode.removeChild(inputField);
+    registerText.textContent = initialRegisterText;
+    registerButton.textContent = "Register";
   }
-  
-  
-  registerButton.addEventListener("click", register);
+}
+
+registerButton.addEventListener("click", register);
   
   //функція яка рендирить поле name
   function registerRender(){
