@@ -4,13 +4,17 @@ const modalHeader = document.querySelector(".modal-title");
 const modalForm = document.querySelector(".modal-form");
 const registerText = document.querySelector(".modal-form__text-register")
 const registerButton = document.getElementById("register-btn");
-console.log(registerButton)
-
+const openModalBtn = document.getElementById("open-modal-btn");
+const closeModalBtn = document.getElementById("close-modal-btn");
+const loginButton = document.querySelector(".modal-button__send")
 
 const initialModalHeaderText = modalHeader.textContent;
 const initialRegisterText = registerText.textContent;
-// const initialRegisterButton = registerButton.textContent;
+const initialRegisterButton = loginButton.textContent;
 let inputField;
+
+openModalBtn.addEventListener("click", openModal);
+closeModalBtn.addEventListener("click", closeModal);
 
 function openModal() {
 modal.style.display = "block";
@@ -56,7 +60,6 @@ function register(e) {
 
 registerButton.addEventListener("click", register);
   
-  //функція яка рендирить поле name
   function registerRender(){
     const inputHtml = '<input class="modal-form__input" type="text" placeholder="Name*" id="input-name">';
     modalForm.insertAdjacentHTML("afterbegin", inputHtml);
