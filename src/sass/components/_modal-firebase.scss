@@ -21,24 +21,54 @@
     
     }
 
-    
-    
     .modal__title {
-    text-align: center;
-    margin: 0;
-    color: $textColorWhite;
-    font-family: $roboto-font;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 35px;
-    }
+        text-align: center;
+        margin: 0;
+        color: $textColorWhite;
+        font-family: $roboto-font;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 35px;
+
+              /* Адаптація від 320px до 768px */
+      @media (min-width: 320px) and (max-width: 767.98px) {
+          font-size: 20px;
+          line-height: 25px;
+      }
+      
+      /* Адаптація від 768px до 1280px */
+      @media (min-width: 768px) and (max-width: 1279.98px) {
+          font-size: 25px;
+          line-height: 30px;
+      }
+      }
+      
+
+      
     
-    .modal__form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    }
+      .modal__form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        font-size: 16px;
+              /* Адаптація від 320px до 480px */
+      @media (min-width: 320px) and (max-width: 479.98px) {
+          display: flex;
+          flex-direction: column;  
+      }
+      /* Адаптація від 320px до 768px */
+      @media (min-width: 320px) and (max-width: 767.98px) {
+          font-size: 12px;
+      }
+      
+      /* Адаптація від 768px до 1280px */
+      @media (min-width: 768px) and (max-width: 1279.98px) {
+          font-size: 14px;
+      }
+      }
+
+      
     
     .modal__form-input {
     width: 100%;
@@ -66,23 +96,33 @@
     }
     
     .modal__close {
-    position: absolute;
-    top: 0;
-    right: 10px;
-    color: $textColorWhite;
-    font-size: 50px;
-    font-weight: bold;
-    float: right;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        color: $textColorWhite;
+        font-size: 50px;
+        font-weight: bold;
+        float: right;
+      
+        &:hover,
+        &:focus {
+          color: $textColorBlack;
+          text-decoration: none;
+          cursor: pointer;
+          transition: $main-transition-duration;
+        }
 
-    &:hover,
-    &:focus {
-    color: $textColorBlack;
-    text-decoration: none;
-    cursor: pointer;
-    transition: $main-transition-duration;
-    }
+                   /* Адаптація від 320px до 768px */
+      @media (min-width: 320px) and (max-width: 767.98px) {
+        font-size: 40px;
     }
     
+    /* Адаптація від 768px до 1280px */
+    @media (min-width: 768px) and (max-width: 1279.98px) {
+        font-size: 45px;
+    }
+    }
+
     .modal__form-button--send {
     padding: 12px 30px;
     background-color: $textColorWhite;
@@ -90,7 +130,6 @@
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 16px;
     margin-top: 30px;
 
     &:hover {
@@ -105,7 +144,13 @@
     flex-direction: column;
     margin-top: 30px;
     margin-left: auto;
+
+    @media (min-width: 320px) and (max-width: 479.98px) {
+          margin-right: auto;
+           
+      }
     }
+    
     
     .modal__form-button-register {
     padding: 0;
@@ -113,7 +158,7 @@
     color: $textColorWhite;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: inherit;
 
     &:hover {
     color: $textColorBlack;
@@ -125,128 +170,3 @@
     margin: 0;
     color: $textColorWhite;
     }
-
-// .modal {
-//     display: none;
-//     position: fixed;
-//     z-index: 1;
-//     left: 0;
-//     top: 0;
-//     width: 100%;
-//     height: 100%;
-//     overflow: auto;
-//     background-color: rgba(0, 0, 0, 0.5);
-//     }
-    
-//     .modal__content {
-//     position: relative;
-//     width: 80%;
-//     max-width: 650px;
-//     margin: 15% auto;
-//     padding: 40px;
-//     border-radius: 10px;
-//     background-color: $AccentColorRed;
-//     }
-    
-//     .modal__title {
-//     text-align: center;
-//     margin: 0;
-//     color: $textColorWhite;
-//     font-family: $roboto-font;
-//     font-style: normal;
-//     font-weight: 400;
-//     font-size: 30px;
-//     line-height: 35px;
-//     }
-    
-//     .modal__form {
-//     display: flex;
-//     flex-wrap: wrap;
-//     gap: 8px;
-//     }
-    
-//     .modal__form-input {
-//     width: 100%;
-//     height: 40px;
-//     border: 0;
-//     border-bottom: 1px solid $textColorWhite;
-//     background-color: transparent;
-//     outline: transparent;
-    
-//     &::placeholder {
-//     color: $textColorWhite;
-//     transition: $main-transition-duration;
-//     }
-    
-//     &:hover,
-//     &:focus {
-//     border-color: $textColorBlack;
-//     transition: $main-transition-duration;
-//     }
-    
-//     &:hover::placeholder,
-//     &:focus::placeholder {
-//     color: $textColorBlack;
-//     }
-//     }
-    
-//     .modal__close {
-//     position: absolute;
-//     top: 0;
-//     right: 10px;
-//     color: $textColorWhite;
-//     font-size: 50px;
-//     font-weight: bold;
-//     float: right;
-    
-//     &:hover,
-//     &:focus {
-//     color: $textColorBlack;
-//     text-decoration: none;
-//     cursor: pointer;
-//     transition: $main-transition-duration;
-//     }
-//     }
-    
-//     .modal__button-send {
-//     padding: 12px 30px;
-//     background-color: $textColorWhite;
-//     color: $AccentColorRed;
-//     border: none;
-//     border-radius: 20px;
-//     cursor: pointer;
-//     font-size: 16px;
-//     margin-top: 30px;
-    
-//     &:hover {
-//     background-color: $textColorBlack;
-//     color: $textColorWhite;
-//     transition: $main-transition-duration;
-//     }
-//     }
-    
-//     .modal__form-wraper-register {
-//     display: flex;
-//     flex-direction: column;
-//     margin-top: 30px;
-//     margin-left: auto;
-//     }
-    
-//     .modal__button-register {
-//     padding: 0;
-//     background-color: transparent;
-//     color: $textColorWhite;
-//     border: none;
-//     cursor: pointer;
-//     font-size: 16px;
-    
-//     &:hover {
-//     color: $textColorBlack;
-//     transition: $main-transition-duration;
-//     }
-//     }
-    
-//     .modal__text-register {
-//     margin: 0;
-//     color: $textColorWhite;
-//     }

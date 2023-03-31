@@ -48,11 +48,13 @@ function register(e) {
 }
 
 function registerRender(){
-    const inputHtml = '<input class="modal__form-input" type="text" placeholder="Name*" id="input-name" minlength="4" maxlength="25">';
+    const inputHtml = '<input class="modal__form-input" type="text" placeholder="Name*" id="input-name" required minlength="4" maxlength="25">';
     refs.modalForm.insertAdjacentHTML("afterbegin", inputHtml);
   }
 //видаляє символи в інпути коли натискаєш на кнопку 
 function clearInputFields() {
     refs.inputFields.forEach(input => input.value = "");
   }
+  
+ 
   
