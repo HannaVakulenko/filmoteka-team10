@@ -1,20 +1,37 @@
+<!-- <button id="open-modal-btn">Open Modal</button> -->
 
-        <!-- <button id="open-modal-btn">Open Modal</button> -->
-        <div class="modal" id="Modal">
-            <div class="modal-content">
-                <span class="modal__close" id="close-modal-btn">&times;</span>
-                <h2 class="modal__title">Login</h2>
-                <form class="modal__form" autocomplete="off" >
-                    <input type="email" class="modal__form-input" name="name" placeholder="Email*" required minlength="10" maxlength="25">
-                    <input type="password" class="modal__form-input" name="email" placeholder="Password*" required minlength="8" maxlength="25">
-                    <button class="modal__form-button--send" type="submit">Login</button>
-                    <div class="modal__form-wrapper-register">
-                        <p class="modal__form-text-register" >Don't have an account?</p>
-                        <button class="modal__form-button-register" id="register-btn">Register</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        
-    
+<div class="modal-firebase" id="Modal">
+  <div class="modal-content-firebase">
+    <span class="modal-firebase__close" id="close-modal-btn">&times;</span>
+    <h2 class="modal-firebase__title">Login</h2>
+    <form class="modal-firebase__form" autocomplete="off">
+      <input
+        type="email"
+        class="modal-firebase__form-input"
+        name="name"
+        placeholder="Email*"
+        required
+        minlength="10"
+        maxlength="25"
+      />
+      <input
+        type="password"
+        class="modal-firebase__form-input"
+        name="email"
+        placeholder="Password*"
+        required
+        minlength="8"
+        maxlength="25"
+      />
+      <button class="modal-firebase__form-button--send" type="submit">
+        Login
+      </button>
+      <div class="modal-firebase__form-wrapper-register">
+        <p class="modal-firebase__form-text-register">Don't have an account?</p>
+        <button class="modal-firebase__form-button-register" id="register-btn">
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
