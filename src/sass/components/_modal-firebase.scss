@@ -144,6 +144,19 @@
   }
 }
 
+.modal__form-button-register {
+  padding: 0;
+  background-color: transparent;
+  color: $textColorWhite;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+
+  @media (min-width: 320px) and (max-width: 479.98px) {
+    margin-right: auto;
+  }
+}
+
 .modal-firebase__form-button-register {
   padding: 0;
   background-color: transparent;
