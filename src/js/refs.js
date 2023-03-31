@@ -9,5 +9,9 @@ const refs = {
   closeModalBtn: document.getElementById('close-modal-btn'),
   inputFields: document.querySelectorAll('.modal-firebase__form-input'),
   pagination: document.querySelector('#pagination'),
+  FICTIVEopenModalFilmCardItem: document.querySelector(".item-fictive"),
+  closeModalFilmCardBtn: document.querySelector(".modal-film__close-btn"),
+  modalFilmCardWindow: document.querySelector(".modal-film"),
+  modalFilmCardBackdrop:document.querySelector(".backdrop-film-card"),
 };
 export { refs };
