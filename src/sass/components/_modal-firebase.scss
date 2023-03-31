@@ -1,0 +1,128 @@
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: $AccentColorRed;
+    margin: 15% auto;
+    padding: 40px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 650px;
+    position: relative;
+}
+
+.modal-title {
+    margin: 0;
+    color:$textColorWhite;
+    text-align: center;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 35px;
+    
+}
+
+.modal-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+}
+
+.modal-form__input {
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid$textColorWhite;
+  outline: transparent;
+
+}
+.modal-form__input::placeholder {
+color:$textColorWhite;
+}
+.modal-form__input:hover::placeholder,
+.modal-form__input:focus::placeholder {
+color: $textColorBlack;
+}
+
+.modal-form__input:hover,
+.modal-form__input:focus {
+    border-color:$textColorBlack;
+}
+
+.close {
+    color: $textColorWhite;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+    top: 0;
+}
+
+.close:hover,
+.close:focus {
+    color:$textColorBlack;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+.modal-button__send {
+    background-color: $textColorWhite;
+    color: $AccentColorRed;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+
+    margin-top: 30px;
+}
+
+.modal-button__send:hover {
+    background-color: $textColorBlack;
+    color: $textColorWhite;
+}
+
+
+.modal-form__wraper-register {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-top: 30px;
+}
+
+.modal-form__button-register{
+    background-color: transparent;
+    color: $textColorWhite;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+
+}
+
+.modal-form__button-register:hover {
+    color: $textColorBlack;
+}
+
+.modal-form__text-register {
+    color: $textColorWhite;
+    margin: 0;
+}
