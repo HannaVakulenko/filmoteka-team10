@@ -1,0 +1,117 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: $textColorGraySecond;
+
+    z-index: 100;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    overflow-y: scroll;
+}
+
+.team__modal {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 30px);
+    max-width: 420px;
+    background-color: $textColorWhite;
+    padding: 60px 10px 30px;
+
+    @include tablet {
+        max-width: 650px;
+        // padding: 60px 20px 50px;
+    }
+
+    @include desktop {
+        max-width: 980px;
+    }
+}
+
+.team__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+
+
+    @include tablet {
+        flex-direction: row;
+    }
+}
+
+.team__item {
+    max-width: 270px;
+    border-radius: 5px;
+    background-color: $textColorWhite;
+    padding: 10px 10px;
+    box-shadow: 5px 10px 10px $textColorBlack;
+    transition: background-color $main-transition-duration, color $main-transition-duration;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        background-color: $textColorGray;
+        color: $AccentColorOrange;
+    }
+
+    @include tablet {
+        flex-basis: calc((100% - 30px) / 2);
+    }
+
+    @include desktop {
+        flex-basis: calc((100% - 60px) / 3);
+    }
+}
+
+.team__thumb {
+    width: 250px;
+    max-width: 320px;
+    height: 320px;
+}
+
+.team__img {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.team__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    gap: 10px;
+}
+
+.btn-modal-close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border: transparent;
+    background-color: transparent;
+    transition: all $main-transition-duration;
+
+    &:hover,
+    &:focus {
+        border: 2px solid $AccentColorOrange;
+        border-radius: 50px;
+        fill: $AccentColorOrange;
+    }
+}
