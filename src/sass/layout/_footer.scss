@@ -35,6 +35,19 @@
   width: 14px;
   height: 12.75px;
 }
-.footer__link {
+.footer__button {
+  font-family: $roboto-font;
+  font-weight: 400;
   color: #545454;
+  font-size: 16px;
+  line-height: calc(19 / 16);
+
+  @include max-tablet() {
+    font-size: 14px;
+    line-height: calc(16 / 14);
+  }
+  color: #545454;
+  border: none;
+  background-color: transparent;
+  padding: 0;
 }
