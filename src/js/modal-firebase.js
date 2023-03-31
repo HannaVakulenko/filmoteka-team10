@@ -1,27 +1,34 @@
+const refs = {
+    modal: document.querySelector(".modal"),
+    modalHeader: document.querySelector(".modal__title"),
+    modalForm: document.querySelector(".modal__form"),
+    registerText: document.querySelector(".modal__form-text-register"),
+    loginButton: document.querySelector(".modal__form-button--send"),
+    registerButton: document.getElementById("register-btn"),
+    openModalBtn: document.getElementById("open-modal-btn"),
+    closeModalBtn: document.getElementById("close-modal-btn"),
+    inputFields: document.querySelectorAll(".modal__form-input"),
+    
+}
 
-const modal = document.querySelector(".modal");
-const modalHeader = document.querySelector(".modal-title");
-const modalForm = document.querySelector(".modal-form");
-const registerText = document.querySelector(".modal-form__text-register")
-const registerButton = document.getElementById("register-btn");
-console.log(registerButton)
+const initialModalHeaderText = refs.modalHeader.textContent;
+const initialRegisterText = refs.registerText.textContent;
+const initialRegisterButton = refs.loginButton.textContent;
 
-
-const initialModalHeaderText = modalHeader.textContent;
-const initialRegisterText = registerText.textContent;
-// const initialRegisterButton = registerButton.textContent;
-let inputField;
+refs.openModalBtn.addEventListener("click", openModal);
+refs.closeModalBtn.addEventListener("click", closeModal);
+refs.registerButton.addEventListener("click", register);
 
 function openModal() {
-modal.style.display = "block";
+refs.modal.style.display = "block";
 }
 
 function closeModal() {
-modal.style.display = "none";
+refs.modal.style.display = "none";
 }
 
 window.onclick = function(event) {
-if (event.target === modal) {
+if (event.target === refs.modal) {
 closeModal();
 }
 }
@@ -32,32 +39,31 @@ closeModal();
 }
 });
 
-
 function register(e) {
   e.preventDefault();
 
-  console.log('111');
+  const isRegistering = refs.modalHeader.textContent !== "Register";
 
-  if (modalHeader.textContent !== "Register") {
-    modalHeader.textContent = "Register";
-    registerText.textContent = "I have an account";
-    registerButton.textContent = "Auth";
-    
+  refs.modalHeader.textContent = isRegistering ? "Register" : initialModalHeaderText;
+  refs.registerText.textContent = isRegistering ? "I have an account" : initialRegisterText;
+  refs.registerButton.textContent = isRegistering ? "Auth" : "Register";
+  refs.loginButton.textContent = isRegistering ? "Register" : initialRegisterButton;
+
+  if (isRegistering) {
     registerRender();
-    
   } else {
-    modalHeader.textContent = initialModalHeaderText;
-    inputField = document.getElementById("input-name");
-    inputField.parentNode.removeChild(inputField);
-    registerText.textContent = initialRegisterText;
-    registerButton.textContent = "Register";
+    const inputField = document.getElementById("input-name");
+    inputField?.parentNode.removeChild(inputField);
   }
+  clearInputFields(); // видаляємо вміст полів введення
 }
 
-registerButton.addEventListener("click", register);
-  
-  //функція яка рендирить поле name
-  function registerRender(){
-    const inputHtml = '<input class="modal-form__input" type="text" placeholder="Name*" id="input-name">';
-    modalForm.insertAdjacentHTML("afterbegin", inputHtml);
+function registerRender(){
+    const inputHtml = '<input class="modal__form-input" type="text" placeholder="Name*" id="input-name" minlength="4" maxlength="25">';
+    refs.modalForm.insertAdjacentHTML("afterbegin", inputHtml);
   }
+//видаляє символи в інпути коли натискаєш на кнопку 
+function clearInputFields() {
+    refs.inputFields.forEach(input => input.value = "");
+  }
+  

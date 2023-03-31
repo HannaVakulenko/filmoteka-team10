@@ -1,28 +1,20 @@
 
-        <h2>Modal Window Example</h2>
-    
-        <button onclick="openModal()">Open Modal</button>
-    
+        <button id="open-modal-btn">Open Modal</button>
         <div class="modal" id="Modal">
             <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h2 class="modal-title">Login</h2>
-                <form class="modal-form" >
-                    <!-- <label class="modal-label" for="name">Name:</label> -->
-                    <input type="email" class="modal-form__input" name="name" placeholder="Email*">
-    
-                    <!-- <label class="modal-label" for="email">Email:</label> -->
-                    <input type="password" class="modal-form__input" name="email" placeholder="Password*">
-    
-                    <button class="modal-button__send" type="submit">Login</button>
-
-                    <div class="modal-form__wraper-register">
-                        <p class="modal-form__text-register" >Don't have an account?</p>
-                        <button class="modal-form__button-register" id="register-btn">Register</button>
+                <span class="modal__close" id="close-modal-btn">&times;</span>
+                <h2 class="modal__title">Login</h2>
+                <form class="modal__form" autocomplete="off" >
+                    <input type="email" class="modal__form-input" name="name" placeholder="Email*" minlength="10" maxlength="25">
+                    <input type="password" class="modal__form-input" name="email" placeholder="Password*" minlength="8" maxlength="25">
+                    <button class="modal__form-button--send" type="submit">Login</button>
+                    <div class="modal__form-wrapper-register">
+                        <p class="modal__form-text-register" >Don't have an account?</p>
+                        <button class="modal__form-button-register" id="register-btn">Register</button>
                     </div>
-                   
                 </form>
             </div>
         </div>
-    <script src="/src/js/modal-firebase.js" ></script>
+
+        
     
