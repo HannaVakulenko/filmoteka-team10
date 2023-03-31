@@ -7,13 +7,13 @@ const refs = {
     registerButton: document.getElementById("register-btn"),
     openModalBtn: document.getElementById("open-modal-btn"),
     closeModalBtn: document.getElementById("close-modal-btn"),
+    inputFields: document.querySelectorAll(".modal__form-input"),
     
 }
 
 const initialModalHeaderText = refs.modalHeader.textContent;
 const initialRegisterText = refs.registerText.textContent;
 const initialRegisterButton = refs.loginButton.textContent;
-
 
 refs.openModalBtn.addEventListener("click", openModal);
 refs.closeModalBtn.addEventListener("click", closeModal);
@@ -55,9 +55,15 @@ function register(e) {
     const inputField = document.getElementById("input-name");
     inputField?.parentNode.removeChild(inputField);
   }
+  clearInputFields(); // видаляємо вміст полів введення
 }
 
-  function registerRender(){
+function registerRender(){
     const inputHtml = '<input class="modal__form-input" type="text" placeholder="Name*" id="input-name" minlength="4" maxlength="25">';
     refs.modalForm.insertAdjacentHTML("afterbegin", inputHtml);
   }
+//видаляє символи в інпути коли натискаєш на кнопку 
+function clearInputFields() {
+    refs.inputFields.forEach(input => input.value = "");
+  }
+  
