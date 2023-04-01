@@ -1797,7 +1797,7 @@ const pa=Xn("authIdTokenMaxAge")||300;let ga=null;function ma(e=yi()){const t=pi
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-vi("firebase","9.19.0","app");const ya={apiKey:"AIzaSyC1qbPHpBHDvb1ri3v_PnC2GeKvFdYd_bg",authDomain:"filmoteka-team10.firebaseapp.com",projectId:"filmoteka-team10",storageBucket:"filmoteka-team10.appspot.com",messagingSenderId:"708656780445",appId:"1:708656780445:web:ad6de9021e8845e89eb074"},va=(_i(ya),_i(ya)),wa=document.querySelector(".modal"),ba=document.querySelector(".modal__form"),Ia=document.querySelector(".modal__form-button--send"),Ea=document.querySelector(".list-library"),Ca=document.querySelector(".logIn"),Ta=document.querySelector(".logOut");localStorage.getItem("userSession")&&(Ea.classList.remove("is-hidden-firebase"),Ta.classList.remove("is-hidden-firebase"),Ca.classList.add("is-hidden-firebase")),ba.addEventListener("submit",(e=>{var t,n;e.preventDefault(),"Register"!==Ia.textContent?(t=ba[0].value,n=ba[1].value,function(e,t,n){return co(Ar(e),Ks.credential(t,n))}
+vi("firebase","9.19.0","app");const ya={apiKey:"AIzaSyC1qbPHpBHDvb1ri3v_PnC2GeKvFdYd_bg",authDomain:"filmoteka-team10.firebaseapp.com",projectId:"filmoteka-team10",storageBucket:"filmoteka-team10.appspot.com",messagingSenderId:"708656780445",appId:"1:708656780445:web:ad6de9021e8845e89eb074"},va=(_i(ya),_i(ya)),wa=document.querySelector(".modal-firebase"),ba=document.querySelector(".modal-firebase__form"),Ia=document.querySelector(".modal-firebase__form-button--send"),Ea=document.querySelector(".list-library"),Ca=document.querySelector(".logIn"),Ta=document.querySelector(".logOut");console.log(ba),localStorage.getItem("userSession")&&(Ea.classList.remove("is-hidden-firebase"),Ta.classList.remove("is-hidden-firebase"),Ca.classList.add("is-hidden-firebase")),ba.addEventListener("submit",(e=>{var t,n;e.preventDefault(),"Register"!==Ia.textContent?(t=ba[0].value,n=ba[1].value,function(e,t,n){return co(Ar(e),Ks.credential(t,n))}
 /**
  * @license
  * Copyright 2020 Google LLC
@@ -2982,4 +2982,4 @@ function(e){Sa="9.19.0",fi(new xr("database",((e,{instanceIdentifier:t})=>Nd(e.g
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */();const Ad=ma(),xd=Od(),Dd=Id(Od()),Ld=[{username:"Admin",email:"email",profile_picture:"imageUrl"},{username:"Ada",email:"email",profile_picture:"imageUrl"}];ho(Ad,(e=>{e&&Cd(Id(xd,"users/ovrGn2FJIdTUQrajvyrFQ3Gb5bs1/"),Ld)})),ho(Ad,(e=>{e&&Td(Ed(Dd,"users/ovrGn2FJIdTUQrajvyrFQ3Gb5bs1")).then((e=>{e.exists()?console.log(e.val()):console.log("No data available")})).catch((e=>{console.log(e)}))}));
-//# sourceMappingURL=index.7778b6ad.js.map
+//# sourceMappingURL=index.7636a6c5.js.map
