@@ -259,3 +259,17 @@ body.modal-open {
     border: 2px solid red;
     font-size: 25px;
 }
+
+.trailer {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 45px;
+    left: 25px;
+}
+.trailer__icon {
+    fill: red;
+}
