@@ -8,6 +8,7 @@ import './js/spinner'
 import './js/preloader'
 import './js/firebase/firebaseRegAndSign';
 import './js/firebase/dataBase';
+import './js/scroll-up';
 
 // import './js/firebase/firebase';
 
