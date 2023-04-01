@@ -223,7 +223,9 @@
     width: 130px;
   }
 }
-.library__button--current {
+.library__button--current,
+.library__button:hover,
+.library__button:focus {
   background-color: #ff6b01;
   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
   border: none;

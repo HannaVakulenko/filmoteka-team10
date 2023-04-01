@@ -1,4 +1,5 @@
 import axios from 'axios';
+import './allgenres';
 
 export const API_KEY = 'c789b950e94d6ea5adbb471c5a6ee143';
 export const API_URL = 'https://api.themoviedb.org/3/';
@@ -30,6 +31,7 @@ export const FetchTrending = async () => {
     }
     filmsTrending = responseTrending.data.results;
     console.log(filmsTrending);
+    // await renderGallery(filmsTrending);
   } catch (error) {
     console.log(error.message);
   }
@@ -101,3 +103,53 @@ export const GetTrailer = async movie_id => {
     console.log(error.message);
   }
 };
+
+const renderGallery = movies => {
+  const galleryFilms = document.querySelector('.film-list');
+  // document.querySelector('.film-list').innerHTML = '';
+  const listitem = movies
+    .map(
+      ({
+        id,
+        poster_path,
+        title,
+        release_date,
+        genre_ids,
+        original_title,
+        vote_average,
+        popularity,
+        vote_count,
+        overview,
+      }) => {
+        return `
+<li class="film-list__item">
+  <div class="thumb">
+    <img
+      class="film-poster"
+      src="${IMG_ARI}${poster_path}
+"
+      alt="movie poster"
+    />
+  </div>
+
+  <div class="film-list__info">
+    <h3 class="film-list__name">${title}</h3>
+    <p class="film-list__genre">$Жанри | </p>
+  </div>
+</li>
+        `;
+      }
+    )
+    .join('');
+  galleryFilms.insertAdjacentHTML('beforeend', listitem);
+};
+
+const RenderPopular = async () => {
+  try {
+    await FetchTrending();
+    await renderGallery(filmsTrending);
+  } catch {
+    console.log('error:');
+  }
+};
+RenderPopular();
