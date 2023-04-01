@@ -1,4 +1,4 @@
-.backdrop {
+.team {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,9 +8,6 @@
     background-color: $textColorGraySecond;
 
     z-index: 100;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
     overflow-y: scroll;
 }
 
