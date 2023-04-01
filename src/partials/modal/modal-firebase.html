@@ -1,20 +1,34 @@
-
-        <button id="open-modal-btn">Open Modal</button>
-        <div class="modal" id="Modal">
-            <div class="modal-content">
-                <span class="modal__close" id="close-modal-btn">&times;</span>
-                <h2 class="modal__title">Login</h2>
-                <form class="modal__form" autocomplete="off" >
-                    <input type="email" class="modal__form-input" name="name" placeholder="Email*" minlength="10" maxlength="25">
-                    <input type="password" class="modal__form-input" name="email" placeholder="Password*" minlength="8" maxlength="25">
-                    <button class="modal__form-button--send" type="submit">Login</button>
-                    <div class="modal__form-wrapper-register">
-                        <p class="modal__form-text-register" >Don't have an account?</p>
-                        <button class="modal__form-button-register" id="register-btn">Register</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        
-    
+<button id="open-modal-btn">Open Modal</button>
+<div class="modal" id="Modal">
+  <div class="modal-content">
+    <span class="modal__close" id="close-modal-btn">&times;</span>
+    <h2 class="modal__title">Login</h2>
+    <form class="modal__form" autocomplete="off">
+      <input
+        type="email"
+        class="modal__form-input"
+        name="name"
+        placeholder="Email*"
+        minlength="10"
+        maxlength="25"
+        autocomplete="on"
+      />
+      <input
+        type="password"
+        class="modal__form-input"
+        name="email"
+        placeholder="Password*"
+        minlength="8"
+        maxlength="25"
+        autocomplete="on"
+      />
+      <button class="modal__form-button--send" type="submit">Login</button>
+      <div class="modal__form-wrapper-register">
+        <p class="modal__form-text-register">Don't have an account?</p>
+        <button class="modal__form-button-register" id="register-btn">
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
