@@ -12,6 +12,7 @@ import './js/modal-students';
 import {
   API_KEY,
   API_UR,
+  IMG_ARI,
   MEDIA_TYPE,
   TIME_WINDOW,
   PER_PAGE,
