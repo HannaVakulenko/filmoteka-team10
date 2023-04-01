@@ -75,6 +75,7 @@ export const FetchFilmID = async movie_id => {
 // FetchFilmID(my_movie_id);
 
 // опредеоение жанра фильма
+let filmsTrendingIdGenres = [];
 let mygenres = [];
 
 for (let i = 0; i < filmsTrendingIdGenres.length; i++) {
