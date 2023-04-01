@@ -4,7 +4,8 @@ import './js/refs';
 import './js/pagination';
 import './js/modal-film';
 import './js/modal-students';
-
+import './js/spinner'
+import './js/preloader'
 // //import { refs } from './refs';
 
 // Імпорт Api:

@@ -9,5 +9,8 @@ const refs = {
   closeModalBtn: document.getElementById('close-modal-btn'),
   inputFields: document.querySelectorAll('.modal-firebase__form-input'),
   pagination: document.querySelector('#pagination'),
+  spinnerDotsWrapper: document.querySelector('.spinner'),
+  preloaderGifWrapper: document.querySelector('.preloader'),
+  preloaderGifImage: document.querySelector('.preloader__image'),
 };
 export { refs };
