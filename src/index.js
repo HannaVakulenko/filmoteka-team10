@@ -3,9 +3,10 @@ import './js/api-servise';
 import './js/refs';
 import './js/pagination';
 import './js/modal-film';
+import './js/trailer';
 import './js/modal-students';
-import './js/spinner'
-import './js/preloader'
+import './js/spinner';
+import './js/preloader';
 import './js/firebase/firebaseRegAndSign';
 import './js/firebase/dataBase';
 
