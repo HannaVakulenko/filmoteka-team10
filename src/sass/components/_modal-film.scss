@@ -1,0 +1,261 @@
+body.modal-open {
+    overflow: hidden;
+}
+
+.backdrop-film-card {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+
+    visibility: visible;
+    opacity: 1;
+    transition: opacity $main-transition-duration, visibility $main-transition-duration;
+}
+
+.backdrop-film-card.is-hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+
+    & .modal-card {
+        transform: translate(-50%, -50%) scaleY(0);
+    }
+}
+
+.modal-film {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 48px 20px;
+
+    background-color: $backGroundWhite;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+        0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    transform: translate(-50%, -50%) scaleY(1);
+    transition: transform $main-transition-duration;
+
+    overflow: scroll;
+
+    width: 280px;
+
+    @media screen and (max-width:767px) {
+        height: 90%;
+    }
+
+    @include tablet {
+        width: 704px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 68px;
+        padding: 40px 36px;
+    }
+
+    @include desktop {
+        width: 806px;
+        gap: 16px;
+        padding: 40px 12px;
+    }
+
+    &__title {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 1.15;
+
+        margin-bottom: 21px;
+    }
+
+    &__item {
+        color: $textColorGraySecond;
+        min-width: 108px;
+
+        @include desktop {
+            min-width: 152px;
+        }
+    }
+
+    &__info,
+    &__item {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.33;
+    }
+
+    &__info--orange {
+        display: flex;
+    }
+
+    .devider::before {
+        content: '/';
+        display: block;
+        padding-left: 3px;
+        padding-right: 8px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.33;
+        color: $textColorGraySecond;
+    }
+
+    .orange-number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 36px;
+        height: 16px;
+
+        background: $AccentColorOrange;
+        color: $textColorWhite;
+        border-radius: 5px;
+    }
+
+    &__items {
+        display: flex;
+        align-items: center;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    &__about {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.33;
+        margin-bottom: 8px;
+    }
+
+    &__text {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.67;
+        margin-bottom: 20px;
+    }
+}
+
+.modal-film__close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 14px;
+    height: 14px;
+    padding: 0;
+
+    background-color: transparent;
+    border: none;
+
+    &:hover>.icon-close-modal-card,
+    &:focus>.icon-close-modal-card {
+        fill: $AccentColorOrange;
+    }
+}
+
+.icon-close-modal-card {
+    fill: #000000;
+    transition: fill $main-transition-duration;
+}
+
+.modal-film__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    @include tablet {
+        gap: 15px;
+    }
+
+    .btn-watched,
+    .btn-queue {
+        width: 100px;
+        min-height: 44px;
+
+        padding: 5px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: transparent;
+        border: 1px solid $btnBlackColor;
+        border-radius: 5px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.33;
+        text-transform: uppercase;
+
+        @include tablet {
+            width: 125px;
+        }
+
+        @include desktop {
+            width: 136px;
+        }
+
+        color: $textColorBlack;
+
+        transition: color $main-transition-duration,
+        background-color $main-transition-duration,
+        border $main-transition-duration;
+
+        &:hover,
+        &:focus {
+            color: $textColorWhite;
+            background-color: $AccentColorOrange;
+            border: 1px solid $AccentColorOrange;
+        }
+    }
+}
+
+.modal-film__poster {
+    max-width: 240px;
+    height: 357px;
+    margin-bottom: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $backGroundGray;
+    border-radius: 5px;
+
+    @include tablet {
+        min-width: 264px;
+        height: 373px;
+        margin-bottom: 0;
+    }
+
+    @include desktop {
+        min-width: 375px;
+        height: 478px;
+        margin-bottom: 0;
+    }
+}
+
+.item-fictive {
+    margin-right: auto;
+    margin-left: auto;
+    height: 150px;
+    width: 250px;
+    border: 2px solid red;
+    font-size: 25px;
+}
