@@ -4,10 +4,13 @@ import './js/refs';
 import './js/pagination';
 import './js/modal-film';
 import './js/modal-students';
+import './js/spinner'
+import './js/preloader'
 import './js/firebase/firebaseRegAndSign';
 import './js/firebase/dataBase';
 
 // import './js/firebase/firebase';
+
 
 // //import { refs } from './refs';
 
