@@ -1,10 +1,9 @@
 <header class="header">
   <div class="conteiner-header container">
     <a href="./index.html" class="nav__logo link"
-      ><img class="logo" src="./images/logo.png" alt="Logo" /><span
-        class="nav__text"
-        >Filmoteka</span
-      ></a
+      ><svg class="logo">
+        <use href="./images/icons.svg#icon-film"></use></svg
+      ><span class="nav__text">Filmoteka</span></a
     >
     <nav class="nav">
       <ul class="nav__list list">
@@ -35,7 +34,9 @@
         placeholder="Movie search"
       />
       <button class="search-form__button" type="submit">
-        <img class="search-form__img" src="./images/search.png" alt="" />
+        <svg class="search-form__svg">
+          <use href="./images/icons.svg#icon-search2"></use>
+        </svg>
       </button>
     </div>
   </form>
