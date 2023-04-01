@@ -4,6 +4,7 @@ import './js/refs';
 import './js/pagination';
 import './js/modal-film';
 import './js/modal-students';
+import './js/displaying-movies';
 
 // //import { refs } from './refs';
 
