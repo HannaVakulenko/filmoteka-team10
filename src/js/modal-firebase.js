@@ -3,8 +3,7 @@ console.log(document.location.host);
 
 if (
   document.location.pathname === '/index.html' ||
-  (document.location.host === 'localhost:60045' &&
-    document.location.pathname !== '/my-library.html')
+  (document.location.host && document.location.pathname !== '/my-library.html')
 ) {
   const initialModalHeaderText = refs.modalHeader.textContent;
   const initialRegisterText = refs.registerText.textContent;

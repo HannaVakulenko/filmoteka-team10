@@ -6,13 +6,10 @@ import {
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebase';
 
-console.log(
-  document.location.search === '?name=abcd10%40gamil.com&email=1234567890'
-);
-
 if (
   document.location.pathname === '/index.html' ||
-  document.location.search === '?name=abcd10%40gamil.com&email=1234567890'
+  document.location.search ||
+  (document.location.host && document.location.pathname !== '/my-library.html')
 ) {
   const app = initializeApp(firebaseConfig);
 
