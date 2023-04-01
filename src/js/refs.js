@@ -15,6 +15,9 @@ const refs = {
   FICTIVEopenModalFilmCardItem: document.querySelector(".item-fictive"),
   closeModalFilmCardBtn: document.querySelector(".modal-film__close-btn"),
   modalFilmCardWindow: document.querySelector(".modal-film"),
-  modalFilmCardBackdrop:document.querySelector(".backdrop-film-card"),
+  modalFilmCardBackdrop: document.querySelector(".backdrop-film-card"),
+  btnModalOpen: document.querySelector('.btn-modal-open'),
+  btnModalClose: document.querySelector('.btn-modal-close'),
+  backdropModalTeam: document.querySelector('.team '),
 };
 export { refs };
