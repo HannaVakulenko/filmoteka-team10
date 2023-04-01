@@ -1,4 +1,5 @@
 import axios from 'axios';
+import './allgenres';
 
 export const API_KEY = 'c789b950e94d6ea5adbb471c5a6ee143';
 export const API_URL = 'https://api.themoviedb.org/3/';
@@ -72,3 +73,15 @@ export const FetchFilmID = async movie_id => {
 };
 // запуск функції
 // FetchFilmID(my_movie_id);
+
+// опредеоение жанра фильма
+let mygenres = [];
+
+for (let i = 0; i < filmsTrendingIdGenres.length; i++) {
+  for (let index = 0; index < allgenres.length; index++) {
+    if (allgenres[index].id === filmsTrendingIdGenres[i]) {
+      mygenres.push(allgenres[index].name);
+    }
+  }
+}
+console.log(mygenres);
