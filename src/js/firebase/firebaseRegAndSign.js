@@ -6,7 +6,11 @@ import {
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebase';
 
-if (document.location.pathname === '/index.html') {
+if (
+  document.location.pathname === '/index.html' ||
+  document.location.search ||
+  (document.location.host && document.location.pathname !== '/my-library.html')
+) {
   const app = initializeApp(firebaseConfig);
 
   const modal = document.querySelector('.modal-firebase');
