@@ -1,6 +1,12 @@
 import {refs} from './refs'
 
+refs.spinnerDotsWrapper.removeAttribute('style')
+
 window.addEventListener('load', onLoad)
+
+window.onerror = function () {
+    refs.spinnerDotsWrapper.style.display='none'
+}
 
 function onLoad() { 
     refs.spinnerDotsWrapper.style.display='none'
