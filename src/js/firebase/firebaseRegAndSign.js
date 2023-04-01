@@ -6,71 +6,71 @@ import {
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebase';
 
-const app = initializeApp(firebaseConfig);
+if (document.location.pathname === '/index.html') {
+  const app = initializeApp(firebaseConfig);
 
-const modal = document.querySelector('.modal-firebase');
-const form = document.querySelector('.modal-firebase__form');
-const button = document.querySelector('.modal-firebase__form-button--send');
-const library = document.querySelector('.list-library');
-const logIn = document.querySelector('.logIn');
-const logOut = document.querySelector('.logOut');
+  const modal = document.querySelector('.modal-firebase');
+  const form = document.querySelector('.modal-firebase__form');
+  const button = document.querySelector('.modal-firebase__form-button--send');
+  const library = document.querySelector('.list-library');
+  const logIn = document.querySelector('.logIn');
+  const logOut = document.querySelector('.logOut');
 
-console.log(form);
-
-if (localStorage.getItem('userSession')) {
-  library.classList.remove('is-hidden-firebase');
-  logOut.classList.remove('is-hidden-firebase');
-  logIn.classList.add('is-hidden-firebase');
-}
-
-// abcd10@gamil.com
-
-form.addEventListener('submit', e => {
-  e.preventDefault();
-
-  if (button.textContent !== 'Register') {
-    submitForm(form[0].value, form[1].value);
-    console.log('LOGIN');
-    modal.style.display = 'none';
-  } else {
-    registerUser(form[1].value, form[2].value);
-    console.log('REGISTER');
-    modal.style.display = 'none';
+  if (localStorage.getItem('userSession')) {
+    library.classList.remove('is-hidden-firebase');
+    logOut.classList.remove('is-hidden-firebase');
+    logIn.classList.add('is-hidden-firebase');
   }
-});
 
-logOut.addEventListener('click', logout);
+  // abcd10@gamil.com
 
-function registerUser(email, password) {
-  const auth = getAuth(app);
-  createUserWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      library.classList.remove('is-hidden-firebase');
-      logOut.classList.remove('is-hidden-firebase');
-      logIn.classList.add('is-hidden-firebase');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
 
-      localStorage.setItem('userSession', 'true');
-    })
-    .catch(console.error);
-}
+    if (button.textContent !== 'Register') {
+      submitForm(form[0].value, form[1].value);
+      console.log('LOGIN');
+      modal.style.display = 'none';
+    } else {
+      registerUser(form[1].value, form[2].value);
+      console.log('REGISTER');
+      modal.style.display = 'none';
+    }
+  });
 
-function submitForm(email, password) {
-  const auth = getAuth(app);
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      library.classList.remove('is-hidden-firebase');
-      logOut.classList.remove('is-hidden-firebase');
-      logIn.classList.add('is-hidden-firebase');
+  logOut.addEventListener('click', logout);
 
-      localStorage.setItem('userSession', 'true');
-    })
-    .catch(console.error);
-}
+  function registerUser(email, password) {
+    const auth = getAuth(app);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        library.classList.remove('is-hidden-firebase');
+        logOut.classList.remove('is-hidden-firebase');
+        logIn.classList.add('is-hidden-firebase');
 
-function logout() {
-  library.classList.add('is-hidden-firebase');
-  logOut.classList.add('is-hidden-firebase');
-  logIn.classList.remove('is-hidden-firebase');
+        localStorage.setItem('userSession', 'true');
+      })
+      .catch(console.error);
+  }
 
-  localStorage.removeItem('userSession');
+  function submitForm(email, password) {
+    const auth = getAuth(app);
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        library.classList.remove('is-hidden-firebase');
+        logOut.classList.remove('is-hidden-firebase');
+        logIn.classList.add('is-hidden-firebase');
+
+        localStorage.setItem('userSession', 'true');
+      })
+      .catch(console.error);
+  }
+
+  function logout() {
+    library.classList.add('is-hidden-firebase');
+    logOut.classList.add('is-hidden-firebase');
+    logIn.classList.remove('is-hidden-firebase');
+
+    localStorage.removeItem('userSession');
+  }
 }

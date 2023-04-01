@@ -1,65 +1,67 @@
 import { refs } from './refs';
 
-const initialModalHeaderText = refs.modalHeader.textContent;
-const initialRegisterText = refs.registerText.textContent;
-const initialRegisterButton = refs.loginButton.textContent;
+if (document.location.pathname === '/index.html') {
+  const initialModalHeaderText = refs.modalHeader.textContent;
+  const initialRegisterText = refs.registerText.textContent;
+  const initialRegisterButton = refs.loginButton.textContent;
 
-refs.openModalBtn.addEventListener('click', openModal);
-refs.closeModalBtn.addEventListener('click', closeModal);
-refs.registerButton.addEventListener('click', register);
+  refs.openModalBtn.addEventListener('click', openModal);
+  refs.closeModalBtn.addEventListener('click', closeModal);
+  refs.registerButton.addEventListener('click', register);
 
-function openModal() {
-  refs.modal.style.display = 'block';
-}
-
-function closeModal() {
-  refs.modal.style.display = 'none';
-}
-
-window.onclick = function (event) {
-  if (event.target === refs.modal) {
-    closeModal();
+  function openModal() {
+    refs.modal.style.display = 'block';
   }
-};
 
-document.addEventListener('keydown', function (event) {
-  if (event.key === 'Escape' || event.code === 27) {
-    closeModal();
+  function closeModal() {
+    refs.modal.style.display = 'none';
   }
-});
 
-function register(e) {
-  e.preventDefault();
+  window.onclick = function (event) {
+    if (event.target === refs.modal) {
+      closeModal();
+    }
+  };
 
-  const isRegistering = refs.modalHeader.textContent !== 'Register';
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' || event.code === 27) {
+      closeModal();
+    }
+  });
 
-  refs.modalHeader.textContent = isRegistering
-    ? 'Register'
-    : initialModalHeaderText;
-  refs.registerText.textContent = isRegistering
-    ? 'I have an account'
-    : initialRegisterText;
-  refs.registerButton.textContent = isRegistering ? 'Auth' : 'Register';
-  refs.loginButton.textContent = isRegistering
-    ? 'Register'
-    : initialRegisterButton;
+  function register(e) {
+    e.preventDefault();
 
-  if (isRegistering) {
-    registerRender();
-  } else {
-    const inputField = document.getElementById('input-name');
-    inputField?.parentNode.removeChild(inputField);
+    const isRegistering = refs.modalHeader.textContent !== 'Register';
+
+    refs.modalHeader.textContent = isRegistering
+      ? 'Register'
+      : initialModalHeaderText;
+    refs.registerText.textContent = isRegistering
+      ? 'I have an account'
+      : initialRegisterText;
+    refs.registerButton.textContent = isRegistering ? 'Auth' : 'Register';
+    refs.loginButton.textContent = isRegistering
+      ? 'Register'
+      : initialRegisterButton;
+
+    if (isRegistering) {
+      registerRender();
+    } else {
+      const inputField = document.getElementById('input-name');
+      inputField?.parentNode.removeChild(inputField);
+    }
+    clearInputFields(); // видаляємо вміст полів введення
   }
-  clearInputFields(); // видаляємо вміст полів введення
-}
 
-function registerRender() {
-  const inputHtml =
-    '<input class="modal-firebase__form-input" type="text" placeholder="Name*" id="input-name" required minlength="4" maxlength="25">';
+  function registerRender() {
+    const inputHtml =
+      '<input class="modal-firebase__form-input" type="text" placeholder="Name*" id="input-name" required minlength="4" maxlength="25">';
 
-  refs.modalForm.insertAdjacentHTML('afterbegin', inputHtml);
-}
-//видаляє символи в інпути коли натискаєш на кнопку
-function clearInputFields() {
-  refs.inputFields.forEach(input => (input.value = ''));
+    refs.modalForm.insertAdjacentHTML('afterbegin', inputHtml);
+  }
+  //видаляє символи в інпути коли натискаєш на кнопку
+  function clearInputFields() {
+    refs.inputFields.forEach(input => (input.value = ''));
+  }
 }
