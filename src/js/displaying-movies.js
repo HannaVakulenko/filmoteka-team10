@@ -28,7 +28,7 @@ function renderGallery(movies) {
   const galleryFilms = document.querySelector(".film-list")
   document.querySelector(".film-list").innerHTML = "";
 return
-   movies.results.map(
+   movies.map(
       ({
         id,
         poster_path,
