@@ -20,20 +20,15 @@ import {
 import { FetchTrending, FetchSearch, FetchFilmID } from './api-servise';
 
 //Для отримання найпопулярніших фільмів
-
-
 FetchTrending();
-
-
-//для рейтингу
-
-
 //додаю в розмітку
 
-export async function renderGallery(movies) {
- // const genres = await fetchGenres();
-  return movies
-    .map(
+function renderGallery(movies) {
+
+  const galleryFilms = document.querySelector(".film-list")
+  document.querySelector(".film-list").innerHTML = "";
+return
+   movies.results.map(
       ({
         id,
         poster_path,
@@ -42,43 +37,43 @@ export async function renderGallery(movies) {
         genre_ids,
         original_title,
         vote_average,
-      } = movies) => {
-        const poster = poster_path
-          ? 'poster_path'
-          : "https://irc-volvol.info-gkh.com.ua/assets/images/noimage.png";
+        popularity,
+        vote_count,
+        overview,
+     } = movies) => {
+       const poster = poster_path
+          ? `https://image.tmdb.org/t/p/w500${poster_path}`
+          : "https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png";
         const releaseYear = release_date
           ? release_date.split('-')[0]
           : 'Unknown';
         const checkGenres = genre_ids
           ? getGenres(genre_ids, genres)
           : 'Unknown';
-        return `
-       <li class='movie_list_item' data-id="${id}>
-      <a href="" class='movie_list_link link' id=${id}>
-      <div class="movie__cover--darkened"></div>
-        <img class="movie_list_image" src=${poster} alt='Poster ${original_title}' loading='lazy' />
-        <div class='movie-info'>
-            <p class='movie-title'>
-              <b>${title.toUpperCase()}</b>
-            </p>
-            <p class='movie-date'>
-              <span>${checkGenres} | ${releaseYear}</span>
-            </p>
-            <div class="movie__average movie__average--${getClassByRate(
-              vote_average
-            )}">${vote_average.toFixed(1)}</div>
+       
+    const movieEl = document.createElement("div");
+    movieEl.classList.add("movie");
+    movieEl.innerHTML = `
+       <li class="film-list__item" data-id=${id}>
+        <div class="thumb" id=${id}>
+          <img class="film-poster" src="${poster}" alt="movie poster" />
         </div>
-        </a>
-      </li> 
-      `;
-      }
-    )
-    .join('');
+
+        <div class="film-list__info">
+          <h3 class="film-list__name"${title}></h3>
+          <p class="film-list__genre">${checkGenres} |${releaseYear} </p>
+        </div>
+      </li>
+        `;
+     
+    galleryFilms.appendChild(movieEl);
+  });
 }
-const galleryFilms = document.querySelector(".galleryFilms")
-
-  galleryFilms.insertAdjacentHTML('beforeend', renderGallery(filmsTrending));
-
-
-
+  
 renderGallery(filmsTrending);
+
+
+
+
+
+
