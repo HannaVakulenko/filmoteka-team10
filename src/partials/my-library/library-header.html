@@ -1,10 +1,9 @@
-<header class="header">
+<header class="header header__library">
   <div class="conteiner-header container">
     <a href="./index.html" class="nav__logo link"
-      ><img class="logo" src="./images/logo.png" alt="Logo" /><span
-        class="nav__text"
-        >Filmoteka</span
-      ></a
+      ><svg class="logo">
+        <use href="./images/icons.svg#icon-film"></use></svg
+      ><span class="nav__text">Filmoteka</span></a
     >
     <nav class="nav">
       <ul class="nav__list list">
@@ -15,6 +14,9 @@
           <a class="nav__li nav__li--current link" href="./my-library.html"
             >MY LIBRARY</a
           >
+        </li>
+        <li class="nav__li logOut">
+          <button class="nav__li--logOut" type="button">LOG OUT</button>
         </li>
       </ul>
     </nav>

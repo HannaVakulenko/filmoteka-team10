@@ -6,6 +6,12 @@ import './js/modal-film';
 import './js/modal-students';
 import './js/spinner'
 import './js/preloader'
+import './js/firebase/firebaseRegAndSign';
+import './js/firebase/dataBase';
+
+// import './js/firebase/firebase';
+
+
 // //import { refs } from './refs';
 
 // Імпорт Api:
@@ -13,6 +19,7 @@ import './js/preloader'
 import {
   API_KEY,
   API_UR,
+  IMG_ARI,
   MEDIA_TYPE,
   TIME_WINDOW,
   PER_PAGE,

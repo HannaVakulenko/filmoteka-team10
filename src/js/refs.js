@@ -12,5 +12,9 @@ const refs = {
   spinnerDotsWrapper: document.querySelector('.spinner'),
   preloaderGifWrapper: document.querySelector('.preloader'),
   preloaderGifImage: document.querySelector('.preloader__image'),
+  FICTIVEopenModalFilmCardItem: document.querySelector(".item-fictive"),
+  closeModalFilmCardBtn: document.querySelector(".modal-film__close-btn"),
+  modalFilmCardWindow: document.querySelector(".modal-film"),
+  modalFilmCardBackdrop:document.querySelector(".backdrop-film-card"),
 };
 export { refs };
