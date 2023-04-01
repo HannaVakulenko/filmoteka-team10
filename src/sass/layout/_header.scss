@@ -43,6 +43,10 @@
   align-items: center;
   color: $textColorWhite;
 }
+.logo {
+  width: 26px;
+  height: 26px;
+}
 .nav__list {
   display: flex;
   align-items: center;
@@ -107,19 +111,14 @@
 }
 .search-form__button {
   position: absolute;
-  right: 0;
-  bottom: 4px;
-
+  right: -5px;
   border: none;
   outline: none;
   background-color: transparent;
 }
-.search-form__img {
+.search-form__svg {
   width: 12px;
   height: 12px;
-  border: none;
-  outline: none;
-  background-color: transparent;
 }
 .nav__li--logOut,
 .nav__li--logIn {
