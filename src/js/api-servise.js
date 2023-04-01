@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const API_KEY = 'c789b950e94d6ea5adbb471c5a6ee143';
 export const API_URL = 'https://api.themoviedb.org/3/';
+export const IMG_ARI = 'https://image.tmdb.org/t/p/w400';
 
 export const MEDIA_TYPE = 'movie';
 export const TIME_WINDOW = 'week';
