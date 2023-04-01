@@ -4,6 +4,7 @@ import './allgenres';
 export const API_KEY = 'c789b950e94d6ea5adbb471c5a6ee143';
 export const API_URL = 'https://api.themoviedb.org/3/';
 export const IMG_ARI = 'https://image.tmdb.org/t/p/w400';
+export const TRAILER = 'https://api.themoviedb.org/3/movies/';
 
 export const MEDIA_TYPE = 'movie';
 export const TIME_WINDOW = 'week';
@@ -87,6 +88,21 @@ for (let i = 0; i < filmsTrendingIdGenres.length; i++) {
   }
 }
 console.log(mygenres);
+
+export const GetTrailer = async movie_id => {
+  try {
+    const responseGetTrailer = await axios.get(
+      `${API_URL}movie/${movie_id}/videos?api_key=${API_KEY}&language=en-US`
+    );
+    if (responseGetTrailer.status !== 200) {
+      throw new Error(responseGetTrailer.status);
+    }
+    const NewTrailer = responseGetTrailer.data;
+    console.log(NewTrailer);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 const renderGallery = movies => {
   const galleryFilms = document.querySelector('.film-list');

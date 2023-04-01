@@ -23,7 +23,8 @@
     "firebase": "^9.19.0",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.6",
-    "tui-pagination": "^3.4.1"
+    "tui-pagination": "^3.4.1",
+    "youtube-player": "^5.6.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
