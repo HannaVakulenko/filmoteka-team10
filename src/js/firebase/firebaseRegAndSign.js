@@ -6,7 +6,14 @@ import {
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebase';
 
-if (document.location.pathname === '/index.html') {
+console.log(
+  document.location.search === '?name=abcd10%40gamil.com&email=1234567890'
+);
+
+if (
+  document.location.pathname === '/index.html' ||
+  document.location.search === '?name=abcd10%40gamil.com&email=1234567890'
+) {
   const app = initializeApp(firebaseConfig);
 
   const modal = document.querySelector('.modal-firebase');

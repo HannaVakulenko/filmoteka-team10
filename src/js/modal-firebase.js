@@ -1,6 +1,11 @@
 import { refs } from './refs';
+console.log(document.location.host);
 
-if (document.location.pathname === '/index.html') {
+if (
+  document.location.pathname === '/index.html' ||
+  (document.location.host === 'localhost:60045' &&
+    document.location.pathname !== '/my-library.html')
+) {
   const initialModalHeaderText = refs.modalHeader.textContent;
   const initialRegisterText = refs.registerText.textContent;
   const initialRegisterButton = refs.loginButton.textContent;
