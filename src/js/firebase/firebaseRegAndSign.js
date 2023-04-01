@@ -8,12 +8,14 @@ import { firebaseConfig } from './firebase';
 
 const app = initializeApp(firebaseConfig);
 
-const modal = document.querySelector('.modal');
-const form = document.querySelector('.modal__form');
-const button = document.querySelector('.modal__form-button--send');
+const modal = document.querySelector('.modal-firebase');
+const form = document.querySelector('.modal-firebase__form');
+const button = document.querySelector('.modal-firebase__form-button--send');
 const library = document.querySelector('.list-library');
 const logIn = document.querySelector('.logIn');
 const logOut = document.querySelector('.logOut');
+
+console.log(form);
 
 if (localStorage.getItem('userSession')) {
   library.classList.remove('is-hidden-firebase');
