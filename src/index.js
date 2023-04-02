@@ -3,7 +3,16 @@ import './js/api-servise';
 import './js/refs';
 import './js/pagination';
 import './js/modal-film';
+import './js/trailer';
 import './js/modal-students';
+import './js/spinner';
+import './js/preloader';
+import './js/firebase/firebaseRegAndSign';
+import './js/firebase/dataBase';
+import './js/scroll-up';
+
+// import './js/firebase/firebase';
+
 
 // //import { refs } from './refs';
 
@@ -12,6 +21,7 @@ import './js/modal-students';
 import {
   API_KEY,
   API_UR,
+  IMG_ARI,
   MEDIA_TYPE,
   TIME_WINDOW,
   PER_PAGE,

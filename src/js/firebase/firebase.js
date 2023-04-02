@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: 'AIzaSyC1qbPHpBHDvb1ri3v_PnC2GeKvFdYd_bg',
   authDomain: 'filmoteka-team10.firebaseapp.com',
   projectId: 'filmoteka-team10',

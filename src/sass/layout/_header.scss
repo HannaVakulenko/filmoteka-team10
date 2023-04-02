@@ -12,18 +12,78 @@
   @include mobile() {
     padding: 40px 0px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(../images/abstract-background-with-red-lines_320.jpg);
+      url(../images/home-mob-1x.jpg);
     height: 230px;
+    @include retina2x() {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/home-mob-2x.jpg);
+    }
   }
   @include tablet() {
     padding: 40px 0px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(../images/abstract-background-with-red-lines_768.jpg);
+      url(../images/home-tabl-1x.jpg);
     height: 216px;
+    @include retina2x() {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/home-tabl-2x.jpg);
+    }
   }
   @include desktop() {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(../images/abstract-background-with-red-lines_1028.jpg);
+      url(../images/home-desk-1x.jpg);
+    @include retina2x() {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/home-desk-2x.jpg);
+    }
+  }
+}
+.header__library {
+  @include mobile() {
+    padding: 40px 0px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/library-mob-1x.jpg);
+    height: 230px;
+    @include retina2x() {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/library-mob-2x.jpg);
+    }
+  }
+  @include tablet() {
+    padding: 40px 0px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/library-tabl-1x.jpg);
+    height: 216px;
+    @include retina2x() {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/library-tabl-2x.jpg);
+    }
+  }
+  @include desktop() {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/library-desk-1x.jpg);
+    @include retina2x() {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/library-desk-2x.jpg);
+    }
   }
 }
 .conteiner-header {
@@ -42,6 +102,10 @@
   display: flex;
   align-items: center;
   color: $textColorWhite;
+}
+.logo {
+  width: 26px;
+  height: 26px;
 }
 .nav__list {
   display: flex;
@@ -107,19 +171,14 @@
 }
 .search-form__button {
   position: absolute;
-  right: 0;
-  bottom: 4px;
-
+  right: -5px;
   border: none;
   outline: none;
   background-color: transparent;
 }
-.search-form__img {
+.search-form__svg {
   width: 12px;
   height: 12px;
-  border: none;
-  outline: none;
-  background-color: transparent;
 }
 .nav__li--logOut,
 .nav__li--logIn {
@@ -164,7 +223,9 @@
     width: 130px;
   }
 }
-.library__button--current {
+.library__button--current,
+.library__button:hover,
+.library__button:focus {
   background-color: #ff6b01;
   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
   border: none;

@@ -1,19 +1,25 @@
 import { refs } from './refs';
+console.log(document.location.host);
 
-const initialModalHeaderText = refs.modalHeader.textContent;
-const initialRegisterText = refs.registerText.textContent;
-const initialRegisterButton = refs.loginButton.textContent;
+if (
+  document.location.pathname === '/index.html' ||
+  (document.location.host && document.location.pathname !== '/my-library.html')
+) {
+  const initialModalHeaderText = refs.modalHeader.textContent;
+  const initialRegisterText = refs.registerText.textContent;
+  const initialRegisterButton = refs.loginButton.textContent;
 
-refs.openModalBtn.addEventListener('click', openModal);
-refs.closeModalBtn.addEventListener('click', closeModal);
-refs.registerButton.addEventListener('click', register);
+  refs.openModalBtn.addEventListener('click', openModal);
+  refs.closeModalBtn.addEventListener('click', closeModal);
+  refs.registerButton.addEventListener('click', register);
 
-function openModal() {
-  refs.modal.style.display = 'block';
-}
+  function openModal() {
+    refs.modal.style.display = 'block';
+  }
 
-function closeModal() {
-  refs.modal.style.display = 'none';
+  function closeModal() {
+    refs.modal.style.display = 'none';
+  }
 }
 
 window.onclick = function (event) {
@@ -54,7 +60,10 @@ function register(event) {
 }
 
 function registerRender() {
-  refs.modalForm.insertAdjacentHTML('afterbegin', '<input class="modal-firebase__form-input" type="text" placeholder="Name*" id="input-name" required minlength="4" maxlength="25">');
+  refs.modalForm.insertAdjacentHTML(
+    'afterbegin',
+    '<input class="modal-firebase__form-input" type="text" placeholder="Name*" id="input-name" required minlength="4" maxlength="25">'
+  );
 
   const input = document.getElementById('input-name');
   input.addEventListener('input', () => {
@@ -62,7 +71,7 @@ function registerRender() {
     input.style.borderBottom = isValid ? '2px solid green' : '2px solid red';
     input.style.color = isValid ? 'green' : 'red';
   });
-  
+
   input.addEventListener('blur', () => {
     if (input.value === '') {
       input.style.borderBottom = '2px solid red';
@@ -111,8 +120,4 @@ function setInputFieldValidation({ inputFields, registerButton } = refs) {
   });
 }
 
-setInputFieldValidation()
-
-
-
-
+setInputFieldValidation();

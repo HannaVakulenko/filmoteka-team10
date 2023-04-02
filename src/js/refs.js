@@ -9,5 +9,25 @@ const refs = {
   closeModalBtn: document.getElementById('close-modal-btn'),
   inputFields: document.querySelectorAll('.modal-firebase__form-input'),
   pagination: document.querySelector('#pagination'),
+  spinnerDotsWrapper: document.querySelector('.spinner'),
+  preloaderGifWrapper: document.querySelector('.preloader'),
+  preloaderGifImage: document.querySelector('.preloader__image'),
+
+  openModalFilmCardItem: document.querySelector('.film-list'),
+  closeModalFilmCardBtn: document.querySelector('.modal-film__close-btn'),
+
+  modalFilmCardWindow: document.querySelector('.modal-film'),
+  modalFilmCardBackdrop: document.querySelector('.backdrop-film-card'),
+  trailerBtn: document.querySelector('.trailer'),
+  backdropTrailer: document.querySelector('.js-backdrop-trailer'),
+
+  btnModalOpen: document.querySelector('.btn-modal-open'),
+  btnModalClose: document.querySelector('.btn-modal-close'),
+  backdropModalTeam: document.querySelector('.team '),
+  btnScroll: document.querySelector('.btn-scroll'),
+
+  logOutLibrary: document.querySelector('.nav__li.link.log-out'),
+
+  galleryFilms: document.querySelector('.film-list'),
 };
 export { refs };
