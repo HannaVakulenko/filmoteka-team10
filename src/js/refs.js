@@ -12,7 +12,8 @@ const refs = {
   spinnerDotsWrapper: document.querySelector('.spinner'),
   preloaderGifWrapper: document.querySelector('.preloader'),
   preloaderGifImage: document.querySelector('.preloader__image'),
-  FICTIVEopenModalFilmCardItem: document.querySelector('.item-fictive'),
+
+  openModalFilmCardItem: document.querySelector('.film-list'),
   closeModalFilmCardBtn: document.querySelector('.modal-film__close-btn'),
 
   modalFilmCardWindow: document.querySelector('.modal-film'),
@@ -24,5 +25,9 @@ const refs = {
   btnModalClose: document.querySelector('.btn-modal-close'),
   backdropModalTeam: document.querySelector('.team '),
   btnScroll: document.querySelector('.btn-scroll'),
+
+  logOutLibrary: document.querySelector('.nav__li.link.log-out'),
+
+  galleryFilms: document.querySelector('.film-list'),
 };
 export { refs };

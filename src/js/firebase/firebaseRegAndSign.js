@@ -5,6 +5,22 @@ import {
 } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebase';
+import { refs } from '../refs';
+
+// test
+
+// Conditions for /my-library.html
+// if (
+//   document.location.pathname !== '/index.html' ||
+//   document.location.search ||
+//   (document.location.host && document.location.pathname === '/my-library.html')
+// ) {
+//   refs.logOutLibrary.addEventListener('click', () =>
+//     localStorage.removeItem('userSession')
+//   );
+// }
+
+// Conditions for /index.html
 
 if (
   document.location.pathname === '/index.html' ||
@@ -25,8 +41,6 @@ if (
     logOut.classList.remove('is-hidden-firebase');
     logIn.classList.add('is-hidden-firebase');
   }
-
-  // abcd10@gamil.com
 
   form.addEventListener('submit', e => {
     e.preventDefault();

@@ -21,6 +21,7 @@
 
 .film-list__item {
   max-width: max-content;
+  height: max-content;
   display: flex;
   flex-direction: column;
   transition-property: scale, outline, outline-offset, border-radius;
