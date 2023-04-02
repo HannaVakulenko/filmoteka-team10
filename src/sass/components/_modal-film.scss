@@ -257,6 +257,7 @@ body.modal-open {
 .modal-film__img {
     max-width: 240px;
     height: 357px;
+    object-fit: cover;
         @include tablet {
             min-width: 264px;
             height: 373px;
