@@ -57,7 +57,11 @@ function registerRender() {
   refs.modalForm.insertAdjacentHTML('afterbegin', '<input class="modal-firebase__form-input" type="text" placeholder="Name*" id="input-name" required minlength="4" maxlength="25">');
   
   const input = document.getElementById('input-name');
-  input.addEventListener('input', () => input.style.borderBottom = input.checkValidity() ? '2px solid green' : '2px solid red');
+  input.addEventListener('input', () => {
+    const isValid = input.checkValidity();
+    input.style.borderBottom = isValid ? '2px solid green' : '2px solid red';
+    input.style.color = isValid ? 'green' : 'red';
+  });
 }
 
 //видаляє символи в інпути коли натискаєш на кнопку
@@ -65,14 +69,36 @@ function clearInputFields() {
   refs.inputFields.forEach(input => (input.value = ''));
 }
 
-function setInputFieldValidation({inputFields,registerButton} = refs) {
-  inputFields.forEach(inputField => {
-    inputField.addEventListener('input', () => 
-      inputField.style.borderBottom = inputField.checkValidity() ? '2px solid green' : '2px solid red'
-    );
-  });
+// Функція перевірки поля введення та оновлення його стилів
+function validateInputField(inputField) {
+  const isValid = inputField.checkValidity();
+  inputField.style.borderBottom = isValid ? '2px solid green' : '2px solid red';
+  inputField.style.color = isValid ? 'green' : 'red';
+}
 
-  registerButton.addEventListener('click', () => inputFields.forEach(inputField => inputField.style.borderBottom = ''));
+// Функція для додавання слухачів подій для перевірки введення до кожного поля введення
+function addInputValidationListeners(inputFields) {
+  inputFields.forEach(inputField => {
+    inputField.addEventListener('input', () => {
+      validateInputField(inputField);
+    });
+  });
+}
+
+// Функція очищення стилів полів введення після натискання кнопки реєстрації
+function clearInputFieldStyles(inputFields) {
+  inputFields.forEach(inputField => {
+    inputField.style.borderBottom = '';
+    inputField.style.color = '';
+  });
+}
+
+// Основна функція для налаштування перевірки поля введення та очищення стилів після натискання кнопки реєстрації
+function setInputFieldValidation({ inputFields, registerButton } = refs) {
+  addInputValidationListeners(inputFields);
+  registerButton.addEventListener('click', () => {
+    clearInputFieldStyles(inputFields);
+  });
 }
 
 setInputFieldValidation()
