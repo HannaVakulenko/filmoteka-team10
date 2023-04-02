@@ -259,7 +259,11 @@ body.modal-open {
     font-size: 25px;
 }
 
-.trailer {
+.trailer__icon {
+    fill: red;
+  }
+  
+  .trailer {
     display: inline;
     margin: 0;
     padding: 0;
@@ -268,10 +272,8 @@ body.modal-open {
     position: absolute;
     top: 45px;
     left: 25px;
-}
-.trailer__icon {
-    fill: red;
-}
+  }
+
 // .hide-trl {
 //     display: none;
 // }
