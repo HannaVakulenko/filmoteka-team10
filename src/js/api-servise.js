@@ -48,7 +48,7 @@ export const FetchSearch = async q => {
     if (responseSearch.status !== 200) {
       throw new Error(responseSearch.status);
     }
-    searchFilms = responseSearch.data.results;
+    return (searchFilms = responseSearch.data.results);
     console.log(searchFilms);
   } catch (error) {
     console.log(error.message);
@@ -104,7 +104,7 @@ export const GetTrailer = async movie_id => {
   }
 };
 
-const renderGallery = movies => {
+export const renderGallery = movies => {
   const galleryFilms = document.querySelector('.film-list');
   // document.querySelector('.film-list').innerHTML = '';
   const listitem = movies
@@ -121,12 +121,57 @@ const renderGallery = movies => {
         vote_count,
         overview,
       }) => {
+        const allgenres = [
+          { id: 28, name: 'Action' },
+          { id: 12, name: 'Adventure' },
+          { id: 16, name: 'Animation' },
+          { id: 35, name: 'Comedy' },
+          { id: 80, name: 'Crime' },
+          { id: 99, name: 'Documentary' },
+          { id: 18, name: 'Drama' },
+          { id: 10751, name: 'Family' },
+          { id: 14, name: 'Fantasy' },
+          { id: 36, name: 'History' },
+          { id: 27, name: 'Horror' },
+          { id: 10402, name: 'Music' },
+          { id: 9648, name: 'Mystery' },
+          { id: 10749, name: 'Romance' },
+          { id: 878, name: 'Science Fiction' },
+          { id: 10770, name: 'TV Movie' },
+          { id: 53, name: 'Thriller' },
+          { id: 10752, name: 'War' },
+          { id: 37, name: 'Western' },
+        ];
+        let imgFilm;
+        if (poster_path === null) {
+          imgFilm =
+            'https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg';
+        } else {
+          imgFilm = `${IMG_ARI}${poster_path}`;
+        }
+
+        console.log(imgFilm);
+        const releaseYear = release_date
+          ? release_date.split('-')[0]
+          : 'Unknown';
+        let text = '';
+        const genres = genre_ids
+          .map(genre => {
+            for (const allgenre of allgenres) {
+              if (Number(genre) === allgenre.id) {
+                text = allgenre.name;
+              }
+            }
+            return text;
+          })
+          .join(', ');
+
         return `
 <li class="film-list__item" data="${id}">
   <div class="thumb"> 
     <img
       class="film-poster"
-      src="${IMG_ARI}${poster_path}
+      src="${imgFilm}
 "
       alt="movie poster"
     />
@@ -134,7 +179,7 @@ const renderGallery = movies => {
 
   <div class="film-list__info">
     <h3 class="film-list__name">${title}</h3>
-    <p class="film-list__genre"> Жанры|${release_date.slice(0, 4)} </p>
+    <p class="film-list__genre">${genres} | ${releaseYear}</p>
   </div>
 </li>
         `;
