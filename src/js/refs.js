@@ -24,7 +24,6 @@ const refs = {
   btnModalClose: document.querySelector('.btn-modal-close'),
   backdropModalTeam: document.querySelector('.team '),
   btnScroll: document.querySelector('.btn-scroll'),
-
   galleryFilms: document.querySelector('.film-list'),
 };
 export { refs };
