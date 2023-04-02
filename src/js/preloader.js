@@ -24,7 +24,7 @@ if (document.querySelector('.nav__li[href="/index.html"]')) {
 }
 if (document.querySelector('.nav__li[href="/filmoteka-team10/index.html]"')) {
     // console.log(Boolean(document.querySelector('.nav__li[href="/filmoteka-team10/index.html]"')))
-    linkOnSecondPageHome = document.querySelector('.nav__li[href="/filmoteka-team10/index.html]"')
+    linkOnSecondPageHome = document.querySelector('.nav__li[href="/filmoteka-team10/index.html"]')
 }
 
 // console.log(linkOnSecondPageHome)
