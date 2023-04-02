@@ -37,10 +37,20 @@ export function createPagination(totalItems, visiblePages) {
 
 // pagination.on('beforeMove', ({ page }) => {
 //         spinnerStart();
-//         refs.film-list.innerHTML = '';
+//         refs.galleryFilms.innerHTML = '';
+//         FetchSearch(query, page).then(data => {
+//             spinnerEnd();
+//             refs.galleryFilms.innerHTML =  renderGallery(data.results);
+//             scrollOnTop();
+//         });
+//         });
+
+// pagination.on('beforeMove', ({ page }) => {
+//         spinnerStart();
+//         refs.galleryFilms.innerHTML = '';
 //         FetchTrending(query, page).then(data => {
 //             spinnerEnd();
-//             refs.film-list.innerHTML =  renderGallery(data.results);
+//             refs.galleryFilms.innerHTML = renderGallery(data.results);
 //             scrollOnTop();
 //         });
 //         });
