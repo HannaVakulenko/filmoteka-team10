@@ -1,8 +1,16 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, set, child, get } from 'firebase/database';
-import { refs } from '../refs';
 
-const button = document.querySelector('.library__button');
+// const buttonWatched = document.querySelector('.library__button.watched');
+// const container = document.querySelector('.library-wrap');
+// const modalFilm = document.querySelector('.backdrop-film-card');
+// console.dir(modalFilm);
+
+// const filmWatched = createMerkaup('filmWatched');
+
+// buttonWatched.addEventListener('click', () => {
+//   container.insertAdjacentHTML('afterbegin', filmWatched);
+// });
 
 const auth = getAuth();
 const db = getDatabase();
@@ -21,6 +29,16 @@ const filmWatchedArr = [
   },
 ];
 
+// Поменя разметку когда будут фильмы
+
+function createMerkaup(storage) {
+  return JSON.parse(localStorage.getItem(storage))
+    .map(film => {
+      return `<div>${film.username}</div>`;
+    })
+    .join('');
+}
+
 onAuthStateChanged(auth, user => {
   if (user) {
     set(ref(db, 'users/' + 'ovrGn2FJIdTUQrajvyrFQ3Gb5bs1/'), filmWatchedArr);
@@ -32,21 +50,7 @@ onAuthStateChanged(auth, user => {
     get(child(dbRef, `users/ovrGn2FJIdTUQrajvyrFQ3Gb5bs1`))
       .then(snapshot => {
         if (snapshot.exists()) {
-          snapshot
-            .val()
-            .map(film => {
-              return ` <li class="film-list__item">
-        <div class="thumb">
-          <img class="film-poster" src="./images/q.jpg" alt="movie poster" />
-        </div>
-
-        <div class="film-list__info">
-          <h3 class="film-list__name">GREYHOUND</h3>
-          <p class="film-list__genre">Drama, Action | 2020</p>
-        </div>
-      </li>`;
-            })
-            .join('');
+          localStorage.setItem('filmWatched', JSON.stringify(snapshot.val()));
         } else {
           console.log('No data available');
         }
