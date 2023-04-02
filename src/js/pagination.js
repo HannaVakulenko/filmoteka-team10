@@ -26,25 +26,25 @@ export function createPagination(totalItems, visiblePages) {
 // const pagination = createPagination(data.total_results, data.total_pages); для того щоб запустити пагінацію
 
 
-pagination.on('beforeMove', ({ page }) => {
-        spinnerStart();
-        refs.galleryFilms.innerHTML = '';
-        FetchSearch(query, page).then(data => {
-            spinnerEnd();
-            refs.galleryFilms.innerHTML =  renderGallery(data.results);
-            scrollOnTop();
-        });
-        });
+// pagination.on('beforeMove', ({ page }) => {
+//         spinnerStart();
+//         refs.galleryFilms.innerHTML = '';
+//         FetchSearch(query, page).then(data => {
+//             spinnerEnd();
+//             refs.galleryFilms.innerHTML =  renderGallery(data.results);
+//             scrollOnTop();
+//         });
+//         });
 
 
 
-pagination.on('beforeMove', ({ page }) => {
-        spinnerStart();
-        refs.galleryFilms.innerHTML = '';
-        FetchTrending(query, page).then(data => {
-            spinnerEnd();
-            refs.galleryFilms.innerHTML = renderGallery(data.results);
-            scrollOnTop();
-        });
-        });
+// pagination.on('beforeMove', ({ page }) => {
+//         spinnerStart();
+//         refs.galleryFilms.innerHTML = '';
+//         FetchTrending(query, page).then(data => {
+//             spinnerEnd();
+//             refs.galleryFilms.innerHTML = renderGallery(data.results);
+//             scrollOnTop();
+//         });
+//         });
     
