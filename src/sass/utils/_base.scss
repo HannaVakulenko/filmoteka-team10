@@ -4,7 +4,6 @@ body {
   background-color: $backGroundWhite;
 }
 
-
 .container {
   width: 100%;
 
@@ -26,6 +25,5 @@ body {
 
   @include desktop {
     max-width: $max-desktop;
-
   }
 }

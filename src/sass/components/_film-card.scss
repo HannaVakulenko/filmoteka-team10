@@ -1,28 +1,8 @@
-.container {
-  margin: auto auto;
-  @media screen and (min-width: 480px) {
-    width: 480px;
-  }
-  @media screen and (min-width: 768px) {
-    width: 768px;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 1280px;
-  }
-}
-
-.gallery-section {
-  padding: 20px 20px 40px 20px;
-  @media screen and (min-width: 768px) {
-    padding: 60px 32px 60px 32px;
-  }
-}
-
 .film-list {
   list-style-type: none;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: top;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
@@ -34,8 +14,8 @@
     column-gap: 32px;
   }
   @media screen and (min-width: 1280px) {
-    row-gap: 16px;
-    column-gap: 32px;
+    row-gap: 32px;
+    column-gap: 16px;
   }
 }
 
@@ -43,6 +23,9 @@
   max-width: max-content;
   display: flex;
   flex-direction: column;
+  transition-property: scale, outline, outline-offset, border-radius;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (max-width: 767px) {
     max-width: 280px;
@@ -50,28 +33,44 @@
   }
 
   @media screen and (min-width: 768px) {
-    flex-basis: calc((100% - 21px) / 3);
+    flex-basis: calc((100% - 32px * (2 - 1)) / 2);
   }
   @media screen and (min-width: 1280px) {
-    flex-basis: calc((100% - 16px) / 4);
+    flex-basis: calc((100% - 16px * (3 - 1)) / 3);
+  }
+
+  &:hover,
+  &:focus-within {
+    scale: 1.03;
+    outline: 5px solid #ff6b08;
+    outline-offset: 1px;
+    border-radius: 4px;
   }
 }
 
+// .film-thumb {
+// }
+
+.film-poster {
+  border-radius: 5px;
+}
+
 .film-list__info {
-  font-family: 'Roboto';
-  font-style: normal;
+  margin-top: 10px;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
-  margin-top: 10px;
   @media screen and (min-width: 768px) {
     margin-top: 8px;
   }
   @media screen and (min-width: 1280px) {
     margin-top: 12px;
+    font-size: 20px;
+    line-height: 1.2;
   }
 }
 .film-list__name {
+  text-transform: uppercase;
   color: #000000;
   margin: 0px;
 }

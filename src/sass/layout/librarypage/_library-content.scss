@@ -1,27 +1,42 @@
-
 .library-wrap {
- height: 480px;
+  height: 480px;
   background-color: rgba(25, 28, 38, 0.2);
-  background-image: linear-gradient(rgba(25, 28, 38, 0.2), rgba(25, 28, 38, 0.2)), url(../images/library_320.jpg);
-  
+  background-image: linear-gradient(
+      rgba(25, 28, 38, 0.2),
+      rgba(25, 28, 38, 0.2)
+    ),
+    url(../images/library_320.jpg);
+
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  
 }
 
 @media screen and (min-width: 768px) {
   .library-wrap {
     height: 512px;
-    background-image: linear-gradient(rgba(25, 28, 38, 0.2), rgba(25, 28, 38, 0.2)), url(../images/library_768.jpg);
-    
+    background-image: linear-gradient(
+        rgba(25, 28, 38, 0.2),
+        rgba(25, 28, 38, 0.2)
+      ),
+      url(../images/library_768.jpg);
   }
 }
 
 @media screen and (min-width: 1280px) {
   .library-wrap {
     height: 1024px;
-    background-image: linear-gradient(rgba(25, 28, 38, 0.2), rgba(25, 28, 38, 0.2)), url(../images/library_1280.jpg);
-    
+    background-image: linear-gradient(
+        rgba(25, 28, 38, 0.2),
+        rgba(25, 28, 38, 0.2)
+      ),
+      url(../images/library_1280.jpg);
+  }
+}
+
+.library-section {
+  padding: 20px 20px 40px 20px;
+  @media screen and (min-width: 768px) {
+    padding: 60px 32px 60px 32px;
   }
 }
