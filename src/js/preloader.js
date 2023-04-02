@@ -28,7 +28,17 @@ if (document.querySelector('.nav__li[href="/filmoteka-team10/index.html"]')) {
 }
 
 // console.log(linkOnSecondPageHome)
-const linkOnSecondPageLibrary = document.querySelector('[href="/my-library.html"]')
+
+let linkOnSecondPageLibrary
+
+if (document.querySelector('.nav__li[href="/my-library.html"]')) {
+    linkOnSecondPageLibrary = document.querySelector('[href="/my-library.html"]')
+}
+
+if (document.querySelector('.nav__li[href="/filmoteka-team10/my-library.html"]')) {
+    linkOnSecondPageLibrary = document.querySelector('.nav__li[href="/filmoteka-team10/my-library.html"]')
+}
+
 let search
 let searchTest = document.querySelectorAll('.search-form')
 if (searchTest.length > 0){
