@@ -5,20 +5,18 @@ import {
 } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebase';
+import { refs } from '../refs';
 
 // Conditions for /my-library.html
-
-if (
-  document.location.pathname !== '/index.html' ||
-  document.location.search ||
-  (document.location.host && document.location.pathname === '/my-library.html')
-) {
-  const logOut = document.querySelector('.nav__li.link.log-out');
-
-  logOut.addEventListener('click', () =>
-    localStorage.removeItem('userSession')
-  );
-}
+// if (
+//   document.location.pathname !== '/index.html' ||
+//   document.location.search ||
+//   (document.location.host && document.location.pathname === '/my-library.html')
+// ) {
+//   refs.logOutLibrary.addEventListener('click', () =>
+//     localStorage.removeItem('userSession')
+//   );
+// }
 
 // Conditions for /index.html
 
