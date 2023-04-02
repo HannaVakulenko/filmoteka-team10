@@ -54,12 +54,29 @@ function register(e) {
 }
 
 function registerRender() {
-  const inputHtml =
-    '<input class="modal-firebase__form-input" type="text" placeholder="Name*" id="input-name" required minlength="4" maxlength="25">';
-
-  refs.modalForm.insertAdjacentHTML('afterbegin', inputHtml);
+  refs.modalForm.insertAdjacentHTML('afterbegin', '<input class="modal-firebase__form-input" type="text" placeholder="Name*" id="input-name" required minlength="4" maxlength="25">');
+  
+  const input = document.getElementById('input-name');
+  input.addEventListener('input', () => input.style.borderBottom = input.checkValidity() ? '2px solid green' : '2px solid red');
 }
+
 //видаляє символи в інпути коли натискаєш на кнопку
 function clearInputFields() {
   refs.inputFields.forEach(input => (input.value = ''));
 }
+
+function setInputFieldValidation({inputFields,registerButton} = refs) {
+  inputFields.forEach(inputField => {
+    inputField.addEventListener('input', () => 
+      inputField.style.borderBottom = inputField.checkValidity() ? '2px solid green' : '2px solid red'
+    );
+  });
+
+  registerButton.addEventListener('click', () => inputFields.forEach(inputField => inputField.style.borderBottom = ''));
+}
+
+setInputFieldValidation()
+
+
+
+
