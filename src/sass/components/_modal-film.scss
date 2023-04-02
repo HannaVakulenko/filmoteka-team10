@@ -29,7 +29,6 @@ body.modal-open {
     position: absolute;
     top: 50%;
     left: 50%;
-    padding: 48px 20px;
 
     background-color: $backGroundWhite;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
@@ -48,17 +47,27 @@ body.modal-open {
 
     @include tablet {
         width: 704px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 68px;
-        padding: 40px 36px;
     }
 
     @include desktop {
         width: 806px;
-        gap: 16px;
-        padding: 40px 12px;
+    }
+
+    &__main {
+        padding: 48px 20px;
+        position: relative;
+        @include tablet {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 68px;
+            padding: 40px 36px;
+        }
+            
+        @include desktop {
+            gap: 16px;
+            padding: 40px 12px;
+        }
     }
 
     &__title {
@@ -226,8 +235,7 @@ body.modal-open {
 }
 
 .modal-film__poster {
-    max-width: 240px;
-    height: 357px;
+
     margin-bottom: 20px;
 
     display: flex;
@@ -238,16 +246,26 @@ body.modal-open {
     border-radius: 5px;
 
     @include tablet {
-        min-width: 264px;
-        height: 373px;
         margin-bottom: 0;
     }
 
     @include desktop {
-        min-width: 375px;
-        height: 478px;
         margin-bottom: 0;
     }
+}
+
+.modal-film__img {
+    max-width: 240px;
+    height: 357px;
+        @include tablet {
+            min-width: 264px;
+            height: 373px;
+        }
+        
+        @include desktop {
+            min-width: 375px;
+            height: 478px;
+        }
 }
 
 .item-fictive {
@@ -267,11 +285,12 @@ body.modal-open {
     background-color: transparent;
     position: absolute;
     top: 45px;
-    left: 25px;
+    // поміняла left на 45, бо на планшетній версії згідно макету падинги ширші і іконка зїжджала
+    left: 45px;
 }
 .trailer__icon {
     fill: red;
 }
-// .hide-trl {
-//     display: none;
-// }
+.hide-trl {
+    display: none;
+}

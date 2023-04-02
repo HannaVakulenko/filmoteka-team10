@@ -31,7 +31,7 @@ export const FetchTrending = async () => {
     }
     filmsTrending = responseTrending.data.results;
     console.log(filmsTrending);
-    // await renderGallery(filmsTrending);
+    await renderGallery(filmsTrending);
   } catch (error) {
     console.log(error.message);
   }
@@ -67,8 +67,9 @@ export const FetchFilmID = async movie_id => {
     if (responseFetchFilmID.status !== 200) {
       throw new Error(responseFetchFilmID.status);
     }
-    const MyFilmID = responseFetchFilmID.data;
-    console.log(MyFilmID);
+    return responseFetchFilmID.data;
+    
+    // console.log(MyFilmID);
   } catch (error) {
     console.log(error.message);
   }
@@ -122,7 +123,7 @@ const renderGallery = movies => {
         overview,
       }) => {
         return `
-<li class="film-list__item">
+<li class="film-list__item" data-id = '${id}'>
   <div class="thumb">
     <img
       class="film-poster"
