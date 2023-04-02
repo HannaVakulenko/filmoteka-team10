@@ -92,17 +92,11 @@
 }
 
 .btn-modal-close {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: center;
     position: absolute;
     top: 10px;
     right: 15px;
     width: 40px;
     height: 40px;
-    border: transparent;
-    background-color: transparent;
     transition: all $main-transition-duration;
 
     &:hover,
@@ -110,5 +104,27 @@
         border: 2px solid $AccentColorOrange;
         border-radius: 50px;
         fill: $AccentColorOrange;
+    }
+}
+
+.btn-modal-open {
+    position: relative;
+    margin-left: 7px;
+
+    &::after {
+        content: '';
+        width: 100%;
+        height: 4px;
+        left: 0;
+        bottom: -2;
+        display: inline-block;
+        position: absolute;
+        background-color: $AccentColorOrange;
+        border-radius: 2px;
+    }
+
+    &:hover,
+    &:focus {
+        animation: shake 1s both;
     }
 }

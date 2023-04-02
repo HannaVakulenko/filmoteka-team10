@@ -91,12 +91,7 @@
   align-items: center;
 
   justify-content: space-between;
-  @include mobile() {
-    margin-bottom: 55px;
-  }
-  @include tablet() {
-    margin-bottom: 40px;
-  }
+ 
 }
 .nav__logo {
   display: flex;
@@ -142,6 +137,12 @@
   display: flex;
 
   justify-content: center;
+   @include mobile() {
+    margin-top: 55px;
+  }
+  @include tablet() {
+    margin-top: 40px;
+  }
 }
 .search-form__box {
   position: relative;
