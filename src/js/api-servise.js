@@ -104,7 +104,7 @@ export const GetTrailer = async movie_id => {
   }
 };
 
-const renderGallery = movies => {
+export const renderGallery = movies => {
   const galleryFilms = document.querySelector('.film-list');
   // document.querySelector('.film-list').innerHTML = '';
   const listitem = movies
@@ -142,6 +142,15 @@ const renderGallery = movies => {
           { id: 10752, name: 'War' },
           { id: 37, name: 'Western' },
         ];
+        let imgFilm;
+        if (poster_path === null) {
+          imgFilm =
+            'https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg';
+        } else {
+          imgFilm = `${IMG_ARI}${poster_path}`;
+        }
+
+        console.log(imgFilm);
         const releaseYear = release_date
           ? release_date.split('-')[0]
           : 'Unknown';
@@ -162,7 +171,7 @@ const renderGallery = movies => {
   <div class="thumb">
     <img
       class="film-poster"
-      src="${IMG_ARI}${poster_path}
+      src="${imgFilm}
 "
       alt="movie poster"
     />
