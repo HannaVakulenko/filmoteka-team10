@@ -39,11 +39,10 @@ body.modal-open {
     transform: translate(-50%, -50%) scaleY(1);
     transition: transform $main-transition-duration;
 
-    overflow: scroll;
-
     width: 280px;
 
     @media screen and (max-width:767px) {
+        overflow: scroll;
         height: 90%;
     }
 
