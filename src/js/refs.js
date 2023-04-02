@@ -9,9 +9,20 @@ const refs = {
   closeModalBtn: document.getElementById('close-modal-btn'),
   inputFields: document.querySelectorAll('.modal-firebase__form-input'),
   pagination: document.querySelector('#pagination'),
-  FICTIVEopenModalFilmCardItem: document.querySelector(".item-fictive"),
-  closeModalFilmCardBtn: document.querySelector(".modal-film__close-btn"),
-  modalFilmCardWindow: document.querySelector(".modal-film"),
-  modalFilmCardBackdrop:document.querySelector(".backdrop-film-card"),
+  spinnerDotsWrapper: document.querySelector('.spinner'),
+  preloaderGifWrapper: document.querySelector('.preloader'),
+  preloaderGifImage: document.querySelector('.preloader__image'),
+  FICTIVEopenModalFilmCardItem: document.querySelector('.item-fictive'),
+  closeModalFilmCardBtn: document.querySelector('.modal-film__close-btn'),
+
+  modalFilmCardWindow: document.querySelector('.modal-film'),
+  modalFilmCardBackdrop: document.querySelector('.backdrop-film-card'),
+  trailerBtn: document.querySelector('.trailer'),
+  backdropTrailer: document.querySelector('.js-backdrop-trailer'),
+
+  btnModalOpen: document.querySelector('.btn-modal-open'),
+  btnModalClose: document.querySelector('.btn-modal-close'),
+  backdropModalTeam: document.querySelector('.team '),
+  btnScroll: document.querySelector('.btn-scroll'),
 };
 export { refs };

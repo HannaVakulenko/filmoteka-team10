@@ -1,25 +1,26 @@
 <header class="header">
   <div class="conteiner-header container">
     <a href="./index.html" class="nav__logo link"
-      ><img class="logo" src="./images/logo.png" alt="Logo" /><span
-        class="nav__text"
-        >Filmoteka</span
-      ></a
+      ><svg class="logo">
+        <use href="./images/icons.svg#icon-film"></use></svg
+      ><span class="nav__text">Filmoteka</span></a
     >
     <nav class="nav">
       <ul class="nav__list list">
         <li class="nav__item">
           <a class="nav__li nav__li--current link" href="./index.html">HOME</a>
         </li>
-        <li class="nav__item list">
+        <li class="nav__item list list-library is-hidden-firebase">
           <a class="nav__li nav__li--library link" href="./my-library.html"
             >MY LIBRARY</a
           >
         </li>
-        <li class="nav__li">
-          <button class="nav__li--logIn" type="button" id="open-modal-btn">LOG IN</button>
+        <li class="nav__li logIn">
+          <button class="nav__li--logIn" type="button" id="open-modal-btn">
+            LOG IN
+          </button>
         </li>
-        <li class="nav__li">
+        <li class="nav__li logOut is-hidden-firebase">
           <button class="nav__li--logOut" type="button">LOG OUT</button>
         </li>
       </ul>
@@ -33,7 +34,9 @@
         placeholder="Movie search"
       />
       <button class="search-form__button" type="submit">
-        <img class="search-form__img" src="./images/search.png" alt="" />
+        <svg class="search-form__svg">
+          <use href="./images/icons.svg#icon-search2"></use>
+        </svg>
       </button>
     </div>
   </form>
