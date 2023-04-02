@@ -7,6 +7,8 @@ import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebase';
 import { refs } from '../refs';
 
+// test
+
 // Conditions for /my-library.html
 // if (
 //   document.location.pathname !== '/index.html' ||
