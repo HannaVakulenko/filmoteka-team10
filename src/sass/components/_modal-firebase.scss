@@ -17,13 +17,13 @@
   margin: 15% auto;
   padding: 40px;
   border-radius: 10px;
-  background-color: $AccentColorRed;
+  background-color: $textColorWhite;
 }
 
 .modal-firebase__title {
   text-align: center;
   margin: 0;
-  color: $textColorWhite;
+  color: $textColorBlack;
   font-family: $roboto-font;
   font-style: normal;
   font-weight: 400;
@@ -68,24 +68,24 @@
   width: 100%;
   height: 40px;
   border: 0;
-  border-bottom: 1px solid $textColorWhite;
+  border-bottom: 1px solid $textColorBlack;
   background-color: transparent;
   outline: transparent;
 
   &::placeholder {
-    color: $textColorWhite;
+    color: $textColorBlack;
     transition: $main-transition-duration;
   }
 
   &:hover,
   &:focus {
-    border-color: $textColorBlack;
+    border-color: $AccentColorOrange;
     transition: $main-transition-duration;
   }
 
   &:hover::placeholder,
   &:focus::placeholder {
-    color: $textColorBlack;
+    color: $AccentColorOrange;
   }
 }
 
@@ -93,14 +93,14 @@
   position: absolute;
   top: 0;
   right: 10px;
-  color: $textColorWhite;
+  color: $textColorBlack;
   font-size: 50px;
   font-weight: bold;
   float: right;
 
   &:hover,
   &:focus {
-    color: $textColorBlack;
+    color: $AccentColorOrange;
     text-decoration: none;
     cursor: pointer;
     transition: $main-transition-duration;
@@ -119,15 +119,17 @@
 
 .modal-firebase__form-button--send {
   padding: 12px 30px;
-  background-color: $textColorWhite;
-  color: $AccentColorRed;
+  background-color: transparent;
+  color: $textColorBlack;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   margin-top: 30px;
+  border: solid 1px $textColorBlack;
 
   &:hover {
-    background-color: $textColorBlack;
+    border: solid 1px transparent;
+    background-color: $AccentColorOrange;
     color: $textColorWhite;
     transition: $main-transition-duration;
   }
@@ -147,7 +149,7 @@
 .modal__form-button-register {
   padding: 0;
   background-color: transparent;
-  color: $textColorWhite;
+  color: $textColorBlack;
   border: none;
   cursor: pointer;
   font-size: inherit;
@@ -160,18 +162,21 @@
 .modal-firebase__form-button-register {
   padding: 0;
   background-color: transparent;
-  color: $textColorWhite;
+  color: $textColorBlack;
   border: none;
   cursor: pointer;
   font-size: inherit;
+  text-decoration: underline;
+  
 
   &:hover {
-    color: $textColorBlack;
+    color: $AccentColorOrange;
     transition: $main-transition-duration;
   }
+  
 }
 
 .modal-firebase__form-text-register {
   margin: 0;
-  color: $textColorWhite;
+  color: $textColorBlack;
 }
