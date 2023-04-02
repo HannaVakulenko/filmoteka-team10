@@ -1,23 +1,28 @@
 import { refs } from './refs';
+
 import { FetchFilmID } from './api-servise';
 
-refs.openModalFilmCardItem.addEventListener("click", openFilmCardModal);
+import { GetTrailer } from './api-servise';
+
+refs.openModalFilmCardItem.addEventListener('click', openFilmCardModal);
 refs.openModalFilmCardItem.addEventListener('click', onFilmCardClick);
-refs.closeModalFilmCardBtn.addEventListener("click", closeFilmCardModal);
-refs.modalFilmCardBackdrop.addEventListener("click", onBackdropCloseModal)
+refs.closeModalFilmCardBtn.addEventListener('click', closeFilmCardModal);
+refs.modalFilmCardBackdrop.addEventListener('click', onBackdropCloseModal);
 
 async function onFilmCardClick(e) {
-    try {
+  try {
     refs.modalFilmCardWindow.innerHTML = '';
     let filmId = e.target.closest('li').dataset.id;
     const films = await FetchFilmID(filmId);
 
-    refs.modalFilmCardWindow.insertAdjacentHTML('afterbegin', modalFilmMarkup(films));
-
+    refs.modalFilmCardWindow.insertAdjacentHTML(
+      'afterbegin',
+      modalFilmMarkup(films)
+    );
   } catch (error) {
     console.log(error);
   }
-};
+}
 
 function modalFilmMarkup({
   poster_path,
@@ -32,9 +37,10 @@ function modalFilmMarkup({
   id,
 }) {
   const filmGenres = genres.map(({ name }) => name).join(', ');
-        return `<div class="modal-film__poster">
-      <img class="modal-film__img" src=https://image.tmdb.org/t/p/original${poster_path} alt=${title || original_title || name
-            } />
+  return `<div class="modal-film__poster">
+      <img class="modal-film__img" src=https://image.tmdb.org/t/p/original${poster_path} alt=${
+    title || original_title || name
+  } />
     </div>
     <div class="modal-film__description">
         <h2 class="modal-film__title">${title || original_title || name}</h2>
@@ -67,32 +73,38 @@ function modalFilmMarkup({
         <button type="button" class="btn-queue button" data-id=${id}>add to queue</button>
       </div>
       </div>`;
-};
+}
 
 function openFilmCardModal(e) {
-    const { target } = e;
-    if (target.nodeName !== 'LI' && target.nodeName !== 'IMG' && target.nodeName !== 'H3' && target.nodeName !== 'P') {
-        return;
-    };
-    document.body.classList.toggle("modal-open");
-    refs.modalFilmCardBackdrop.classList.toggle("is-hidden");
-    window.addEventListener("keydown", onKeyboardClose);
-};
+  const { target } = e;
+  if (
+    target.nodeName !== 'LI' &&
+    target.nodeName !== 'IMG' &&
+    target.nodeName !== 'H3' &&
+    target.nodeName !== 'P'
+  ) {
+    return;
+  }
+  document.body.classList.toggle('modal-open');
+  refs.modalFilmCardBackdrop.classList.toggle('is-hidden');
+  window.addEventListener('keydown', onKeyboardClose);
+}
 
-function closeFilmCardModal() {    
-    document.body.classList.toggle("modal-open");
-    refs.modalFilmCardBackdrop.classList.toggle("is-hidden");
-    window.removeEventListener("keydown", onKeyboardClose);
-};
-    
+function closeFilmCardModal() {
+  document.body.classList.toggle('modal-open');
+  refs.modalFilmCardBackdrop.classList.toggle('is-hidden');
+  window.removeEventListener('keydown', onKeyboardClose);
+}
+
 function onBackdropCloseModal(e) {
-    if (e.currentTarget === e.target) {
-        closeFilmCardModal();
-    };
-};
+  if (e.currentTarget === e.target) {
+    closeFilmCardModal();
+  }
+}
 
 function onKeyboardClose(e) {
-    if (e.code === "Escape") {
-        closeFilmCardModal();
-    };
-};
+  if (e.code === 'Escape') {
+    closeFilmCardModal();
+  }
+}
+export { filmId };
