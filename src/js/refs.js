@@ -23,5 +23,6 @@ const refs = {
   btnModalOpen: document.querySelector('.btn-modal-open'),
   btnModalClose: document.querySelector('.btn-modal-close'),
   backdropModalTeam: document.querySelector('.team '),
+  btnScroll: document.querySelector('.btn-scroll'),
 };
 export { refs };
