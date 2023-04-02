@@ -98,7 +98,7 @@ export const GetTrailer = async movie_id => {
       throw new Error(responseGetTrailer.status);
     }
     const NewTrailer = responseGetTrailer.data;
-    console.log(NewTrailer);
+    return NewTrailer;
   } catch (error) {
     console.log(error.message);
   }
@@ -167,8 +167,8 @@ export const renderGallery = movies => {
           .join(', ');
 
         return `
-<li class="film-list__item">
-  <div class="thumb">
+<li class="film-list__item" data="${id}">
+  <div class="thumb"> 
     <img
       class="film-poster"
       src="${imgFilm}
