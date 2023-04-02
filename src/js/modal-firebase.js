@@ -28,8 +28,8 @@ document.addEventListener('keydown', function (event) {
   }
 });
 
-function register(e) {
-  e.preventDefault();
+function register(event) {
+  event.preventDefault();
 
   const isRegistering = refs.modalHeader.textContent !== 'Register';
 
@@ -55,12 +55,18 @@ function register(e) {
 
 function registerRender() {
   refs.modalForm.insertAdjacentHTML('afterbegin', '<input class="modal-firebase__form-input" type="text" placeholder="Name*" id="input-name" required minlength="4" maxlength="25">');
-  
+
   const input = document.getElementById('input-name');
   input.addEventListener('input', () => {
     const isValid = input.checkValidity();
     input.style.borderBottom = isValid ? '2px solid green' : '2px solid red';
     input.style.color = isValid ? 'green' : 'red';
+  });
+  
+  input.addEventListener('blur', () => {
+    if (input.value === '') {
+      input.style.borderBottom = '2px solid red';
+    }
   });
 }
 
@@ -82,9 +88,13 @@ function addInputValidationListeners(inputFields) {
     inputField.addEventListener('input', () => {
       validateInputField(inputField);
     });
+    inputField.addEventListener('blur', () => {
+      if (inputField.value === '') {
+        inputField.style.borderBottom = '2px solid red';
+      }
+    });
   });
 }
-
 // Функція очищення стилів полів введення після натискання кнопки реєстрації
 function clearInputFieldStyles(inputFields) {
   inputFields.forEach(inputField => {

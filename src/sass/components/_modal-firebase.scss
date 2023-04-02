@@ -166,11 +166,14 @@
   border: none;
   cursor: pointer;
   font-size: inherit;
+  text-decoration: underline;
+  
 
   &:hover {
     color: $AccentColorOrange;
     transition: $main-transition-duration;
   }
+  
 }
 
 .modal-firebase__form-text-register {
