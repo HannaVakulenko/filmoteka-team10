@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
+    "url": "git+https://github.com/HannaVakulenko/filmoteka-team10.git"
   },
   "keywords": [],
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/goitacademy/parcel-project-template/issues"
+    "url": "https://github.com/HannaVakulenko/filmoteka-team10/issues"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
@@ -23,7 +23,8 @@
     "firebase": "^9.19.0",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.6",
-    "tui-pagination": "^3.4.1"
+    "tui-pagination": "^3.4.1",
+    "youtube-player": "^5.6.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",

@@ -50,10 +50,10 @@
   }
 
   @media screen and (min-width: 768px) {
-    flex-basis: calc((100% - 21px) / 2);
+    flex-basis: calc((100% - 21px) / 3);
   }
   @media screen and (min-width: 1280px) {
-    flex-basis: calc((100% - 16px) / 3);
+    flex-basis: calc((100% - 16px) / 4);
   }
 }
 
