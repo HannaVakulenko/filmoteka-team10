@@ -15,7 +15,19 @@ window.addEventListener('beforeunload', () => {
 
 
 const linkOnSecondPageLogo = document.querySelector('.nav__logo')
-const linkOnSecondPageHome = document.querySelector('.nav__li[href="/index.html"]')
+
+let linkOnSecondPageHome
+
+if (document.querySelector('.nav__li[href="/index.html"]')) {
+    // console.log(Boolean(document.querySelector('.nav__li[href="/index.html"]')))
+    linkOnSecondPageHome = document.querySelector('.nav__li[href="/index.html"]')
+}
+if (document.querySelector('.nav__li[href="/filmoteka-team10/index.html]"')) {
+    // console.log(Boolean(document.querySelector('.nav__li[href="/filmoteka-team10/index.html]"')))
+    linkOnSecondPageHome = document.querySelector('.nav__li[href="/filmoteka-team10/index.html]"')
+}
+
+// console.log(linkOnSecondPageHome)
 const linkOnSecondPageLibrary = document.querySelector('[href="/my-library.html"]')
 let search
 let searchTest = document.querySelectorAll('.search-form')
