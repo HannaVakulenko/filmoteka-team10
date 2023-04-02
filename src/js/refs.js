@@ -16,7 +16,7 @@ const refs = {
   openModalFilmCardItem: document.querySelector('.film-list'),
   closeModalFilmCardBtn: document.querySelector('.modal-film__close-btn'),
 
-  modalFilmCardWindow: document.querySelector('.modal-film'),
+  modalFilmCardWindow: document.querySelector('.modal-film__main '),
   modalFilmCardBackdrop: document.querySelector('.backdrop-film-card'),
   trailerBtn: document.querySelector('.trailer'),
   backdropTrailer: document.querySelector('.js-backdrop-trailer'),
