@@ -7,7 +7,7 @@ refs.modalFilmCardBackdrop.addEventListener("click", onBackdropCloseModal)
 function openFilmCardModal(event) {
     const { target } = event;
     console.log(target.nodeName);
-    if (target.nodeName !== 'LI') {
+    if (target.nodeName !== 'LI' && target.nodeName !== 'IMG' && target.nodeName !== 'H3' && target.nodeName !== 'P') {
         return;
     };
     
