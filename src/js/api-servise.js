@@ -150,21 +150,34 @@ export const renderGallery = movies => {
           imgFilm = `${IMG_ARI}${poster_path}`;
         }
 
-        console.log(imgFilm);
         const releaseYear = release_date
           ? release_date.split('-')[0]
           : 'Unknown';
-        let text = '';
-        const genres = genre_ids
-          .map(genre => {
-            for (const allgenre of allgenres) {
-              if (Number(genre) === allgenre.id) {
-                text = allgenre.name;
-              }
-            }
-            return text;
-          })
-          .join(', ');
+        let genres = '';
+
+        for (const allgenre of allgenres) {
+          if (genre_ids[0] === allgenre.id) {
+            genres = allgenre.name;
+          }
+        }
+        for (const allgenre of allgenres) {
+          if (genre_ids[1] === allgenre.id) {
+            genres = genres + ', ' + allgenre.name;
+          }
+        }
+        if (genre_ids.length > 2) {
+          genres += ', Other';
+        }
+        // const genres = genre_ids
+        //   .map(genre => {
+        //     for (const allgenre of allgenres) {
+        //       if (Number(genre) === allgenre.id) {
+        //         text = allgenre.name;
+        //       }
+        //     }
+        //     return text;
+        //   })
+        //   .join(', ');
 
         return `
 <li class="film-list__item" data="${id}">
