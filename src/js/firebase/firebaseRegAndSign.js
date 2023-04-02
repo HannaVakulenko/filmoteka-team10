@@ -6,6 +6,22 @@ import {
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebase';
 
+// Conditions for /my-library.html
+
+if (
+  document.location.pathname !== '/index.html' ||
+  document.location.search ||
+  (document.location.host && document.location.pathname === '/my-library.html')
+) {
+  const logOut = document.querySelector('.nav__li.link.log-out');
+
+  logOut.addEventListener('click', () =>
+    localStorage.removeItem('userSession')
+  );
+}
+
+// Conditions for /index.html
+
 if (
   document.location.pathname === '/index.html' ||
   document.location.search ||
@@ -25,8 +41,6 @@ if (
     logOut.classList.remove('is-hidden-firebase');
     logIn.classList.add('is-hidden-firebase');
   }
-
-  // abcd10@gamil.com
 
   form.addEventListener('submit', e => {
     e.preventDefault();
