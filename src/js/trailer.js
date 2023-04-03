@@ -1,32 +1,23 @@
-import { spinnerStart, spinnerEnd } from './spinner';
+// import { spinnerStart, spinnerEnd } from './spinner';
 import { refs } from './refs';
-import YouTubePlayer from 'youtube-player';
-import Notiflix from 'notiflix';
-import {
-    API_KEY,
-    API_UR,
-    IMG_ARI,
-    MEDIA_TYPE,
-    TIME_WINDOW,
-    PER_PAGE,
-    page,
-    pages,
-    GetTrailer,
-  } from './api-servise';
+import { GetTrailer } from './api-servise';
+import { filmId } from './modal-film';
 
+refs.trailerBtn.addEventListener('click', switcherTrailerModal);
+refs.backdropTrailer.addEventListener('click', switcherTrailerModal);
 
-const listEl = document.querySelector('.film-list');
-// const libraryListEl = document.querySelector();
-const trailerModalEl = document.querySelector('.video-trailer');
-const trailerBackdropEl = document.querySelector('.js-backdrop-trailer');
-const trailerBtnEl = document.querySelector('.trailer');
-let id = undefined;
-
-refs.trailerBtn.addEventListener("click", switcherTrailerModal);
-refs.backdropTrailer.addEventListener("click", switcherTrailerModal);
-
-function switcherTrailerModal() {
-    GetTrailer(726759)
-    refs.backdropTrailer.classList.toggle("is-hidden");
-};
+async function switcherTrailerModal() {
+//   refs.trailerBtn.classList.add('is-hidden');
+  let data = await GetTrailer(filmId);
+  console.log(data);
+  if (data.results.length > 0) {
+    const getLink = data.results[0].key;
+    // refs.trailerBtn.classList.remove('is-hidden');
+    const markup =
+      await `<iframe class="youtube" width="100%" height="100%" src='https://www.youtube.com/embed/${getLink}' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="trailer_video"></iframe>`;
+    let player = document.getElementById('video-trailer-player');
+    player.innerHTML = markup;
+    refs.backdropTrailer.classList.toggle('is-hidden');
+  }
+}
 
