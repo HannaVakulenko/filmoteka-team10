@@ -5,6 +5,7 @@ import './js/pagination';
 import './js/modal-film';
 import './js/trailer';
 import './js/modal-students';
+import './js/displaying-movies';
 import './js/spinner';
 import './js/preloader';
 import './js/firebase/firebaseRegAndSign';

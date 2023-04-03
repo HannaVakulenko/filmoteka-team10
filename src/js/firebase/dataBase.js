@@ -165,5 +165,5 @@ function createMerkaup(storage) {
       </li>`;
       }
     )
-    .join(' ');
+    .join('');
 }

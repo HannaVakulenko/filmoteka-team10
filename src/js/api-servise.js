@@ -19,16 +19,17 @@ export let filmsTrending = [];
 export let searchFilms = [];
 // my_movie_id прибрати потім значення, має братися з розмітки при кліку
 export let my_movie_id = 76600;
-
+export let lastPages = 1;
 // Отримання популярних фільмів
-export const FetchTrending = async () => {
+export const FetchTrending = async page => {
   try {
     const responseTrending = await axios.get(
-      `${API_URL}trending/${MEDIA_TYPE}/day?api_key=${API_KEY}`
+      `${API_URL}trending/${MEDIA_TYPE}/day?api_key=${API_KEY}&page=${page}`
     );
     if (responseTrending.status !== 200) {
       throw new Error(responseTrending.status);
     }
+    lastPages = responseTrending.data.total_pages;
     return (filmsTrending = responseTrending.data.results);
     console.log(filmsTrending);
     await renderGallery(filmsTrending);
@@ -40,7 +41,7 @@ export const FetchTrending = async () => {
 // FetchTrending();
 
 // Шукаємо фільми по ключовому слову:
-export const FetchSearch = async q => {
+export const FetchSearch = async (q, page) => {
   try {
     const responseSearch = await axios.get(
       `${API_URL}search/${MEDIA_TYPE}?api_key=${API_KEY}&query=${q}&page=${page}`
@@ -48,13 +49,13 @@ export const FetchSearch = async q => {
     if (responseSearch.status !== 200) {
       throw new Error(responseSearch.status);
     }
+    lastPages = responseSearch.data.total_pages;
     return (searchFilms = responseSearch.data.results);
     console.log(searchFilms);
   } catch (error) {
     console.log(error.message);
   }
 };
-
 
 // запуск функції
 // FetchSearch(query);
@@ -173,17 +174,6 @@ export const renderGallery = movies => {
         if (genre_ids.length === 0) {
           genres += 'Other';
         }
-        // const genres = genre_ids
-        //   .map(genre => {
-        //     for (const allgenre of allgenres) {
-        //       if (Number(genre) === allgenre.id) {
-        //         text = allgenre.name;
-        //       }
-        //     }
-        //     return text;
-        //   })
-        //   .join(', ');
-
         return `
 <li class="film-list__item" data-id = '${id}'>
   <div class="thumb">
@@ -207,12 +197,24 @@ export const renderGallery = movies => {
   galleryFilms.insertAdjacentHTML('beforeend', listitem);
 };
 
-const RenderPopular = async () => {
+export const RenderPopular = async page => {
   try {
-    const responses = await FetchTrending();
+    const galletyEl = document.querySelector('.film-list');
+    galletyEl.innerHTML = '';
+    const responses = await FetchTrending(page);
     await renderGallery(responses);
   } catch {
     console.log('error:');
   }
 };
-RenderPopular();
+
+export const RenderSearch = async (q, page) => {
+  try {
+    const galletyEl = document.querySelector('.film-list');
+    galletyEl.innerHTML = '';
+    const responses = await FetchSearch(q, page);
+    await renderGallery(responses);
+  } catch {
+    console.log('error:');
+  }
+};
