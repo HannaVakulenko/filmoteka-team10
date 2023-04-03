@@ -4,8 +4,11 @@ import { getDatabase, ref, set, child, get } from 'firebase/database';
 const auth = getAuth();
 const db = getDatabase();
 const dbRef = ref(getDatabase());
-const filmsWatched = [];
-const filmsQueue = [];
+const localWatched = JSON.parse(localStorage.getItem('filmsWatched'));
+const localQueue = JSON.parse(localStorage.getItem('filmsQueue'));
+
+const filmsWatched = localWatched || [];
+const filmsQueue = localQueue || [];
 
 const modal = document.querySelector('.modal-film__main');
 const btnWatchedLibrary = document.querySelector('.library__button.watched');
@@ -13,8 +16,12 @@ const btnQueueLibrary = document.querySelector('.library__button.queue');
 const filmList = document.querySelector('.film-list');
 const bgImage = document.querySelector('.library-wrap');
 console.dir(btnWatchedLibrary);
-
+// createFilmObj;
 modal.addEventListener('click', createFilmObj);
+
+// function fff() {
+//   localStorage.setItem('filmsQueue', filmsQueue.push('s'));
+// }
 
 if (!document.querySelector('.search-form__input')) {
   btnWatchedLibrary.addEventListener('click', () => {
@@ -62,6 +69,7 @@ function createFilmObj(e) {
         get(child(dbRef, `users/ovrGn2FJIdTUQrajvyrFQ3Gb5bs1`))
           .then(snapshot => {
             if (snapshot.exists()) {
+              console.log(Object.entries(snapshot.val()));
               localStorage.setItem(
                 'filmsQueue',
                 JSON.stringify(snapshot.val())
@@ -118,21 +126,22 @@ function createFilmObj(e) {
 }
 
 function createMerkaup(storage) {
-  return JSON.parse(localStorage.getItem(storage)).map(
-    ({
-      genre_name,
-      genres,
-      id,
-      original_title,
-      overview,
-      popularity,
-      poster_path,
-      title,
-      vote_average,
-      vote_count,
-      release_date,
-    }) => {
-      return `<li class="film-list__item">
+  return JSON.parse(localStorage.getItem(storage))
+    .map(
+      ({
+        genre_name,
+        genres,
+        id,
+        original_title,
+        overview,
+        popularity,
+        poster_path,
+        title,
+        vote_average,
+        vote_count,
+        release_date,
+      }) => {
+        return `<li class="film-list__item">
         <div class="film-thumb">
           <img class="film-poster" src='https://image.tmdb.org/t/p/original${poster_path}' alt="movie poster" />
         </div>
@@ -150,10 +159,11 @@ function createMerkaup(storage) {
         data-id="${id}">
           <h3 class="film-list__name">${original_title}</h3>
           <p class="film-list__genre">${genres} | ${
-        release_date ? release_date.split('-')[0] : 'Unknown'
-      } | ${vote_average}</p>
+          release_date ? release_date.split('-')[0] : 'Unknown'
+        } | ${vote_average}</p>
         </div>
       </li>`;
-    }
-  );
+      }
+    )
+    .join('');
 }
