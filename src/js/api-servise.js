@@ -190,7 +190,7 @@ export const renderGallery = movies => {
       alt="movie poster"
     />
   </div>
-
+  
   <div class="film-list__info">
     <h3 class="film-list__name">${title}</h3>
     <p class="film-list__genre">${genres} | ${releaseYear}</p>
