@@ -36,9 +36,13 @@ refs.pagination.addEventListener('click', e => {
   if (submit === 0) {
     if (Number(e.target.textContent) > 0) {
       slide = Number(e.target.textContent);
+      console.log(slide);
       RenderPopular(slide);
     }
     if (e.target.textContent === 'next') {
+      if (slide === lastPages) {
+        return;
+      }
       slide += 1;
       RenderPopular(slide);
     }
@@ -47,7 +51,7 @@ refs.pagination.addEventListener('click', e => {
       RenderPopular(slide);
     }
     if (e.target.textContent === 'prev') {
-      if ((slide = 1)) {
+      if (slide === 1) {
         return;
       }
       slide -= 1;
@@ -63,6 +67,9 @@ refs.pagination.addEventListener('click', e => {
       RenderSearch(inputText, slide);
     }
     if (e.target.textContent === 'next') {
+      if (slide === lastPages) {
+        return;
+      }
       slide += 1;
       RenderSearch(inputText, slide);
     }
@@ -71,7 +78,7 @@ refs.pagination.addEventListener('click', e => {
       RenderSearch(inputText, slide);
     }
     if (e.target.textContent === 'prev') {
-      if ((slide = 1)) {
+      if (slide === 1) {
         return;
       }
       slide -= 1;
