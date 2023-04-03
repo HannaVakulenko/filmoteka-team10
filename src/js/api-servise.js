@@ -133,7 +133,7 @@ const renderGallery = movies => {
   </div>
 
   <div class="film-list__info">
-    <h3 class="film-list__name">${title}</h3>
+    <p class="film-list__name">${title}</p>
     <p class="film-list__genre">$Жанри | </p>
   </div>
 </li>

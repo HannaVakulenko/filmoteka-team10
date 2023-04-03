@@ -20,8 +20,8 @@
 }
 
 .film-list__item {
-  max-width: max-content;
-  height: max-content;
+  // max-width: max-content;
+  // height: max-content;
   display: flex;
   flex-direction: column;
   transition-property: scale, outline, outline-offset, border-radius;
@@ -57,6 +57,7 @@
 }
 
 .film-list__info {
+  flex-grow: 1;
   margin-top: 10px;
   font-weight: 500;
   font-size: 12px;
