@@ -32,7 +32,7 @@ if (document.querySelector('.search-form')) {
 
     searchForm.addEventListener('submit', async e => {
         e.preventDefault();
-        inputText = e.currentTarget.elements.searchQuery.value.trim();
+       const inputText = e.currentTarget.elements.searchQuery.value.trim();
         searchInp.value = '';
 
         if (inputText === '') {
