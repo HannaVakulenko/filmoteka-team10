@@ -207,7 +207,7 @@ export const renderGallery = movies => {
   galleryFilms.insertAdjacentHTML('beforeend', listitem);
 };
 
-const RenderPopular = async () => {
+export const RenderPopular = async () => {
   try {
     const responses = await FetchTrending();
     await renderGallery(responses);
@@ -215,4 +215,3 @@ const RenderPopular = async () => {
     console.log('error:');
   }
 };
-RenderPopular();
