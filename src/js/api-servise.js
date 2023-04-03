@@ -43,7 +43,7 @@ export const FetchTrending = async () => {
 export const FetchSearch = async q => {
   try {
     const responseSearch = await axios.get(
-      `${API_URL}search/${MEDIA_TYPE}?api_key=${API_KEY}&query=${q}`
+      `${API_URL}search/${MEDIA_TYPE}?api_key=${API_KEY}&query=${q}&page=${page}`
     );
     if (responseSearch.status !== 200) {
       throw new Error(responseSearch.status);
@@ -54,6 +54,7 @@ export const FetchSearch = async q => {
     console.log(error.message);
   }
 };
+
 
 // запуск функції
 // FetchSearch(query);
@@ -74,137 +75,38 @@ export const FetchFilmID = async movie_id => {
     console.log(error.message);
   }
 };
-
-
 // запуск функції
 // FetchFilmID(my_movie_id);
 
 // опредеоение жанра фильма
-// let filmsTrendingIdGenres = [];
-// let mygenres = [];
+let filmsTrendingIdGenres = [];
+let mygenres = [];
 
-// for (let i = 0; i < filmsTrendingIdGenres.length; i++) {
-//   for (let index = 0; index < allgenres.length; index++) {
-//     if (allgenres[index].id === filmsTrendingIdGenres[i]) {
-//       mygenres.push(allgenres[index].name);
-//     }
-//   }
-// }
-// console.log(mygenres);
+for (let i = 0; i < filmsTrendingIdGenres.length; i++) {
+  for (let index = 0; index < allgenres.length; index++) {
+    if (allgenres[index].id === filmsTrendingIdGenres[i]) {
+      mygenres.push(allgenres[index].name);
+    }
+  }
+}
+console.log(mygenres);
 
-// export const GetTrailer = async movie_id => {
-//   try {
-//     const responseGetTrailer = await axios.get(
-//       `${API_URL}movie/${movie_id}/videos?api_key=${API_KEY}&language=en-US`
-//     );
-//     if (responseGetTrailer.status !== 200) {
-//       throw new Error(responseGetTrailer.status);
-//     }
-//     const NewTrailer = responseGetTrailer.data;
-//     console.log(NewTrailer);
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-
-export const renderGallery = movies => {
-  const galleryFilms = document.querySelector('.film-list');
-  // document.querySelector('.film-list').innerHTML = '';
-  const listitem = movies
-    .map(
-      ({
-        id,
-        poster_path,
-        title,
-        release_date,
-        genre_ids,
-        original_title,
-        vote_average,
-        popularity,
-        vote_count,
-        overview,
-      }) => {
-        const allgenres = [
-          { id: 28, name: 'Action' },
-          { id: 12, name: 'Adventure' },
-          { id: 16, name: 'Animation' },
-          { id: 35, name: 'Comedy' },
-          { id: 80, name: 'Crime' },
-          { id: 99, name: 'Documentary' },
-          { id: 18, name: 'Drama' },
-          { id: 10751, name: 'Family' },
-          { id: 14, name: 'Fantasy' },
-          { id: 36, name: 'History' },
-          { id: 27, name: 'Horror' },
-          { id: 10402, name: 'Music' },
-          { id: 9648, name: 'Mystery' },
-          { id: 10749, name: 'Romance' },
-          { id: 878, name: 'Science Fiction' },
-          { id: 10770, name: 'TV Movie' },
-          { id: 53, name: 'Thriller' },
-          { id: 10752, name: 'War' },
-          { id: 37, name: 'Western' },
-        ];
-        let imgFilm;
-        if (poster_path === null) {
-          imgFilm =
-            'https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg';
-        } else {
-          imgFilm = `${IMG_ARI}${poster_path}`;
-        }
-
-        const releaseYear = release_date
-          ? release_date.split('-')[0]
-          : 'Unknown';
-        let genres = '';
-
-        for (const allgenre of allgenres) {
-          if (genre_ids[0] === allgenre.id) {
-            genres = allgenre.name;
-          }
-        }
-        for (const allgenre of allgenres) {
-          if (genre_ids[1] === allgenre.id) {
-            genres = genres + ', ' + allgenre.name;
-          }
-        }
-        if (genre_ids.length > 2) {
-          genres += ', Other';
-        }
-        // const genres = genre_ids
-        //   .map(genre => {
-        //     for (const allgenre of allgenres) {
-        //       if (Number(genre) === allgenre.id) {
-        //         text = allgenre.name;
-        //       }
-        //     }
-        //     return text;
-        //   })
-        //   .join(', ');
-
-        return `
-<li class="film-list__item" data-id = '${id}'>
-  <div class="thumb">
-    <img
-      class="film-poster"
-      src="${imgFilm}
-"
-      alt="movie poster"
-    />
-  </div>
-  
-  <div class="film-list__info">
-    <h3 class="film-list__name">${title}</h3>
-    <p class="film-list__genre">${genres} | ${releaseYear}</p>
-  </div>
-</li>
-        `;
-      }
-    )
-    .join('');
-  galleryFilms.insertAdjacentHTML('beforeend', listitem);
+export const GetTrailer = async movie_id => {
+  try {
+    const responseGetTrailer = await axios.get(
+      `${API_URL}movie/${movie_id}/videos?api_key=${API_KEY}&language=en-US`
+    );
+    if (responseGetTrailer.status !== 200) {
+      throw new Error(responseGetTrailer.status);
+    }
+    const NewTrailer = responseGetTrailer.data;
+    return NewTrailer;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
-// const renderGallery = movies => {
+
+// export const renderGallery = movies => {
 //   const galleryFilms = document.querySelector('.film-list');
 //   // document.querySelector('.film-list').innerHTML = '';
 //   const listitem = movies
@@ -221,20 +123,78 @@ export const renderGallery = movies => {
 //         vote_count,
 //         overview,
 //       }) => {
+//         const allgenres = [
+//           { id: 28, name: 'Action' },
+//           { id: 12, name: 'Adventure' },
+//           { id: 16, name: 'Animation' },
+//           { id: 35, name: 'Comedy' },
+//           { id: 80, name: 'Crime' },
+//           { id: 99, name: 'Documentary' },
+//           { id: 18, name: 'Drama' },
+//           { id: 10751, name: 'Family' },
+//           { id: 14, name: 'Fantasy' },
+//           { id: 36, name: 'History' },
+//           { id: 27, name: 'Horror' },
+//           { id: 10402, name: 'Music' },
+//           { id: 9648, name: 'Mystery' },
+//           { id: 10749, name: 'Romance' },
+//           { id: 878, name: 'Science Fiction' },
+//           { id: 10770, name: 'TV Movie' },
+//           { id: 53, name: 'Thriller' },
+//           { id: 10752, name: 'War' },
+//           { id: 37, name: 'Western' },
+//         ];
+//         let imgFilm;
+//         if (poster_path === null) {
+//           imgFilm =
+//             'https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg';
+//         } else {
+//           imgFilm = `${IMG_ARI}${poster_path}`;
+//         }
+
+//         const releaseYear = release_date
+//           ? release_date.split('-')[0]
+//           : 'Unknown';
+//         let genres = '';
+
+//         for (const allgenre of allgenres) {
+//           if (genre_ids[0] === allgenre.id) {
+//             genres = allgenre.name;
+//           }
+//         }
+//         for (const allgenre of allgenres) {
+//           if (genre_ids[1] === allgenre.id) {
+//             genres = genres + ', ' + allgenre.name;
+//           }
+//         }
+//         if (genre_ids.length > 2) {
+//           genres += ', Other';
+//         }
+//         // const genres = genre_ids
+//         //   .map(genre => {
+//         //     for (const allgenre of allgenres) {
+//         //       if (Number(genre) === allgenre.id) {
+//         //         text = allgenre.name;
+//         //       }
+//         //     }
+//         //     return text;
+//         //   })
+//         //   .join(', ');
+
 //         return `
-// <li class="film-list__item">
+// <li class="film-list__item" data-id = '${id}'>
 //   <div class="thumb">
 //     <img
 //       class="film-poster"
-//       src="${IMG_ARI}${poster_path}
+//       src="${imgFilm}
 // "
 //       alt="movie poster"
 //     />
 //   </div>
-
+  
 //   <div class="film-list__info">
 //     <h3 class="film-list__name">${title}</h3>
-//     <p class="film-list__genre">$Жанри | </p>
+//     <p class="film-list__genre">${genres} | ${releaseYear}</p>
 //   </div>
 // </li>
 //         `;
