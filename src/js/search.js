@@ -39,7 +39,6 @@ searchForm.addEventListener('submit', async e => {
   }
   galletyEl.innerHTML = '';
   const responses = await FetchSearch(inputText);
-    console.log(responses);
+  console.log(responses);
   await renderGallery(responses);
 });
-
