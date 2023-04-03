@@ -69,8 +69,25 @@ function modalFilmMarkup({
         <p class="modal-film__about">About</p>
         <p class="modal-film__text">${overview}</p>
       <div class="modal-film__buttons">
-        <button type="button" class="btn-watched button" data-id=${id}>add to watched</button>
-        <button type="button" class="btn-queue button" data-id=${id}>add to queue</button>
+        <button type="button" class="btn-watched button" data-id="${id}"
+        data-poster_path="${poster_path}"
+        data-title="${title}"
+        data-genre_name="${name}"
+        data-original_title="${original_title}"
+        data-vote_average="${vote_average}"
+        data-popularity="${popularity}"
+        data-vote_count="${vote_count}"
+        data-overview="${overview}"
+        data-genres="${filmGenres}">add to watched</button>
+        <button type="button" class="btn-queue button"  data-id="${id}"         data-poster_path="${poster_path}"
+        data-title="${title}"
+        data-genre_name="${name}"
+        data-original_title="${original_title}"
+        data-vote_average="${vote_average}"
+        data-popularity="${popularity}"
+        data-vote_count="${vote_count}"
+        data-overview="${overview}"
+        data-genres="${filmGenres}">add to queue</button>
       </div>
       </div>`;
 }
