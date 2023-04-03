@@ -202,6 +202,12 @@
   @include max-tablet() {
     gap: 20px;
   }
+  @include mobile() {
+    margin-top: 60px;
+  }
+  @include tablet() {
+    margin-top: 46px;
+  }
 }
 .library__button {
   font-family: $roboto-font;
