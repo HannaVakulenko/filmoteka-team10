@@ -35,9 +35,16 @@ function modalFilmMarkup({
   popularity,
   id,
 }) {
+  let imgFilm;
+  if (poster_path === null) {
+    imgFilm =
+      'https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg';
+  } else {
+    imgFilm = `https://image.tmdb.org/t/p/original${poster_path}`;
+  }
   const filmGenres = genres.map(({ name }) => name).join(', ');
   return `<div class="modal-film__poster">
-      <img class="modal-film__img" src=https://image.tmdb.org/t/p/original${poster_path} alt=${
+      <img class="modal-film__img" src=${imgFilm} alt=${
     title || original_title || name
   } />
     </div>
