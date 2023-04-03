@@ -1,6 +1,6 @@
 .btn-scroll {
     position: fixed;
-    bottom: 50px;
+    bottom: 100px;
     right: 60px;
     width: 60px;
     height: 60px;
@@ -13,7 +13,7 @@
     &:focus {
         box-shadow: $dropShadowtransitionLight;
         transform: scale(1.2);
-        animation: shake 1s both;
+        // animation: shake 1s both;
         color: $AccentColorOrange;
     }
 }

@@ -30,64 +30,65 @@ import { lastPages } from './api-servise';
 import { submit } from './search';
 import { inputText } from './search';
 let slide = 1;
-
-// const paginationEl = document.querySelector('.tui-pagination');
-refs.pagination.addEventListener('click', e => {
-  if (submit === 0) {
-    if (Number(e.target.textContent) > 0) {
-      slide = Number(e.target.textContent);
-      console.log(slide);
-      RenderPopular(slide);
-    }
-    if (e.target.textContent === 'next') {
-      if (slide === lastPages) {
-        return;
+if (document.querySelector('.search-form')) {
+  // const paginationEl = document.querySelector('.tui-pagination');
+  refs.pagination.addEventListener('click', e => {
+    if (submit === 0) {
+      if (Number(e.target.textContent) > 0) {
+        slide = Number(e.target.textContent);
+        console.log(slide);
+        RenderPopular(slide);
       }
-      slide += 1;
-      RenderPopular(slide);
-    }
-    if (e.target.textContent === 'first') {
-      slide = 1;
-      RenderPopular(slide);
-    }
-    if (e.target.textContent === 'prev') {
-      if (slide === 1) {
-        return;
+      if (e.target.textContent === 'next') {
+        if (slide === lastPages) {
+          return;
+        }
+        slide += 1;
+        RenderPopular(slide);
       }
-      slide -= 1;
-      RenderPopular(slide);
-    }
-    if (e.target.textContent === 'last') {
-      slide = lastPages;
-      RenderPopular(slide);
-    }
-  } else {
-    if (Number(e.target.textContent) > 0) {
-      slide = Number(e.target.textContent);
-      RenderSearch(inputText, slide);
-    }
-    if (e.target.textContent === 'next') {
-      if (slide === lastPages) {
-        return;
+      if (e.target.textContent === 'first') {
+        slide = 1;
+        RenderPopular(slide);
       }
-      slide += 1;
-      RenderSearch(inputText, slide);
-    }
-    if (e.target.textContent === 'first') {
-      slide = 1;
-      RenderSearch(inputText, slide);
-    }
-    if (e.target.textContent === 'prev') {
-      if (slide === 1) {
-        return;
+      if (e.target.textContent === 'prev') {
+        if (slide === 1) {
+          return;
+        }
+        slide -= 1;
+        RenderPopular(slide);
       }
-      slide -= 1;
-      RenderSearch(inputText, slide);
+      if (e.target.textContent === 'last') {
+        slide = lastPages;
+        RenderPopular(slide);
+      }
+    } else {
+      if (Number(e.target.textContent) > 0) {
+        slide = Number(e.target.textContent);
+        RenderSearch(inputText, slide);
+      }
+      if (e.target.textContent === 'next') {
+        if (slide === lastPages) {
+          return;
+        }
+        slide += 1;
+        RenderSearch(inputText, slide);
+      }
+      if (e.target.textContent === 'first') {
+        slide = 1;
+        RenderSearch(inputText, slide);
+      }
+      if (e.target.textContent === 'prev') {
+        if (slide === 1) {
+          return;
+        }
+        slide -= 1;
+        RenderSearch(inputText, slide);
+      }
+      if (e.target.textContent === 'last') {
+        slide = lastPages;
+        RenderSearch(inputText, slide);
+      }
     }
-    if (e.target.textContent === 'last') {
-      slide = lastPages;
-      RenderSearch(inputText, slide);
-    }
-  }
-});
-RenderPopular(slide);
+  });
+  RenderPopular(slide);
+}
