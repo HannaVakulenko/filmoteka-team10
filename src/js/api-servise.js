@@ -24,7 +24,7 @@ export let my_movie_id = 76600;
 export const FetchTrending = async () => {
   try {
     const responseTrending = await axios.get(
-      `${API_URL}trending/${MEDIA_TYPE}/day?api_key=${API_KEY}`
+      `${API_URL}trending/${MEDIA_TYPE}/day?api_key=${API_KEY}&page=${page}`
     );
     if (responseTrending.status !== 200) {
       throw new Error(responseTrending.status);
@@ -207,7 +207,7 @@ export const renderGallery = movies => {
   galleryFilms.insertAdjacentHTML('beforeend', listitem);
 };
 
-const RenderPopular = async () => {
+export const RenderPopular = async () => {
   try {
     const responses = await FetchTrending();
     await renderGallery(responses);
@@ -215,4 +215,3 @@ const RenderPopular = async () => {
     console.log('error:');
   }
 };
-RenderPopular();
