@@ -29,7 +29,7 @@ export const FetchTrending = async () => {
     if (responseTrending.status !== 200) {
       throw new Error(responseTrending.status);
     }
-    filmsTrending = responseTrending.data.results;
+    return (filmsTrending = responseTrending.data.results);
     console.log(filmsTrending);
     await renderGallery(filmsTrending);
   } catch (error) {
@@ -180,6 +180,71 @@ export const GetTrailer = async movie_id => {
 //         //     return text;
 //         //   })
 //         //   .join(', ');
+
+        const releaseYear = release_date
+          ? release_date.split('-')[0]
+          : 'Unknown';
+        let genres = '';
+
+        for (const allgenre of allgenres) {
+          if (genre_ids[0] === allgenre.id) {
+            genres = allgenre.name;
+          }
+        }
+        for (const allgenre of allgenres) {
+          if (genre_ids[1] === allgenre.id) {
+            genres = genres + ', ' + allgenre.name;
+          }
+        }
+        if (genre_ids.length > 2) {
+          genres += ', Other';
+        }
+        if (genre_ids.length === 0) {
+          genres += 'Other';
+        }
+        // const genres = genre_ids
+        //   .map(genre => {
+        //     for (const allgenre of allgenres) {
+        //       if (Number(genre) === allgenre.id) {
+        //         text = allgenre.name;
+        //       }
+        //     }
+        //     return text;
+        //   })
+        //   .join(', ');
+
+        return `
+<li class="film-list__item" data-id = '${id}'>
+  <div class="thumb">
+    <img
+      class="film-poster"
+      src="${imgFilm} 
+" 
+      alt="movie poster"
+    />
+  </div>
+  
+  <div class="film-list__info">
+    <h3 class="film-list__name">${title}</h3>
+    <p class="film-list__genre">${genres} | ${releaseYear}</p>
+  </div>
+</li>
+        `;
+      }
+    )
+    .join('');
+  galleryFilms.insertAdjacentHTML('beforeend', listitem);
+};
+
+const RenderPopular = async () => {
+  try {
+    const responses = await FetchTrending();
+    await renderGallery(responses);
+  } catch {
+    console.log('error:');
+  }
+};
+RenderPopular();
 
 //         return `
 // <li class="film-list__item" data-id = '${id}'>
