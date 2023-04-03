@@ -87,11 +87,7 @@ import './allgenres';
 // RenderPopular();
 
 
-
-
-
-
-export const renderGallery = movies => {
+const renderGallery = movies => {
   const galleryFilms = document.querySelector('.film-list');
   // document.querySelector('.film-list').innerHTML = '';
   const listitem = movies
@@ -155,6 +151,9 @@ export const renderGallery = movies => {
         if (genre_ids.length > 2) {
           genres += ', Other';
         }
+        if (genre_ids.length === 0) {
+          genres += 'Other';
+        }
         // const genres = genre_ids
         //   .map(genre => {
         //     for (const allgenre of allgenres) {
@@ -171,8 +170,8 @@ export const renderGallery = movies => {
   <div class="thumb">
     <img
       class="film-poster"
-      src="${imgFilm}
-"
+      src="${imgFilm} 
+" 
       alt="movie poster"
     />
   </div>
@@ -188,10 +187,11 @@ export const renderGallery = movies => {
     .join('');
   galleryFilms.insertAdjacentHTML('beforeend', listitem);
 };
+
 const RenderPopular = async () => {
   try {
-    await FetchTrending();
-    await renderGallery(filmsTrending);
+    const responses = await FetchTrending();
+    await renderGallery(responses);
   } catch {
     console.log('error:');
   }
@@ -203,25 +203,31 @@ RenderPopular();
 
 
 
-// FetchTrending(query, page)
-//     .then(data => {
-//       spinnerStart();
-//       if (!data.total_results) {
-//         // тут треба прикрутити месседж помилки
+
+
+
+
+
+
+FetchTrending(query, page)
+    .then(data => {
+      spinnerStart();
+      if (!data.total_results) {
+        // тут треба прикрутити месседж помилки
         
-//         return;
-//       }
-//       refs.galleryFilms.innerHTML = renderGallery(data.results);
-//       const pagination = createPagination(data.total_results, data.total_pages);
-//      pagination.on('beforeMove', ({ page }) => {
-//         spinnerStart();
-//         refs.galleryFilms.innerHTML = '';
-//         FetchTrending(query, page).then(data => {
-//           spinnerEnd();
-//           refs.galleryFilms.innerHTML =  renderGallery(data.results);
-//           scrollOnTop();
-//         });
-//       });
-//     })
-//   .catch(error => console.log(error));
+        return;
+      }
+      refs.galleryFilms.innerHTML = renderGallery(data.results);
+      const pagination = createPagination(data.total_results, data.total_pages);
+     pagination.on('beforeMove', ({ page }) => {
+        spinnerStart();
+        refs.galleryFilms.innerHTML = '';
+        FetchTrending(query, page).then(data => {
+          spinnerEnd();
+          refs.galleryFilms.innerHTML =  renderGallery(data.results);
+          scrollOnTop();
+        });
+      });
+    })
+  .catch(error => console.log(error));
     
