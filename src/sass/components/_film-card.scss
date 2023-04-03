@@ -54,12 +54,15 @@
 
 .film-poster {
   border-radius: 5px;
-  height: 591px;
+ 
   @include mobile() {
     height: 423px;
   }
   @include tablet() {
     height: 501px;
+  }
+  @include desktop() {
+    height: 591px;
   }
 }
 

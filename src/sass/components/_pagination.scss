@@ -100,20 +100,13 @@
 
     .tui-ico-next,
     .tui-ico-prev {
-        width: 16px;
-        height: 16px;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-position: center;
     }
 
-    .tui-ico-prev {
-        background-image: url('../images/icons.svg#icon-arrow-left');
-    }
-
-    .tui-ico-next {
-        background-image: url('../images/icons.svg#icon-arrow-right');
+    .hidden-tui {
+        display: none;
     }
 }
