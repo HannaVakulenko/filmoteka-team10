@@ -10,21 +10,15 @@ import { refs } from '../refs';
 // test
 
 // Conditions for /my-library.html
-// if (
-//   document.location.pathname !== '/index.html' ||
-//   document.location.search ||
-//   (document.location.host && document.location.pathname === '/my-library.html')
-// ) {
-//   refs.logOutLibrary.addEventListener('click', () =>
-//     localStorage.removeItem('userSession')
-//   );
-// }
+if (!document.querySelector('.search-form__input')) {
+  refs.logOutLibrary.addEventListener('click', () => {
+    localStorage.removeItem('userSession');
+  });
+}
 
 // Conditions for /index.html
 
-if (
-  document.querySelector('.search-form__input')
-) {
+if (document.querySelector('.search-form__input')) {
   const app = initializeApp(firebaseConfig);
 
   const modal = document.querySelector('.modal-firebase');
