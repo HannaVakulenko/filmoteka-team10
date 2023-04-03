@@ -28,6 +28,7 @@ if (document.querySelector('.search-form__input')) {
 
   function modalFilmMarkup({
     poster_path,
+    release_date,
     original_title,
     title,
     name,
@@ -87,6 +88,7 @@ if (document.querySelector('.search-form__input')) {
         data-popularity="${popularity}"
         data-vote_count="${vote_count}"
         data-overview="${overview}"
+        data-release_date="${release_date}"
         data-genres="${filmGenres}">add to watched</button>
         <button type="button" class="btn-queue button"  data-id="${id}"         data-poster_path="${poster_path}"
         data-title="${title}"
