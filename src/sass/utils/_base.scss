@@ -13,17 +13,17 @@ body {
   margin: 0 auto;
 
   @include mobile {
-    max-width: $phone;
+    width: $phone;
   }
 
   @include tablet {
-    max-width: $tablet;
+    width: $tablet;
 
     padding-right: 32px;
     padding-left: 32px;
   }
 
   @include desktop {
-    max-width: $desktop;
+    width: $desktop;
   }
 }
