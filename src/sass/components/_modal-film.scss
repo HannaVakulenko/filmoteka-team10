@@ -290,7 +290,14 @@ body.modal-open {
   position: absolute;
   top: 45px;
   // поміняла left на 45, бо на планшетній версії згідно макету падинги ширші і іконка зїжджала
-  left: 45px;
+  left: 25px;
+  @include tablet {
+    left: 40px;
+    top: 40px;
+  @include desktop {
+    left: 20px;
+  }
+  }
 }
 .trailer__icon {
   fill: red;

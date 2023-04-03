@@ -43,7 +43,7 @@ export const FetchTrending = async () => {
 export const FetchSearch = async q => {
   try {
     const responseSearch = await axios.get(
-      `${API_URL}search/${MEDIA_TYPE}?api_key=${API_KEY}&query=${q}`
+      `${API_URL}search/${MEDIA_TYPE}?api_key=${API_KEY}&query=${q}&page=${page}`
     );
     if (responseSearch.status !== 200) {
       throw new Error(responseSearch.status);
@@ -54,6 +54,7 @@ export const FetchSearch = async q => {
     console.log(error.message);
   }
 };
+
 
 // запуск функції
 // FetchSearch(query);
