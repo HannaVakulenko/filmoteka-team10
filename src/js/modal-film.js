@@ -1,8 +1,7 @@
 import { refs } from './refs';
-
 import { FetchFilmID } from './api-servise';
-
-import { GetTrailer } from './api-servise';
+// нужен глобальный поиск, чтобы работал трейлер
+let filmId = null; 
 
 refs.openModalFilmCardItem.addEventListener('click', openFilmCardModal);
 refs.openModalFilmCardItem.addEventListener('click', onFilmCardClick);
@@ -12,7 +11,7 @@ refs.modalFilmCardBackdrop.addEventListener('click', onBackdropCloseModal);
 async function onFilmCardClick(e) {
   try {
     refs.modalFilmCardWindow.innerHTML = '';
-    let filmId = e.target.closest('li').dataset.id;
+    filmId = e.target.closest('li').dataset.id;
     const films = await FetchFilmID(filmId);
 
     refs.modalFilmCardWindow.insertAdjacentHTML(
