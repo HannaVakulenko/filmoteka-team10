@@ -10,9 +10,9 @@ import './js/preloader';
 import './js/firebase/firebaseRegAndSign';
 import './js/firebase/dataBase';
 import './js/scroll-up';
+import './js/search';
 
 // import './js/firebase/firebase';
-
 
 // //import { refs } from './refs';
 
