@@ -9,40 +9,85 @@ import {
   pages,
   query,
 } from './api-servise';
+import {
+  FetchTrending,
+  FetchSearch,
+  FetchFilmID,
+  renderGallery,
+} from './api-servise';
 // отриманні змінні:  запит клієнта (пошук), id фільму, масив попопулярних фільмів, масив знайдених фільмів
 import { query, my_movie_id, filmsTrending, searchFilms } from './api-servise';
 // імпорт функцій: популярні фільми за тиждень, знайти фільми по ключовим словам, знайти фільм по ID
 import { FetchTrending, FetchSearch, FetchFilmID } from './api-servise';
-import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
 import { refs } from './refs';
 import { Loading } from 'notiflix';
 import { spinnerStart, spinnerEnd } from './spinner';
 import { scrollOnTop } from './scroll-up';
-import { createPagination } from './pagination';
+import { pagination, options, createPagination } from './pagination';
 import './allgenres';
-import { RenderPopular } from './api-servise';
+import { RenderPopular, RenderSearch } from './api-servise';
+import { lastPages } from './api-servise';
+import { submit } from './search';
+import { inputText } from './search';
+let slide = 1;
 
-RenderPopular();
-
-// console.log(FetchTrending)
-  // .then(data => {
-  //   spinnerStart();
-  //   if (!data.total_results) {
-  //     // тут треба прикрутити месседж помилки
-
-  //     return;
-  //   }
-  //   refs.galleryFilms.innerHTML = renderGallery(data.results);
-  //   const pagination = createPagination(data.total_results, data.total_pages);
-  //   pagination.on('beforeMove', ({ page }) => {
-  //     spinnerStart();
-  //     refs.galleryFilms.innerHTML = '';
-  //     FetchTrending(query, page).then(data => {
-  //       spinnerEnd();
-  //       refs.galleryFilms.innerHTML = renderGallery(data.results);
-  //       scrollOnTop();
-  //     });
-  //   });
-  // })
-  // .catch(error => console.log(error));
+// const paginationEl = document.querySelector('.tui-pagination');
+refs.pagination.addEventListener('click', e => {
+  if (submit === 0) {
+    if (Number(e.target.textContent) > 0) {
+      slide = Number(e.target.textContent);
+      console.log(slide);
+      RenderPopular(slide);
+    }
+    if (e.target.textContent === 'next') {
+      if (slide === lastPages) {
+        return;
+      }
+      slide += 1;
+      RenderPopular(slide);
+    }
+    if (e.target.textContent === 'first') {
+      slide = 1;
+      RenderPopular(slide);
+    }
+    if (e.target.textContent === 'prev') {
+      if (slide === 1) {
+        return;
+      }
+      slide -= 1;
+      RenderPopular(slide);
+    }
+    if (e.target.textContent === 'last') {
+      slide = lastPages;
+      RenderPopular(slide);
+    }
+  } else {
+    if (Number(e.target.textContent) > 0) {
+      slide = Number(e.target.textContent);
+      RenderSearch(inputText, slide);
+    }
+    if (e.target.textContent === 'next') {
+      if (slide === lastPages) {
+        return;
+      }
+      slide += 1;
+      RenderSearch(inputText, slide);
+    }
+    if (e.target.textContent === 'first') {
+      slide = 1;
+      RenderSearch(inputText, slide);
+    }
+    if (e.target.textContent === 'prev') {
+      if (slide === 1) {
+        return;
+      }
+      slide -= 1;
+      RenderSearch(inputText, slide);
+    }
+    if (e.target.textContent === 'last') {
+      slide = lastPages;
+      RenderSearch(inputText, slide);
+    }
+  }
+});
+RenderPopular(slide);

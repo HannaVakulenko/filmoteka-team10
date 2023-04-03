@@ -2,7 +2,7 @@ import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { refs } from './refs';
 
-const options = {
+export const options = {
   itemsPerPage: 1,
   visiblePages: 5,
   centerAlign: true,
@@ -26,7 +26,7 @@ const options = {
   },
 };
 
-const pagination = new Pagination(refs.pagination, options);
+export const pagination = new Pagination(refs.pagination, options);
 
 export function createPagination(totalPages) {
   if (totalPages <= 1) {
@@ -41,7 +41,7 @@ export function createPagination(totalPages) {
   }
 }
 
-export { pagination, options };
+
 
 // pagination.on('beforeMove', ({ page }) => {
 //         spinnerStart();
