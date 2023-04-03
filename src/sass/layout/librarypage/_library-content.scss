@@ -12,7 +12,7 @@
   background-size: cover;
 }
 
-@media screen and (min-width: 768px) {
+@include tablet  {
   .library-wrap {
     height: 512px;
     background-image: linear-gradient(
@@ -23,7 +23,7 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@include desktop {
   .library-wrap {
     height: 1024px;
     background-image: linear-gradient(
@@ -36,7 +36,7 @@
 
 .library-section {
   padding: 20px 20px 40px 20px;
-  @media screen and (min-width: 768px) {
+  @include tablet {
     padding: 60px 32px 60px 32px;
   }
 }
