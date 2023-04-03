@@ -153,7 +153,7 @@ function createMerkaup(storage) {
         release_date ? release_date.split('-')[0] : 'Unknown'
       } | ${vote_average}</p>
         </div>
-      </li>`;
+      </li>`
     }
-  );
+  ).join('');
 }

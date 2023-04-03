@@ -21,7 +21,7 @@ body.modal-open {
   opacity: 0;
   pointer-events: none;
 
-  & .modal-card {
+  & .modal-film {
     transform: translate(-50%, -50%) scaleY(0);
   }
 }
@@ -75,6 +75,7 @@ body.modal-open {
     font-weight: 500;
     font-size: 20px;
     line-height: 1.15;
+    text-transform: uppercase;
 
     margin-bottom: 21px;
   }
@@ -97,6 +98,10 @@ body.modal-open {
 
   &__info--orange {
     display: flex;
+  }
+
+  &__info--uppercase {
+    text-transform: uppercase;
   }
 
   .devider::before {
@@ -236,6 +241,8 @@ body.modal-open {
 }
 
 .modal-film__poster {
+  width: 240px;
+  height: 357px;
   margin-bottom: 20px;
 
   display: flex;
@@ -246,35 +253,22 @@ body.modal-open {
   border-radius: 5px;
 
   @include tablet {
-    margin-bottom: 0;
-  }
-
-  @include desktop {
-    margin-bottom: 0;
-  }
-}
-
-.modal-film__img {
-  max-width: 240px;
-  height: 357px;
-  @include tablet {
     min-width: 264px;
     height: 373px;
+    margin-bottom: 0;
   }
 
   @include desktop {
     min-width: 375px;
     height: 478px;
+    margin-bottom: 0;
   }
 }
 
-.item-fictive {
-  margin-right: auto;
-  margin-left: auto;
-  height: 150px;
-  width: 250px;
-  border: 2px solid red;
-  font-size: 25px;
+.modal-film__img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .trailer__icon {
