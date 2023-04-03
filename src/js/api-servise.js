@@ -29,7 +29,7 @@ export const FetchTrending = async () => {
     if (responseTrending.status !== 200) {
       throw new Error(responseTrending.status);
     }
-    filmsTrending = responseTrending.data.results;
+    return (filmsTrending = responseTrending.data.results);
     console.log(filmsTrending);
     await renderGallery(filmsTrending);
   } catch (error) {
@@ -205,8 +205,8 @@ export const renderGallery = movies => {
 
 const RenderPopular = async () => {
   try {
-    await FetchTrending();
-    await renderGallery(filmsTrending);
+    const responses = await FetchTrending();
+    await renderGallery(responses);
   } catch {
     console.log('error:');
   }
