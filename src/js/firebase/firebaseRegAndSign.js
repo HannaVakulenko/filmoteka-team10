@@ -23,9 +23,7 @@ import { refs } from '../refs';
 // Conditions for /index.html
 
 if (
-  document.location.pathname === '/index.html' ||
-  document.location.search ||
-  (document.location.host && document.location.pathname !== '/my-library.html')
+  document.querySelector('.search-form__input')
 ) {
   const app = initializeApp(firebaseConfig);
 

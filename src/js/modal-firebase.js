@@ -1,5 +1,8 @@
 import { refs } from './refs';
 
+if (
+  document.querySelector('.search-form__input')
+) {
 const initialModalHeaderText = refs.modalHeader.textContent;
 const initialRegisterText = refs.registerText.textContent;
 const initialRegisterButton = refs.loginButton.textContent;
@@ -8,7 +11,6 @@ refs.openModalBtn.addEventListener('click', openModal);
 refs.closeModalBtn.addEventListener('click', closeModal);
 refs.registerButton.addEventListener('click', register);
 refs.registerButton.addEventListener('click', handleRegisterButtonClick);
-refs.modalForm.addEventListener('submit', handleSubmit);
 refs.inputFields.forEach(inputField => {
   inputField.addEventListener('click', handleInputFieldClick);
 });
@@ -121,17 +123,6 @@ function handleRegisterButtonClick() {
     inputField.style.borderBottom = "";
   });
 }
-//функція яка відправляє форму в залежності від того чи всі поля валідні
-function handleSubmit(event) {
-  event.preventDefault(); // запобігаємо відправці форми за замовчуванням
-
-  const isValid = refs.modalForm.checkValidity(); // перевірка валідності форми
-
-  if (isValid) {
-    console.log('Form submitted');
-    refs.modalForm.submit(); // відправляємо форму
-  }
-}
 //функція яка видаляє все з inputname
 function removeFormNameValue() {
   const inputName = document.getElementById('input-name');
@@ -140,4 +131,5 @@ function removeFormNameValue() {
     inputName.style.borderBottom = "";
     inputName.classList.remove('clicked');
   }
+}
 }
