@@ -1,5 +1,6 @@
 import { refs } from './refs';
 import { FetchFilmID } from './api-servise';
+import { GetTrailer } from './api-servise';
 // нужен глобальный поиск, чтобы работал трейлер
 let filmId = null; 
 
@@ -13,7 +14,7 @@ async function onFilmCardClick(e) {
     refs.modalFilmCardWindow.innerHTML = '';
     filmId = e.target.closest('li').dataset.id;
     const films = await FetchFilmID(filmId);
-
+    checkTrailerExists();
     refs.modalFilmCardWindow.insertAdjacentHTML(
       'afterbegin',
       modalFilmMarkup(films)
@@ -21,6 +22,20 @@ async function onFilmCardClick(e) {
   } catch (error) {
     console.log(error);
   }
+}
+
+function checkTrailerExists(){
+  let data = GetTrailer(filmId);
+ data.then(data => {
+  // const trailerNotExists = true; 
+  // - это для проверки, если не находит трейлер, не показывает кнопку
+  const trailerNotExists = data.results.length === 0;
+  if (trailerNotExists) {
+      refs.trailerBtn.classList.add('is-hidden');
+  } else {
+    refs.trailerBtn.classList.remove('is-hidden');
+  }
+ });
 }
 
 function modalFilmMarkup({

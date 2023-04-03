@@ -20,14 +20,19 @@ async function switcherTrailerModal() {
 
 
  //если не находит трейлер при открытии модалки, не отображается кнопка
-
- let data = GetTrailer(filmId);
+ checkTrailerExists();
+ 
+ function checkTrailerExists(){
+  let data = GetTrailer(filmId);
  data.then(data => {
   // const trailerNotExists = true; 
   // - это для проверки, если не находит трейлер, не показывает кнопку
   const trailerNotExists = data.results.length === 0;
   if (trailerNotExists) {
-      refs.trailerBtn.classList.toggle('is-hidden');
+      refs.trailerBtn.classList.add('is-hidden');
+  } else {
+    refs.trailerBtn.classList.remove('is-hidden');
   }
  });
+}
 
