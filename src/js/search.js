@@ -24,7 +24,7 @@ import { refs } from './refs';
 import { Loading } from 'notiflix';
 import { spinnerStart, spinnerEnd } from './spinner';
 import { scrollOnTop } from './scroll-up';
-import { createPagination } from './pagination';
+import { pagination, options, createPagination } from './pagination';
 export let submit = 0;
 export let inputText;
 if (document.querySelector('.search-form')) {
@@ -41,9 +41,7 @@ if (document.querySelector('.search-form')) {
     if (inputText === '') {
       return;
       }
+      pagination.movePageTo(1);
       RenderSearch(inputText, 1);
-    // galletyEl.innerHTML = '';
-    // const responses = await FetchSearch(inputText, 1);
-    // await renderGallery(responses);
-  });
+    });
 }
