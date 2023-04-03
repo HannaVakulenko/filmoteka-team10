@@ -24,7 +24,7 @@ export let my_movie_id = 76600;
 export const FetchTrending = async () => {
   try {
     const responseTrending = await axios.get(
-      `${API_URL}trending/${MEDIA_TYPE}/day?api_key=${API_KEY}`
+      `${API_URL}trending/${MEDIA_TYPE}/day?api_key=${API_KEY}&page=${page}`
     );
     if (responseTrending.status !== 200) {
       throw new Error(responseTrending.status);
@@ -106,113 +106,113 @@ export const GetTrailer = async movie_id => {
   }
 };
 
-// export const renderGallery = movies => {
-//   const galleryFilms = document.querySelector('.film-list');
-//   // document.querySelector('.film-list').innerHTML = '';
-//   const listitem = movies
-//     .map(
-//       ({
-//         id,
-//         poster_path,
-//         title,
-//         release_date,
-//         genre_ids,
-//         original_title,
-//         vote_average,
-//         popularity,
-//         vote_count,
-//         overview,
-//       }) => {
-//         const allgenres = [
-//           { id: 28, name: 'Action' },
-//           { id: 12, name: 'Adventure' },
-//           { id: 16, name: 'Animation' },
-//           { id: 35, name: 'Comedy' },
-//           { id: 80, name: 'Crime' },
-//           { id: 99, name: 'Documentary' },
-//           { id: 18, name: 'Drama' },
-//           { id: 10751, name: 'Family' },
-//           { id: 14, name: 'Fantasy' },
-//           { id: 36, name: 'History' },
-//           { id: 27, name: 'Horror' },
-//           { id: 10402, name: 'Music' },
-//           { id: 9648, name: 'Mystery' },
-//           { id: 10749, name: 'Romance' },
-//           { id: 878, name: 'Science Fiction' },
-//           { id: 10770, name: 'TV Movie' },
-//           { id: 53, name: 'Thriller' },
-//           { id: 10752, name: 'War' },
-//           { id: 37, name: 'Western' },
-//         ];
-//         let imgFilm;
-//         if (poster_path === null) {
-//           imgFilm =
-//             'https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg';
-//         } else {
-//           imgFilm = `${IMG_ARI}${poster_path}`;
-//         }
+export const renderGallery = movies => {
+  const galleryFilms = document.querySelector('.film-list');
+  // document.querySelector('.film-list').innerHTML = '';
+  const listitem = movies
+    .map(
+      ({
+        id,
+        poster_path,
+        title,
+        release_date,
+        genre_ids,
+        original_title,
+        vote_average,
+        popularity,
+        vote_count,
+        overview,
+      }) => {
+        const allgenres = [
+          { id: 28, name: 'Action' },
+          { id: 12, name: 'Adventure' },
+          { id: 16, name: 'Animation' },
+          { id: 35, name: 'Comedy' },
+          { id: 80, name: 'Crime' },
+          { id: 99, name: 'Documentary' },
+          { id: 18, name: 'Drama' },
+          { id: 10751, name: 'Family' },
+          { id: 14, name: 'Fantasy' },
+          { id: 36, name: 'History' },
+          { id: 27, name: 'Horror' },
+          { id: 10402, name: 'Music' },
+          { id: 9648, name: 'Mystery' },
+          { id: 10749, name: 'Romance' },
+          { id: 878, name: 'Science Fiction' },
+          { id: 10770, name: 'TV Movie' },
+          { id: 53, name: 'Thriller' },
+          { id: 10752, name: 'War' },
+          { id: 37, name: 'Western' },
+        ];
+        let imgFilm;
+        if (poster_path === null) {
+          imgFilm =
+            'https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg';
+        } else {
+          imgFilm = `${IMG_ARI}${poster_path}`;
+        }
 
-//         const releaseYear = release_date
-//           ? release_date.split('-')[0]
-//           : 'Unknown';
-//         let genres = '';
+        const releaseYear = release_date
+          ? release_date.split('-')[0]
+          : 'Unknown';
+        let genres = '';
 
-//         for (const allgenre of allgenres) {
-//           if (genre_ids[0] === allgenre.id) {
-//             genres = allgenre.name;
-//           }
-//         }
-//         for (const allgenre of allgenres) {
-//           if (genre_ids[1] === allgenre.id) {
-//             genres = genres + ', ' + allgenre.name;
-//           }
-//         }
-//         if (genre_ids.length > 2) {
-//           genres += ', Other';
-//         }
-//         if (genre_ids.length === 0) {
-//           genres += 'Other';
-//         }
-//         // const genres = genre_ids
-//         //   .map(genre => {
-//         //     for (const allgenre of allgenres) {
-//         //       if (Number(genre) === allgenre.id) {
-//         //         text = allgenre.name;
-//         //       }
-//         //     }
-//         //     return text;
-//         //   })
-//         //   .join(', ');
+        for (const allgenre of allgenres) {
+          if (genre_ids[0] === allgenre.id) {
+            genres = allgenre.name;
+          }
+        }
+        for (const allgenre of allgenres) {
+          if (genre_ids[1] === allgenre.id) {
+            genres = genres + ', ' + allgenre.name;
+          }
+        }
+        if (genre_ids.length > 2) {
+          genres += ', Other';
+        }
+        if (genre_ids.length === 0) {
+          genres += 'Other';
+        }
+        // const genres = genre_ids
+        //   .map(genre => {
+        //     for (const allgenre of allgenres) {
+        //       if (Number(genre) === allgenre.id) {
+        //         text = allgenre.name;
+        //       }
+        //     }
+        //     return text;
+        //   })
+        //   .join(', ');
 
-//         return `
-// <li class="film-list__item" data-id = '${id}'>
-//   <div class="thumb">
-//     <img
-//       class="film-poster"
-//       src="${imgFilm} 
-// " 
-//       alt="movie poster"
-//     />
-//   </div>
+        return `
+<li class="film-list__item" data-id = '${id}'>
+  <div class="thumb">
+    <img
+      class="film-poster"
+      src="${imgFilm} 
+" 
+      alt="movie poster"
+    />
+  </div>
   
-//   <div class="film-list__info">
-//     <h3 class="film-list__name">${title}</h3>
-//     <p class="film-list__genre">${genres} | ${releaseYear}</p>
-//   </div>
-// </li>
-//         `;
-//       }
-//     )
-//     .join('');
-//   galleryFilms.insertAdjacentHTML('beforeend', listitem);
-// };
+  <div class="film-list__info">
+    <h3 class="film-list__name">${title}</h3>
+    <p class="film-list__genre">${genres} | ${releaseYear}</p>
+  </div>
+</li>
+        `;
+      }
+    )
+    .join('');
+  galleryFilms.insertAdjacentHTML('beforeend', listitem);
+};
 
-// const RenderPopular = async () => {
-//   try {
-//     const responses = await FetchTrending();
-//     await renderGallery(responses);
-//   } catch {
-//     console.log('error:');
-//   }
-// };
-// RenderPopular();
+const RenderPopular = async () => {
+  try {
+    const responses = await FetchTrending();
+    await renderGallery(responses);
+  } catch {
+    console.log('error:');
+  }
+};
+RenderPopular();
