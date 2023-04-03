@@ -1,26 +1,41 @@
 import { refs } from './refs';
+
 const initialModalHeaderText = refs.modalHeader.textContent;
 const initialRegisterText = refs.registerText.textContent;
 const initialRegisterButton = refs.loginButton.textContent;
+
 refs.openModalBtn.addEventListener('click', openModal);
 refs.closeModalBtn.addEventListener('click', closeModal);
 refs.registerButton.addEventListener('click', register);
+refs.registerButton.addEventListener('click', handleRegisterButtonClick);
+refs.modalForm.addEventListener('submit', handleSubmit);
+refs.inputFields.forEach(inputField => {
+  inputField.addEventListener('click', handleInputFieldClick);
+});
+
 function openModal() {
   refs.modal.style.display = 'block';
+  setInputFieldValidation()
 }
+
 function closeModal() {
   refs.modal.style.display = 'none';
+  handleRegisterButtonClick()
+  removeFormNameValue()
 }
+
 window.onclick = function (event) {
   if (event.target === refs.modal) {
     closeModal();
   }
 };
+
 document.addEventListener('keydown', function (event) {
   if (event.key === 'Escape' || event.code === 27) {
     closeModal();
   }
 });
+
 function register(event) {
   event.preventDefault();
   const isRegistering = refs.modalHeader.textContent !== 'Register';
@@ -42,19 +57,20 @@ function register(event) {
   }
   clearInputFields(); // видаляємо вміст полів введення
 }
+
 function registerRender() {
   refs.modalForm.insertAdjacentHTML('afterbegin', '<input class="modal-firebase__form-input" type="text" placeholder="Name*" id="input-name" required minlength="4" maxlength="25">');
+
   const input = document.getElementById('input-name');
-  input.addEventListener('input', () => {
-    const isValid = input.checkValidity();
-    input.style.borderBottom = isValid ? '2px solid green' : '2px solid red';
-    input.style.color = isValid ? 'green' : 'red';
-  });
-  input.addEventListener('blur', () => {
-    if (input.value === '') {
-      input.style.borderBottom = '2px solid red';
-    }
-  });
+  input.addEventListener('click', () => input.classList.add('clicked'));
+  input.addEventListener('input', () => applyStyle(input));
+  input.addEventListener('blur', () => input.value ? applyStyle(input) : input.style.borderBottom = '2px solid red');
+  refs.registerButton.addEventListener('click', () => input.classList.remove('clicked'));
+
+  function applyStyle(input) {
+    input.style.borderBottom = input.checkValidity() ? '2px solid green' : '2px solid red';
+    input.style.color = input.checkValidity() ? 'green' : 'red';
+  }
 }
 //видаляє символи в інпути коли натискаєш на кнопку
 function clearInputFields() {
@@ -93,4 +109,35 @@ function setInputFieldValidation({ inputFields, registerButton } = refs) {
     clearInputFieldStyles(inputFields);
   });
 }
-setInputFieldValidation()
+//функція яка додає клас в input тим самим змінюю
+function handleInputFieldClick() {
+  this.classList.add('clicked');
+}
+//Видаляєє клас та значення, змінює колір бордера з input  
+function handleRegisterButtonClick() {
+  refs.inputFields.forEach(inputField => {
+    inputField.classList.remove('clicked');
+    inputField.value = "";
+    inputField.style.borderBottom = "";
+  });
+}
+//функція яка відправляє форму в залежності від того чи всі поля валідні
+function handleSubmit(event) {
+  event.preventDefault(); // запобігаємо відправці форми за замовчуванням
+
+  const isValid = refs.modalForm.checkValidity(); // перевірка валідності форми
+
+  if (isValid) {
+    console.log('Form submitted');
+    refs.modalForm.submit(); // відправляємо форму
+  }
+}
+//функція яка видаляє все з inputname
+function removeFormNameValue() {
+  const inputName = document.getElementById('input-name');
+  if (inputName != null) {
+    inputName.value = '';
+    inputName.style.borderBottom = "";
+    inputName.classList.remove('clicked');
+  }
+}
