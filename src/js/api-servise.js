@@ -170,6 +170,9 @@ export const renderGallery = movies => {
         if (genre_ids.length > 2) {
           genres += ', Other';
         }
+        if (genre_ids.length === 0) {
+          genres += 'Other';
+        }
         // const genres = genre_ids
         //   .map(genre => {
         //     for (const allgenre of allgenres) {
@@ -186,8 +189,8 @@ export const renderGallery = movies => {
   <div class="thumb">
     <img
       class="film-poster"
-      src="${imgFilm}
-"
+      src="${imgFilm} 
+" 
       alt="movie poster"
     />
   </div>
