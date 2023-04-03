@@ -50,7 +50,7 @@ if (document.querySelector('.search-form__input')) {
     return `<div class="modal-film__poster">
       <img class="modal-film__img" src=${imgFilm} alt=${
       title || original_title || name
-    } />
+    } loading="lazy"/>
     </div>
     <div class="modal-film__description">
         <h2 class="modal-film__title">${title || original_title || name}</h2>
@@ -69,14 +69,14 @@ if (document.querySelector('.search-form__input')) {
           </li>
           <li class="modal-film__items">
             <p class="modal-film__item">Original title</p>
-            <p modal-film__info>${title || original_title || name}</p>
+            <p modal-film__info modal-film__info--uppercase>${title || original_title || name}</p>
           </li>
           <li class="modal-film__items">
             <p class="modal-film__item">Genre</p>
             <p class="modal-film__info">${filmGenres}</p>
           </li>
         </ul>
-        <p class="modal-film__about">About</p>
+        <p class="modal-film__about modal-film__info--uppercase">About</p>
         <p class="modal-film__text">${overview}</p>
       <div class="modal-film__buttons">
         <button type="button" class="btn-watched button" data-id="${id}"
