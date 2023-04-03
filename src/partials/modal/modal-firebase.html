@@ -1,0 +1,42 @@
+<div class="modal-firebase" id="Modal">
+  <div class="modal-content-firebase">
+    <span class="modal-firebase__close" id="close-modal-btn">&times;</span>
+    <h2 class="modal-firebase__title">Login</h2>
+    <form class="modal-firebase__form" autocomplete="off">
+      <input
+        type="email"
+        class="modal-firebase__form-input"
+        name="email"
+        placeholder="Email*"
+        required
+        minlength="10"
+        maxlength="25"
+        id="input-email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        title="Please enter a valid email address"
+      />
+
+      <input
+        type="password"
+        class="modal-firebase__form-input"
+        name="password"
+        placeholder="Password*"
+        required
+        minlength="8"
+        maxlength="25"
+        id="input-password"
+        pattern=".{8,}"
+        title="Password must be at least 8 characters long"
+      />
+      <button class="modal-firebase__form-button--send" type="submit">
+        Login
+      </button>
+      <div class="modal-firebase__form-wrapper-register">
+        <p class="modal-firebase__form-text-register">Don't have an account?</p>
+        <button class="modal-firebase__form-button-register" id="register-btn">
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

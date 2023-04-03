@@ -1,0 +1,25 @@
+.btn-scroll {
+    position: fixed;
+    bottom: 50px;
+    right: 60px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: $dropShadowtransitionDark;
+    transition: box-shadow $main-transition-duration, transform $main-transition-duration;
+    color: $btnScrollLight;
+
+    &:hover,
+    &:focus {
+        box-shadow: $dropShadowtransitionLight;
+        transform: scale(1.2);
+        animation: shake 1s both;
+        color: $AccentColorOrange;
+    }
+}
+
+.btn-scroll__icon {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}

@@ -2,10 +2,11 @@
 @import './utils/module';
 
 // base
-@import './base/module';
+@import './common';
 
 // components
 @import './components/module';
+@import './components/modal-trailer';
 
 // layout
 @import './layout/module';

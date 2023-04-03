@@ -1,0 +1,35 @@
+.js-backdrop-trailer{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 1;
+  transition: opacity 250ms linear;
+  z-index: 101;
+}
+// .trailer__hidden {
+//     opacity: 0;
+//     pointer-events: none;
+//     transition: opacity 250ms linear;
+// }
+.video-trailer {
+    max-width: 100%;
+    width: 303px;
+    height: 170px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    @include tablet {
+      width: 757px;
+      height: 425px;
+    }
+  
+    @include desktop {
+      width: 1164px;
+      height: 654px;
+    }
+}

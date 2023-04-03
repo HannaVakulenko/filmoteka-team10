@@ -1,0 +1,38 @@
+.preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    z-index: 1001;  
+    background-color: $preloaderBackGround;
+    transition: background-color 0s;
+    // animation: fadeOut;
+    // animation-duration: 1s;
+}
+
+.preloader__image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.animate__fadeIn {
+    animation: fadeIn;
+    animation-duration: 0.5s
+}
+
+.animate__fadeOut {
+    background-color: transparent;
+    transition: background-color 0s;
+    animation: fadeOut;
+    animation-duration: 0.5s
+}
