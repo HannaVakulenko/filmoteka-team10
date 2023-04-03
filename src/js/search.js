@@ -16,6 +16,7 @@ import {
   FetchSearch,
   FetchFilmID,
   renderGallery,
+  RenderSearch,
 } from './api-servise';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
@@ -24,23 +25,25 @@ import { Loading } from 'notiflix';
 import { spinnerStart, spinnerEnd } from './spinner';
 import { scrollOnTop } from './scroll-up';
 import { createPagination } from './pagination';
-
+export let submit = 0;
+export let inputText;
 if (document.querySelector('.search-form')) {
-    const searchForm = document.querySelector('.search-form');
-    const searchInp = document.querySelector('.search-form__input');
-    const galletyEl = document.querySelector('.film-list');
+  const searchForm = document.querySelector('.search-form');
+  const searchInp = document.querySelector('.search-form__input');
+  const galletyEl = document.querySelector('.film-list');
 
-    searchForm.addEventListener('submit', async e => {
-        e.preventDefault();
-       const inputText = e.currentTarget.elements.searchQuery.value.trim();
-        searchInp.value = '';
+  searchForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    submit = 1;
+    inputText = e.currentTarget.elements.searchQuery.value.trim();
+    searchInp.value = '';
 
-        if (inputText === '') {
-            return;
-        }
-        galletyEl.innerHTML = '';
-        const responses = await FetchSearch(inputText);
-        console.log(responses);
-        await renderGallery(responses);
-    });
+    if (inputText === '') {
+      return;
+      }
+      RenderSearch(inputText, 1);
+    // galletyEl.innerHTML = '';
+    // const responses = await FetchSearch(inputText, 1);
+    // await renderGallery(responses);
+  });
 }
