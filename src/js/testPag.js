@@ -40,6 +40,8 @@ refs.pagination.classList.add('is-hidden');
 
 if (!document.querySelector('.search-form__input')) {
   btnWatched.addEventListener('click', () => {
+    pagination.movePageTo(1);
+    slide = 1;
     lastPages = JSON.parse(localStorage.getItem('filmsWatched'))
       ? Math.ceil(JSON.parse(localStorage.getItem('filmsWatched')).length / 2)
       : '';
@@ -57,11 +59,16 @@ if (!document.querySelector('.search-form__input')) {
       ? libraryWrp.classList.remove('library-wrap')
       : '';
     filmList.innerHTML = '';
-    const mark = pagMarkup(slide, 'filmsWatched');
+    const mark = localStorage.getItem('filmsWatched')
+      ? pagMarkup(slide, 'filmsWatched')
+      : '';
+
     filmList.insertAdjacentHTML('afterbegin', mark);
   });
 
   btnQueue.addEventListener('click', () => {
+    pagination.movePageTo(1);
+    slide = 1;
     lastPages = JSON.parse(localStorage.getItem('filmsQueue'))
       ? Math.ceil(JSON.parse(localStorage.getItem('filmsQueue')).length / 2)
       : '';
@@ -78,7 +85,10 @@ if (!document.querySelector('.search-form__input')) {
       ? libraryWrp.classList.remove('library-wrap')
       : '';
     filmList.innerHTML = '';
-    const mark = pagMarkup(slide, 'filmsQueue');
+    const mark = localStorage.getItem('filmsQueue')
+      ? pagMarkup(slide, 'filmsQueue')
+      : '';
+
     filmList.insertAdjacentHTML('afterbegin', mark);
   });
 
@@ -101,7 +111,10 @@ if (!document.querySelector('.search-form__input')) {
     ? libraryWrp.classList.remove('library-wrap')
     : '';
   filmList.innerHTML = '';
-  const mark = pagMarkup(slide, 'filmsWatched');
+  const mark = localStorage.getItem('filmsWatched')
+    ? pagMarkup(slide, 'filmsWatched')
+    : '';
+
   filmList.insertAdjacentHTML('afterbegin', mark);
 }
 
