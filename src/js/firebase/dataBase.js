@@ -57,7 +57,7 @@ function createFilmObj(e) {
         overview: targetFilm.overview,
         release_date: targetFilm.release_date,
       });
-    } else {
+    } else {if(e.target.textContent === 'remove to queue'){
       const indexFilm = checkInQueue(targetFilm.id);
 
       if (indexFilm >= 0) {
@@ -86,7 +86,7 @@ function createFilmObj(e) {
         }
       }
     }
-
+}
     onAuthStateChanged(auth, user => {
       if (user) {
         set(ref(db, 'users/' + 'ovrGn2FJIdTUQrajvyrFQ3Gb5bs1/'), filmsQueue);
@@ -128,35 +128,36 @@ function createFilmObj(e) {
         release_date: targetFilm.release_date,
       });
     } else {
-      const indexFilmWatched = checkInWatched(targetFilm.id);
+      if (e.target.textContent === 'remove to watched') {
+        const indexFilmWatched = checkInWatched(targetFilm.id);
 
-      if (indexFilmWatched >= 0) {
-        filmsWatched.splice(indexFilmWatched, 1);
-      }
-      if (filmsWatched.length === 0) localStorage.removeItem('filmsWatched');
-      if (filmsWatched.length > 0) {
-        localStorage.setItem('filmsWatched', JSON.stringify(filmsWatched));
-      }
+        if (indexFilmWatched >= 0) {
+          filmsWatched.splice(indexFilmWatched, 1);
+        }
+        if (filmsWatched.length === 0) localStorage.removeItem('filmsWatched');
+        if (filmsWatched.length > 0) {
+          localStorage.setItem('filmsWatched', JSON.stringify(filmsWatched));
+        }
 
-      if (checkInWatched(targetFilm.id) === -1)
-        e.target.textContent = 'add to watched';
+        if (checkInWatched(targetFilm.id) === -1)
+          e.target.textContent = 'add to watched';
 
-      if (
-        filmsWatched.length > 0 &&
-        !document.querySelector('.search-form__input')
-      ) {
-        filmList.innerHTML = '';
-        bgImage.classList.remove('library-wrap');
-        const markup = createMerkaup('filmsWatched');
-        filmList.insertAdjacentHTML('afterbegin', markup);
-      } else {
-        if (!document.querySelector('.search-form__input')) {
+        if (
+          filmsWatched.length > 0 &&
+          !document.querySelector('.search-form__input')
+        ) {
           filmList.innerHTML = '';
-          bgImage.classList.add('library-wrap');
+          bgImage.classList.remove('library-wrap');
+          const markup = createMerkaup('filmsWatched');
+          filmList.insertAdjacentHTML('afterbegin', markup);
+        } else {
+          if (!document.querySelector('.search-form__input')) {
+            filmList.innerHTML = '';
+            bgImage.classList.add('library-wrap');
+          }
         }
       }
     }
-
     onAuthStateChanged(auth, user => {
       if (user) {
         set(ref(db, 'users/' + 'ovrGn2FJIdTUQrajvyrFQ3Gb5bs1/'), filmsWatched);
