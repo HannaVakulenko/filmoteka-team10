@@ -38,6 +38,7 @@ if (!document.querySelector('.search-form__input')) {
 
 function createFilmObj(e) {
   const targetFilm = e.target.dataset;
+
   if (e.target.textContent === 'add to queue') {
     filmsQueue.push({
       id: targetFilm.id,
@@ -50,7 +51,7 @@ function createFilmObj(e) {
       vote_count: targetFilm.vote_count,
       genres: targetFilm.genres,
       overview: targetFilm.overview,
-      // release_date: targetFilm.release_date,
+      release_date: targetFilm.release_date,
     });
 
     onAuthStateChanged(auth, user => {
@@ -77,7 +78,7 @@ function createFilmObj(e) {
           });
       }
     });
-  } else {
+  } else if (e.target.textContent === 'add to watched') {
     filmsWatched.push({
       id: targetFilm.id,
       title: targetFilm.title,
@@ -89,7 +90,7 @@ function createFilmObj(e) {
       vote_count: targetFilm.vote_count,
       genres: targetFilm.genres,
       overview: targetFilm.overview,
-      // release_date: targetFilm.release_date,
+      release_date: targetFilm.release_date,
     });
 
     onAuthStateChanged(auth, user => {
@@ -150,11 +151,12 @@ function createMerkaup(storage) {
         data-vote_count="${vote_count}"
         data-overview="${overview}"
         data-genres="${genres}"
-        data-id="${id}">
+        data-id="${id}"
+        data-release_date="${release_date}">
           <h3 class="film-list__name">${original_title}</h3>
           <p class="film-list__genre">${genres} | ${
           release_date ? release_date.split('-')[0] : 'Unknown'
-        } | ${vote_average}</p>
+        } | ${Number(vote_average).toFixed(1)}</p>
         </div>
       </li>`;
       }
