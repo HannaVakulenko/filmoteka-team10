@@ -11,6 +11,7 @@
     line-height: calc(16 / 14);
   }
 }
+
 .footer__box {
   display: flex;
   justify-content: center;
@@ -21,20 +22,26 @@
   @include max-desktop() {
     padding: 30px 143px;
   }
+
   @include max-tablet() {
     padding: 29px 36px 29px 48px;
   }
 }
+
 .footer__text {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 16px;
+  line-height: 1.19;
 }
+
 .footer__svg {
   display: block;
   width: 14px;
   height: 12.75px;
 }
+
 .footer__button {
   font-family: $roboto-font;
   font-weight: 400;
@@ -46,6 +53,7 @@
     font-size: 14px;
     line-height: calc(16 / 14);
   }
+
   color: #545454;
   border: none;
   background-color: transparent;
