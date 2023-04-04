@@ -101,6 +101,7 @@ function modalFilmMarkup({
         data-popularity="${popularity}"
         data-vote_count="${vote_count}"
         data-overview="${overview}"
+          data-release_date="${release_date}"
         data-genres="${filmGenres}">add to queue</button>
       </div>
       </div>`;
