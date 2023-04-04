@@ -6,6 +6,7 @@ import {
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebase';
 import { refs } from '../refs';
+import Notiflix from 'notiflix';
 
 // test
 
@@ -16,7 +17,6 @@ if (!document.querySelector('.search-form__input')) {
   });
 }
 
-// Conditions for /index.html
 // abcd10@gamil.com
 
 if (document.querySelector('.search-form__input')) {
@@ -40,16 +40,17 @@ if (document.querySelector('.search-form__input')) {
 
     if (button.textContent !== 'Register') {
       submitForm(form[0].value, form[1].value);
-      console.log('LOGIN');
       modal.style.display = 'none';
     } else {
       registerUser(form[1].value, form[2].value);
-      console.log('REGISTER');
       modal.style.display = 'none';
     }
   });
 
-  logOut.addEventListener('click', logout);
+  logOut.addEventListener('click', () => {
+    document.location.reload();
+    logout();
+  });
 
   function registerUser(email, password) {
     const auth = getAuth(app);
@@ -61,7 +62,9 @@ if (document.querySelector('.search-form__input')) {
 
         localStorage.setItem('userSession', 'true');
       })
-      .catch(console.error);
+      .catch(error => {
+        error ? Notiflix.Notify.warning('This account already used') : '';
+      });
   }
 
   function submitForm(email, password) {
@@ -74,14 +77,12 @@ if (document.querySelector('.search-form__input')) {
 
         localStorage.setItem('userSession', 'true');
       })
-      .catch(console.error);
+      .catch(error => {
+        error ? Notiflix.Notify.failure('Invalid password or email') : '';
+      });
   }
 
   function logout() {
-    library.classList.add('is-hidden-firebase');
-    logOut.classList.add('is-hidden-firebase');
-    logIn.classList.remove('is-hidden-firebase');
-
     localStorage.removeItem('userSession');
   }
 }

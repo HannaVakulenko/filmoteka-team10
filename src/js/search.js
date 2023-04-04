@@ -17,14 +17,14 @@ import {
   FetchFilmID,
   renderGallery,
   RenderSearch,
+  FirstSearch,
 } from './api-servise';
-import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+import { resetSlide } from './displaying-movies';
 import { refs } from './refs';
 import { Loading } from 'notiflix';
 import { spinnerStart, spinnerEnd } from './spinner';
 import { scrollOnTop } from './scroll-up';
-import { pagination, options, createPagination } from './pagination';
+import { pagination, options, createPagination } from './api-servise';
 export let submit = 0;
 export let inputText;
 if (document.querySelector('.search-form')) {
@@ -32,16 +32,18 @@ if (document.querySelector('.search-form')) {
   const searchInp = document.querySelector('.search-form__input');
   const galletyEl = document.querySelector('.film-list');
 
-  searchForm.addEventListener('submit', async e => {
+  searchForm.addEventListener('submit', e => {
     e.preventDefault();
+    refs.pagination.classList.add('is-hidden');
     submit = 1;
     inputText = e.currentTarget.elements.searchQuery.value.trim();
     searchInp.value = '';
 
     if (inputText === '') {
       return;
-      }
-      pagination.movePageTo(1);
-      RenderSearch(inputText, 1);
-    });
+    }
+   
+    resetSlide();
+    RenderSearch(inputText, 1);
+  });
 }
