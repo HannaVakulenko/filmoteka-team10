@@ -70,7 +70,7 @@ function modalFilmMarkup({
           </li>
           <li class="modal-film__items">
             <p class="modal-film__item">Original title</p>
-            <p modal-film__info modal-film__info--uppercase>${
+            <p class="modal-film__info modal-film__info--uppercase">${
               title || original_title || name
             }</p>
           </li>
