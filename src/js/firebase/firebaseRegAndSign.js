@@ -47,7 +47,10 @@ if (document.querySelector('.search-form__input')) {
     }
   });
 
-  logOut.addEventListener('click', logout);
+  logOut.addEventListener('click', () => {
+    document.location.reload();
+    logout();
+  });
 
   function registerUser(email, password) {
     const auth = getAuth(app);
@@ -80,10 +83,6 @@ if (document.querySelector('.search-form__input')) {
   }
 
   function logout() {
-    library.classList.add('is-hidden-firebase');
-    logOut.classList.add('is-hidden-firebase');
-    logIn.classList.remove('is-hidden-firebase');
-
     localStorage.removeItem('userSession');
   }
 }
