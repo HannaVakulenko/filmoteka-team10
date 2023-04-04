@@ -17,6 +17,7 @@ if (!document.querySelector('.search-form__input')) {
 }
 
 // Conditions for /index.html
+// abcd10@gamil.com
 
 if (document.querySelector('.search-form__input')) {
   const app = initializeApp(firebaseConfig);
