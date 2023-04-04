@@ -1,5 +1,6 @@
 import axios from 'axios';
 import './allgenres';
+import { pagination, options, createPagination } from './pagination';
 
 export const API_KEY = 'c789b950e94d6ea5adbb471c5a6ee143';
 export const API_URL = 'https://api.themoviedb.org/3/';
@@ -49,6 +50,7 @@ export const FetchSearch = async (q, page) => {
     if (responseSearch.status !== 200) {
       throw new Error(responseSearch.status);
     }
+    // console.log(responseSearch.data.total_pages);
     lastPages = responseSearch.data.total_pages;
     return (searchFilms = responseSearch.data.results);
     console.log(searchFilms);
@@ -213,6 +215,7 @@ export const RenderPopular = async page => {
   try {
     
     const responses = await FetchTrending(page);
+    pagination.setTotalItems(lastPages);
     await renderGallery(responses);
   } catch {
     console.log('error:');
@@ -221,9 +224,8 @@ export const RenderPopular = async page => {
 
 export const RenderSearch = async (q, page) => {
   try {
-    // const galletyEl = document.querySelector('.film-list');
-    // galletyEl.innerHTML = '';
     const responses = await FetchSearch(q, page);
+    pagination.setTotalItems(lastPages);
     await renderGallery(responses);
   } catch {
     console.log('error:');
