@@ -5,14 +5,14 @@ import './js/refs';
 import './js/modal-film';
 import './js/trailer';
 import './js/modal-students';
-import './js/testPag';
+
 import './js/spinner';
 import './js/preloader';
 import './js/firebase/firebaseRegAndSign';
 import './js/firebase/dataBase';
 import './js/scroll-up';
 import './js/search';
-
+import './js/testPag';
 
 // import './js/firebase/firebase';
 
