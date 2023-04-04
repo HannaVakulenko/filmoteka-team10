@@ -161,7 +161,7 @@ function checkInLibrary(id) {
   const filmsQueue = localQueue || [];
   for (let i = 0; i < filmsQueue.length; i++) {
     if (id === Number(filmsQueue[i].id)) {
-      return 'remove to queue';
+      return 'remove from queue';
     }
   }
 
@@ -173,7 +173,7 @@ function checkInWatched(id) {
   const filmsWatched = localWatched || [];
   for (let i = 0; i < filmsWatched.length; i++) {
     if (id === Number(filmsWatched[i].id)) {
-      return 'remove to watched';
+      return 'remove from watched';
     }
   }
 
