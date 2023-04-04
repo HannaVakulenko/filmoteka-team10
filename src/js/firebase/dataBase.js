@@ -185,6 +185,7 @@ function createFilmObj(e) {
 }
 
 function createMerkaup(storage) {
+  if(JSON.parse(localStorage.getItem(storage))===null){bgImage.classList.add('library-wrap');return `<li></li>`} ;
   return JSON.parse(localStorage.getItem(storage))
     .map(
       ({
