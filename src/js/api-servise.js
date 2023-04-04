@@ -115,8 +115,12 @@ export const renderGallery = movies => {
     const warningEl = document.querySelector('.warning');
     if (movies.length !== 0) {
       warningEl.classList.add('is-hidden');
+      
     } else {
       warningEl.classList.remove('is-hidden');
+      setTimeout(() => {
+        warningEl.classList.add('is-hidden');
+      }, 3000);
     }
   }
   // document.querySelector('.film-list').innerHTML = '';

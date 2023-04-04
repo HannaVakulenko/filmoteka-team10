@@ -32,13 +32,9 @@ import { inputText } from './search';
 let slide = 1;
 if (document.querySelector('.search-form')) {
   refs.pagination.addEventListener('click', e => {
-    let taget = e.target;
-    console.dir(e.target.parentElement);
-    // console.log(e.currentTarget);
     if (submit === 0) {
       if (Number(e.target.textContent) > 0) {
         slide = Number(e.target.textContent);
-        console.log(slide);
         RenderPopular(slide);
       }
       if (e.target.textContent === 'next') {
@@ -65,10 +61,7 @@ if (document.querySelector('.search-form')) {
         RenderPopular(slide);
       }
 
-      if (
-        e.target.classList.contains('tui-first-child') 
-        // e.target.parentElement.classList.contains('tui-first-child')
-      ) {
+      if (e.target.classList.contains('tui-first-child')) {
         if (slide > 5) {
           slide -= 5;
           pagination.movePageTo(slide);
@@ -78,10 +71,7 @@ if (document.querySelector('.search-form')) {
           RenderPopular(slide);
         }
       }
-      if (
-        e.target.classList.contains('tui-last-child') 
-        // e.target.parentElement.classList.contains('tui-last-child')
-      ) {
+      if (e.target.classList.contains('tui-last-child')) {
         if (slide < lastPages - 4) {
           slide += 5;
           pagination.movePageTo(slide);
@@ -103,7 +93,7 @@ if (document.querySelector('.search-form')) {
           }
         }
       }
-      if (e.target.parentElement) { 
+      if (e.target.parentElement) {
         if (e.target.parentElement.classList.contains('tui-last-child')) {
           if (slide < lastPages - 4) {
             slide += 5;
@@ -143,10 +133,7 @@ if (document.querySelector('.search-form')) {
         slide = lastPages;
         RenderSearch(inputText, slide);
       }
-      if (
-        e.target.classList.contains('tui-first-child')
-        // e.target.parentElement.classList.contains('tui-first-child')
-      ) {
+      if (e.target.classList.contains('tui-first-child')) {
         if (slide > 5) {
           slide -= 5;
           pagination.movePageTo(slide);
@@ -156,10 +143,7 @@ if (document.querySelector('.search-form')) {
           RenderSearch(inputText, slide);
         }
       }
-      if (
-        e.target.classList.contains('tui-last-child')
-        // e.target.parentElement.classList.contains('tui-last-child')
-      ) {
+      if (e.target.classList.contains('tui-last-child')) {
         if (slide < lastPages - 4) {
           slide += 5;
           pagination.movePageTo(slide);
