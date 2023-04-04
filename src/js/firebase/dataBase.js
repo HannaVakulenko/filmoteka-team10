@@ -55,7 +55,7 @@ function createFilmObj(e) {
         vote_count: targetFilm.vote_count,
         genres: targetFilm.genres,
         overview: targetFilm.overview,
-        // release_date: targetFilm.release_date,
+        release_date: targetFilm.release_date,
       });
     } else {
       const indexFilm = checkInQueue(targetFilm.id);
@@ -125,7 +125,7 @@ function createFilmObj(e) {
         vote_count: targetFilm.vote_count,
         genres: targetFilm.genres,
         overview: targetFilm.overview,
-        // release_date: targetFilm.release_date,
+        release_date: targetFilm.release_date,
       });
     } else {
       const indexFilmWatched = checkInWatched(targetFilm.id);
