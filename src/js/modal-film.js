@@ -92,7 +92,7 @@ function modalFilmMarkup({
         data-vote_count="${vote_count}"
         data-overview="${overview}"
         data-release_date="${release_date}"
-        data-genres="${filmGenres}">add to watched</button>
+        data-genres="${filmGenres}">${checkInWatched(id)}</button>
         <button type="button" class="btn-queue button"  data-id="${id}"         data-poster_path="${poster_path}"
         data-title="${title}"
         data-genre_name="${name}"
@@ -101,7 +101,7 @@ function modalFilmMarkup({
         data-popularity="${popularity}"
         data-vote_count="${vote_count}"
         data-overview="${overview}"
-        data-genres="${filmGenres}">add to queue</button>
+        data-genres="${filmGenres}">${checkInLibrary(id)}</button>
       </div>
       </div>`;
 }
@@ -154,3 +154,28 @@ function checkTrailerExists() {
 // }
 
 export { filmId };
+
+//Ann D Code
+function checkInLibrary(id) {
+  const localQueue = JSON.parse(localStorage.getItem('filmsQueue'));
+  const filmsQueue = localQueue || [];
+  for (let i = 0; i < filmsQueue.length; i++) {
+    if (id === Number(filmsQueue[i].id)) {
+      return 'remove to queue';
+    }
+  }
+
+  return 'add to queue';
+}
+
+function checkInWatched(id) {
+  const localWatched = JSON.parse(localStorage.getItem('filmsWatched'));
+  const filmsWatched = localWatched || [];
+  for (let i = 0; i < filmsWatched.length; i++) {
+    if (id === Number(filmsWatched[i].id)) {
+      return 'remove to watched';
+    }
+  }
+
+  return 'add to watched';
+}
