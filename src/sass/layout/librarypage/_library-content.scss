@@ -1,10 +1,8 @@
 .library-wrap {
   height: 480px;
   background-color: rgba(25, 28, 38, 0.2);
-  background-image: linear-gradient(
-      rgba(25, 28, 38, 0.2),
-      rgba(25, 28, 38, 0.2)
-    ),
+  background-image: linear-gradient(rgba(25, 28, 38, 0.2),
+      rgba(25, 28, 38, 0.2)),
     url(../images/library_320.jpg);
 
   background-repeat: no-repeat;
@@ -12,13 +10,11 @@
   background-size: cover;
 }
 
-@include tablet  {
+@include tablet {
   .library-wrap {
     height: 512px;
-    background-image: linear-gradient(
-        rgba(25, 28, 38, 0.2),
-        rgba(25, 28, 38, 0.2)
-      ),
+    background-image: linear-gradient(rgba(25, 28, 38, 0.2),
+        rgba(25, 28, 38, 0.2)),
       url(../images/library_768.jpg);
   }
 }
@@ -26,17 +22,16 @@
 @include desktop {
   .library-wrap {
     height: 1024px;
-    background-image: linear-gradient(
-        rgba(25, 28, 38, 0.2),
-        rgba(25, 28, 38, 0.2)
-      ),
+    background-image: linear-gradient(rgba(25, 28, 38, 0.2),
+        rgba(25, 28, 38, 0.2)),
       url(../images/library_1280.jpg);
   }
 }
 
-.library-section {
-  padding: 20px 20px 40px 20px;
-  @include tablet {
-    padding: 60px 32px 60px 32px;
-  }
-}
+// .library-section {
+//   padding: 20px 20px 40px 20px;
+
+//   @include tablet {
+//     padding: 60px 32px 60px 32px;
+//   }
+// }
