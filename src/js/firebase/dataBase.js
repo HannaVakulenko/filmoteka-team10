@@ -55,7 +55,7 @@ function createFilmObj(e) {
         vote_count: targetFilm.vote_count,
         genres: targetFilm.genres,
         overview: targetFilm.overview,
-        release_date: targetFilm.release_date,
+        release_date: targetFilm.release_date || 'Unknown',
       });
     } else {
       if (e.target.textContent === 'remove to queue') {
@@ -126,7 +126,7 @@ function createFilmObj(e) {
         vote_count: targetFilm.vote_count,
         genres: targetFilm.genres,
         overview: targetFilm.overview,
-        release_date: targetFilm.release_date,
+        release_date: targetFilm.release_date || 'Unknown',
       });
     } else {
       if (e.target.textContent === 'remove to watched') {
@@ -187,10 +187,6 @@ function createFilmObj(e) {
 }
 
 function createMerkaup(storage) {
-  if (JSON.parse(localStorage.getItem(storage)) === null) {
-    bgImage.classList.add('library-wrap');
-    return `<li></li>`;
-  }
   return JSON.parse(localStorage.getItem(storage))
     .map(
       ({
@@ -206,6 +202,10 @@ function createMerkaup(storage) {
         vote_count,
         release_date,
       }) => {
+        if (JSON.parse(localStorage.getItem(storage)) === null) {
+          bgImage.classList.add('library-wrap');
+          return `<li></li>`;
+        }
         return `<li class="film-list__item" data-id="${id}">
         <div class="film-thumb">
           <img class="film-poster" src='https://image.tmdb.org/t/p/original${poster_path}' alt="movie poster" />
