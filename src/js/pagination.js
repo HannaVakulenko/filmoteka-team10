@@ -5,7 +5,7 @@ import { refs } from './refs';
 export const options = {
   itemsPerPage: 1,
   visiblePages: 5,
-  centerAlign: true,
+  // centerAlign: true,
   firstItemClassName: 'tui-first-child',
   lastItemClassName: 'tui-last-child',
   template: {
