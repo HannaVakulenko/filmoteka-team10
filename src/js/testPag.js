@@ -3,10 +3,10 @@ import { createMerkaup } from './firebase/dataBase';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
-let slide = 1;
+export let slide = 1;
 let lastPages = '';
-let pagination = '';
-const options = {
+export let pagination = '';
+export const options = {
   itemsPerPage: 1,
   visiblePages: 5,
   // centerAlign: true,
@@ -40,14 +40,15 @@ refs.pagination.classList.add('is-hidden');
 
 if (!document.querySelector('.search-form__input')) {
   btnWatched.addEventListener('click', () => {
-    pagination.movePageTo(1);
-    slide = 1;
     lastPages = JSON.parse(localStorage.getItem('filmsWatched'))
       ? Math.ceil(JSON.parse(localStorage.getItem('filmsWatched')).length / 2)
       : '';
     if (lastPages > 1) {
+      pagination.movePageTo(1);
+      slide = 1;
       refs.pagination.classList.remove('is-hidden');
-    }
+    } else {refs.pagination.classList.add('is-hidden');}
+
     if (lastPages < 5) {
       options.visiblePages = lastPages;
     }
@@ -67,14 +68,14 @@ if (!document.querySelector('.search-form__input')) {
   });
 
   btnQueue.addEventListener('click', () => {
-    pagination.movePageTo(1);
-    slide = 1;
     lastPages = JSON.parse(localStorage.getItem('filmsQueue'))
       ? Math.ceil(JSON.parse(localStorage.getItem('filmsQueue')).length / 2)
       : '';
     if (lastPages > 1) {
+      pagination.movePageTo(1);
+      slide = 1;
       refs.pagination.classList.remove('is-hidden');
-    }
+    } else {refs.pagination.classList.add('is-hidden');}
     if (lastPages < 5) {
       options.visiblePages = lastPages;
     }
@@ -118,7 +119,7 @@ if (!document.querySelector('.search-form__input')) {
   filmList.insertAdjacentHTML('afterbegin', mark);
 }
 
-function pagMarkup(slide, storage) {
+export function pagMarkup(slide, storage) {
   return JSON.parse(localStorage.getItem(storage))
     .slice(-2 + slide * 2, 0 + slide * 2)
     .map(

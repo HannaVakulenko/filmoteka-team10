@@ -1,5 +1,9 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, set, child, get } from 'firebase/database';
+import { pagination, slide, options, pagMarkup } from '../testPag';
+import { refs } from '../refs';
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
 
 const auth = getAuth();
 const db = getDatabase();
@@ -14,8 +18,10 @@ const modal = document.querySelector('.modal-film__main');
 const btnWatchedLibrary = document.querySelector('.library__button.watched');
 const btnQueueLibrary = document.querySelector('.library__button.queue');
 const filmList = document.querySelector('.film-list');
-const bgImage = document.querySelector('.library-wrap');
-
+const bgImage = document.querySelector('.wrap');
+let lastPages;
+let zero = 0;
+let markup;
 modal.addEventListener('click', createFilmObj);
 
 // if (!document.querySelector('.search-form__input')) {
@@ -76,14 +82,38 @@ function createFilmObj(e) {
           filmsQueue.length > 0 &&
           !document.querySelector('.search-form__input')
         ) {
-          filmList.innerHTML = '';
-          bgImage.classList.remove('library-wrap');
-          const markup = createMerkaup('filmsQueue');
-          filmList.insertAdjacentHTML('afterbegin', markup);
-        } else {
-          if (!document.querySelector('.search-form__input')) {
+          if (btnQueueLibrary.classList.contains('library__button--current')) {
+            lastPages = Math.ceil(filmsQueue.length / 2);
+            if (lastPages < slide) {
+              pagination.movePageTo(1);
+              zero = 1;
+
+              options.visiblePages = lastPages;
+              pagination = new Pagination(refs.pagination, options);
+            }
+            if (lastPages === 1) {
+              refs.pagination.classList.add('is-hidden');
+            }
+            if (lastPages < 5) {
+              options.visiblePages = lastPages;
+            }
             filmList.innerHTML = '';
-            bgImage.classList.add('library-wrap');
+            if (zero === 0) {
+              markup = pagMarkup(slide, 'filmsQueue');
+            } else {
+              markup = pagMarkup(zero, 'filmsQueue');
+              zero = 0;
+            }
+
+            filmList.insertAdjacentHTML('afterbegin', markup);
+          }
+        } else {
+          if (btnQueueLibrary.classList.contains('library__button--current')) {
+            refs.pagination.classList.add('is-hidden');
+            if (!document.querySelector('.search-form__input')) {
+              filmList.innerHTML = '';
+              bgImage.classList.add('library-wrap');
+            }
           }
         }
       }
@@ -147,14 +177,42 @@ function createFilmObj(e) {
           filmsWatched.length > 0 &&
           !document.querySelector('.search-form__input')
         ) {
-          filmList.innerHTML = '';
-          bgImage.classList.remove('library-wrap');
-          const markup = createMerkaup('filmsWatched');
-          filmList.insertAdjacentHTML('afterbegin', markup);
-        } else {
-          if (!document.querySelector('.search-form__input')) {
+          if (
+            btnWatchedLibrary.classList.contains('library__button--current')
+          ) {
+            lastPages = Math.ceil(filmsWatched.length / 2);
+            if (lastPages < slide) {
+              pagination.movePageTo(1);
+              zero = 1;
+              options.visiblePages = lastPages;
+              pagination = new Pagination(refs.pagination, options);
+            }
+            if (lastPages === 1) {
+              refs.pagination.classList.add('is-hidden');
+            }
+
+            if (lastPages < 5) {
+              options.visiblePages = lastPages;
+            }
             filmList.innerHTML = '';
-            bgImage.classList.add('library-wrap');
+            if (zero === 0) {
+              markup = pagMarkup(slide, 'filmsWatched');
+            } else {
+              markup = pagMarkup(zero, 'filmsWatched');
+              zero = 0;
+            }
+
+            filmList.insertAdjacentHTML('afterbegin', markup);
+          }
+        } else {
+          if (
+            btnWatchedLibrary.classList.contains('library__button--current')
+          ) {
+            refs.pagination.classList.add('is-hidden');
+            if (!document.querySelector('.search-form__input')) {
+              filmList.innerHTML = '';
+              bgImage.classList.add('library-wrap');
+            }
           }
         }
       }
