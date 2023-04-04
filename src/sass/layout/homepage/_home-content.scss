@@ -1,6 +1,9 @@
 .gallery-section {
-  padding: 20px 20px 40px 20px;
-  @media screen and (min-width: 768px) {
-    padding: 60px 32px 60px 32px;
+  // padding: 20px 20px 40px 20px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  @include max-tablet() {
+     padding-top: 20px;
+  padding-bottom: 40px;
   }
 }
