@@ -57,6 +57,7 @@ body.modal-open {
   &__main {
     padding: 48px 20px;
     position: relative;
+
     @include tablet {
       display: flex;
       justify-content: center;
@@ -174,8 +175,8 @@ body.modal-open {
   background-color: transparent;
   border: none;
 
-  &:hover > .icon-close-modal-card,
-  &:focus > .icon-close-modal-card {
+  &:hover>.icon-close-modal-card,
+  &:focus>.icon-close-modal-card {
     fill: $AccentColorOrange;
   }
 }
@@ -228,8 +229,8 @@ body.modal-open {
     color: $textColorBlack;
 
     transition: color $main-transition-duration,
-      background-color $main-transition-duration,
-      border $main-transition-duration;
+    background-color $main-transition-duration,
+    border $main-transition-duration;
 
     &:hover,
     &:focus {
@@ -285,14 +286,17 @@ body.modal-open {
   top: 45px;
   // поміняла left на 45, бо на планшетній версії згідно макету падинги ширші і іконка зїжджала
   left: 25px;
+
   @include tablet {
     left: 40px;
     top: 40px;
-  @include desktop {
-    left: 20px;
-  }
+
+    @include desktop {
+      left: 20px;
+    }
   }
 }
+
 .trailer__icon {
   fill: red;
 }
@@ -300,3 +304,5 @@ body.modal-open {
 // .hide-trl {
 //     display: none;
 // }
+
+//для оновлення гілки//
