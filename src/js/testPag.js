@@ -38,11 +38,7 @@ const libraryWrp = document.querySelector('.container.library-wrap');
 
 refs.pagination.classList.add('is-hidden');
 
-if (
-  !document.querySelector('.search-form__input') &&
-  JSON.parse(localStorage.getItem('filmsWatched')) &&
-  JSON.parse(localStorage.getItem('filmsQueue'))
-) {
+if (!document.querySelector('.search-form__input')) {
   btnWatched.addEventListener('click', () => {
     lastPages = JSON.parse(localStorage.getItem('filmsWatched'))
       ? Math.ceil(JSON.parse(localStorage.getItem('filmsWatched')).length / 2)
@@ -57,7 +53,6 @@ if (
     pagination = new Pagination(refs.pagination, options);
     pagination.setTotalItems(lastPages);
 
-    //   refs.pagination.addEventListener('click', () => {
     JSON.parse(localStorage.getItem('filmsWatched'))
       ? libraryWrp.classList.remove('library-wrap')
       : '';
