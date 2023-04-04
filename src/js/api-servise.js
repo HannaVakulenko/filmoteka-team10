@@ -246,7 +246,6 @@ export const RenderPopular = async page => {
   try {
     const responses = await FetchTrending(page);
     pagination = new Pagination(refs.pagination, options);
-    // console.log(slide);
     pagination.setTotalItems(lastPages);
     pagination.movePageTo(slide);
     if (lastPages > 20) {
@@ -263,7 +262,6 @@ export const RenderSearch = async (q, page) => {
     const responses = await FetchSearch(q, page);
     pagination = new Pagination(refs.pagination, options);
     pagination.setTotalItems(lastPages);
-    console.log(slide);
     pagination.movePageTo(slide);
     if (lastPages > 1) {
       refs.pagination.classList.remove('is-hidden');

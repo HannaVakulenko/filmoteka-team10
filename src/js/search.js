@@ -19,7 +19,7 @@ import {
   RenderSearch,
   FirstSearch,
 } from './api-servise';
-import { slide, resetSlide } from './displaying-movies';
+import { resetSlide } from './displaying-movies';
 import { refs } from './refs';
 import { Loading } from 'notiflix';
 import { spinnerStart, spinnerEnd } from './spinner';
@@ -42,9 +42,7 @@ if (document.querySelector('.search-form')) {
     if (inputText === '') {
       return;
     }
-    slide = 1;
-    console.log(slide);
-    // pagination.movePageTo(1);
+   
     resetSlide();
     RenderSearch(inputText, 1);
   });
