@@ -28,10 +28,10 @@
   }
 }
 
-// .library-section {
-//   padding: 20px 20px 40px 20px;
+.library-section {
+  padding: 20px 0 40px 0;
 
-//   @include tablet {
-//     padding: 60px 32px 60px 32px;
-//   }
-// }
+  @include tablet {
+    padding: 60px 0 60px 0;
+  }
+}

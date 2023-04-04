@@ -266,6 +266,7 @@
   border: none;
 }
 .warning {
+  opacity: 1;
   font-size: 14px;
   line-height: calc(16 / 14);
   font-weight: 400;
@@ -273,4 +274,8 @@
   margin-top: 20px;
   display: flex;
   justify-content: center;
+  transition: opacity 0.5s linear;
+}
+.warning.is-hidden {
+  opacity: 0;
 }
