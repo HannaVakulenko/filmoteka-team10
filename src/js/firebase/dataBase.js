@@ -1,9 +1,10 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, set, child, get } from 'firebase/database';
-import { pagination, slide, options, pagMarkup } from '../testPag';
+import { slide, options, pagMarkup } from '../testPag';
 import { refs } from '../refs';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+let pagination;
 
 const auth = getAuth();
 const db = getDatabase();
