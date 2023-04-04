@@ -38,21 +38,54 @@ if (!document.querySelector('.search-form__input')) {
 
 function createFilmObj(e) {
   const targetFilm = e.target.dataset;
+  if (
+    e.target.textContent === 'add to queue' ||
+    e.target.textContent === 'remove to queue'
+  ) {
+    if (e.target.textContent === 'add to queue') {
+      e.target.textContent = 'remove to queue';
+      filmsQueue.push({
+        id: targetFilm.id,
+        title: targetFilm.title,
+        genre_name: targetFilm.genre_name,
+        poster_path: targetFilm.poster_path,
+        original_title: targetFilm.original_title,
+        vote_average: targetFilm.vote_average,
+        popularity: targetFilm.popularity,
+        vote_count: targetFilm.vote_count,
+        genres: targetFilm.genres,
+        overview: targetFilm.overview,
+        // release_date: targetFilm.release_date,
+      });
+    } else {
+      const indexFilm = checkInQueue(targetFilm.id);
 
-  if (e.target.textContent === 'add to queue') {
-    filmsQueue.push({
-      id: targetFilm.id,
-      title: targetFilm.title,
-      genre_name: targetFilm.genre_name,
-      poster_path: targetFilm.poster_path,
-      original_title: targetFilm.original_title,
-      vote_average: targetFilm.vote_average,
-      popularity: targetFilm.popularity,
-      vote_count: targetFilm.vote_count,
-      genres: targetFilm.genres,
-      overview: targetFilm.overview,
-      release_date: targetFilm.release_date,
-    });
+      if (indexFilm >= 0) {
+        filmsQueue.splice(indexFilm, 1);
+      }
+      if (filmsQueue.length === 0) localStorage.removeItem('filmsQueue');
+      if (filmsQueue.length > 0) {
+        localStorage.setItem('filmsQueue', JSON.stringify(filmsQueue));
+      }
+
+      if (checkInQueue(targetFilm.id) === -1)
+        e.target.textContent = 'add to queue';
+
+      if (
+        filmsQueue.length > 0 &&
+        !document.querySelector('.search-form__input')
+      ) {
+        filmList.innerHTML = '';
+        bgImage.classList.remove('library-wrap');
+        const markup = createMerkaup('filmsQueue');
+        filmList.insertAdjacentHTML('afterbegin', markup);
+      } else {
+        if (!document.querySelector('.search-form__input')) {
+          filmList.innerHTML = '';
+          bgImage.classList.add('library-wrap');
+        }
+      }
+    }
 
     onAuthStateChanged(auth, user => {
       if (user) {
@@ -78,20 +111,51 @@ function createFilmObj(e) {
           });
       }
     });
-  } else if (e.target.textContent === 'add to watched') {
-    filmsWatched.push({
-      id: targetFilm.id,
-      title: targetFilm.title,
-      genre_name: targetFilm.genre_name,
-      poster_path: targetFilm.poster_path,
-      original_title: targetFilm.original_title,
-      vote_average: targetFilm.vote_average,
-      popularity: targetFilm.popularity,
-      vote_count: targetFilm.vote_count,
-      genres: targetFilm.genres,
-      overview: targetFilm.overview,
-      release_date: targetFilm.release_date,
-    });
+  } else {
+    if (e.target.textContent === 'add to watched') {
+      e.target.textContent = 'remove to watched';
+      filmsWatched.push({
+        id: targetFilm.id,
+        title: targetFilm.title,
+        genre_name: targetFilm.genre_name,
+        poster_path: targetFilm.poster_path,
+        original_title: targetFilm.original_title,
+        vote_average: targetFilm.vote_average,
+        popularity: targetFilm.popularity,
+        vote_count: targetFilm.vote_count,
+        genres: targetFilm.genres,
+        overview: targetFilm.overview,
+        // release_date: targetFilm.release_date,
+      });
+    } else {
+      const indexFilmWatched = checkInWatched(targetFilm.id);
+
+      if (indexFilmWatched >= 0) {
+        filmsWatched.splice(indexFilmWatched, 1);
+      }
+      if (filmsWatched.length === 0) localStorage.removeItem('filmsWatched');
+      if (filmsWatched.length > 0) {
+        localStorage.setItem('filmsWatched', JSON.stringify(filmsWatched));
+      }
+
+      if (checkInWatched(targetFilm.id) === -1)
+        e.target.textContent = 'add to watched';
+
+      if (
+        filmsWatched.length > 0 &&
+        !document.querySelector('.search-form__input')
+      ) {
+        filmList.innerHTML = '';
+        bgImage.classList.remove('library-wrap');
+        const markup = createMerkaup('filmsWatched');
+        filmList.insertAdjacentHTML('afterbegin', markup);
+      } else {
+        if (!document.querySelector('.search-form__input')) {
+          filmList.innerHTML = '';
+          bgImage.classList.add('library-wrap');
+        }
+      }
+    }
 
     onAuthStateChanged(auth, user => {
       if (user) {
@@ -162,4 +226,23 @@ function createMerkaup(storage) {
       }
     )
     .join('');
+}
+//-----Ann code
+// перевірка (є в сховище такий фильм з данним ID)
+
+function checkInQueue(id) {
+  for (let i = 0; i < filmsQueue.length; i++) {
+    if (id === filmsQueue[i].id) {
+      return i;
+    }
+  }
+  return -1;
+}
+function checkInWatched(id) {
+  for (let i = 0; i < filmsWatched.length; i++) {
+    if (id === filmsWatched[i].id) {
+      return i;
+    }
+  }
+  return -1;
 }
