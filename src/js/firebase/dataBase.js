@@ -55,38 +55,40 @@ function createFilmObj(e) {
         vote_count: targetFilm.vote_count,
         genres: targetFilm.genres,
         overview: targetFilm.overview,
-        release_date: targetFilm.release_date,
+        release_date: targetFilm.release_date || 'Unknown',
       });
-    } else {if(e.target.textContent === 'remove to queue'){
-      const indexFilm = checkInQueue(targetFilm.id);
+      
+    } else {
+      if (e.target.textContent === 'remove to queue') {
+        const indexFilm = checkInQueue(targetFilm.id);
 
-      if (indexFilm >= 0) {
-        filmsQueue.splice(indexFilm, 1);
-      }
-      if (filmsQueue.length === 0) localStorage.removeItem('filmsQueue');
-      if (filmsQueue.length > 0) {
-        localStorage.setItem('filmsQueue', JSON.stringify(filmsQueue));
-      }
+        if (indexFilm >= 0) {
+          filmsQueue.splice(indexFilm, 1);
+        }
+        if (filmsQueue.length === 0) localStorage.removeItem('filmsQueue');
+        if (filmsQueue.length > 0) {
+          localStorage.setItem('filmsQueue', JSON.stringify(filmsQueue));
+        }
 
-      if (checkInQueue(targetFilm.id) === -1)
-        e.target.textContent = 'add to queue';
+        if (checkInQueue(targetFilm.id) === -1)
+          e.target.textContent = 'add to queue';
 
-      if (
-        filmsQueue.length > 0 &&
-        !document.querySelector('.search-form__input')
-      ) {
-        filmList.innerHTML = '';
-        bgImage.classList.remove('library-wrap');
-        const markup = createMerkaup('filmsQueue');
-        filmList.insertAdjacentHTML('afterbegin', markup);
-      } else {
-        if (!document.querySelector('.search-form__input')) {
+        if (
+          filmsQueue.length > 0 &&
+          !document.querySelector('.search-form__input')
+        ) {
           filmList.innerHTML = '';
-          bgImage.classList.add('library-wrap');
+          bgImage.classList.remove('library-wrap');
+          const markup = createMerkaup('filmsQueue');
+          filmList.insertAdjacentHTML('afterbegin', markup);
+        } else {
+          if (!document.querySelector('.search-form__input')) {
+            filmList.innerHTML = '';
+            bgImage.classList.add('library-wrap');
+          }
         }
       }
     }
-}
     onAuthStateChanged(auth, user => {
       if (user) {
         set(ref(db, 'users/' + 'ovrGn2FJIdTUQrajvyrFQ3Gb5bs1/'), filmsQueue);
@@ -125,7 +127,7 @@ function createFilmObj(e) {
         vote_count: targetFilm.vote_count,
         genres: targetFilm.genres,
         overview: targetFilm.overview,
-        release_date: targetFilm.release_date,
+        release_date: targetFilm.release_date || 'Unknown',
       });
     } else {
       if (e.target.textContent === 'remove to watched') {
@@ -186,7 +188,6 @@ function createFilmObj(e) {
 }
 
 function createMerkaup(storage) {
-  if(JSON.parse(localStorage.getItem(storage))===null){bgImage.classList.add('library-wrap');return `<li></li>`} ;
   return JSON.parse(localStorage.getItem(storage))
     .map(
       ({
@@ -202,6 +203,10 @@ function createMerkaup(storage) {
         vote_count,
         release_date,
       }) => {
+        if (JSON.parse(localStorage.getItem(storage)) === null) {
+          bgImage.classList.add('library-wrap');
+          return `<li></li>`;
+        }
         return `<li class="film-list__item" data-id="${id}">
         <div class="film-thumb">
           <img class="film-poster" src='https://image.tmdb.org/t/p/original${poster_path}' alt="movie poster" />
