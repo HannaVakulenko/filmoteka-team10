@@ -23,18 +23,22 @@ import { refs } from './refs';
 import { Loading } from 'notiflix';
 import { spinnerStart, spinnerEnd } from './spinner';
 import { scrollOnTop } from './scroll-up';
-import { pagination, options, createPagination } from './pagination';
+import { pagination, options, createPagination } from './api-servise';
 import './allgenres';
 import { RenderPopular, RenderSearch } from './api-servise';
 import { lastPages } from './api-servise';
 import { submit } from './search';
 import { inputText } from './search';
-let slide = 1;
+export let slide = 1;
+
+refs.pagination.classList.add('is-hidden');
 if (document.querySelector('.search-form')) {
   refs.pagination.addEventListener('click', e => {
     if (submit === 0) {
       if (Number(e.target.textContent) > 0) {
         slide = Number(e.target.textContent);
+        // pagination.movePageTo(slide);
+
         RenderPopular(slide);
       }
       if (e.target.textContent === 'next') {
@@ -43,7 +47,7 @@ if (document.querySelector('.search-form')) {
         }
         slide += 1;
         RenderPopular(slide);
-        pagination.setTotalItems(lastPages);
+        // pagination.setTotalItems(lastPages);
       }
       if (e.target.textContent === 'first') {
         slide = 1;
@@ -109,7 +113,7 @@ if (document.querySelector('.search-form')) {
       if (Number(e.target.textContent) > 0) {
         slide = Number(e.target.textContent);
         RenderSearch(inputText, slide);
-        pagination.setTotalItems(lastPages);
+        // pagination.setTotalItems(lastPages);
       }
       if (e.target.textContent === 'next') {
         if (slide === lastPages) {
@@ -181,3 +185,6 @@ if (document.querySelector('.search-form')) {
   });
   RenderPopular(slide);
 }
+export const resetSlide = () => {
+  slide = 1;
+};

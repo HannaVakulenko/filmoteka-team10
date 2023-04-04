@@ -1,6 +1,34 @@
 import axios from 'axios';
 import './allgenres';
-import { pagination, options, createPagination } from './pagination';
+// import { pagination, options, createPagination } from './pagination';
+import { refs } from './refs';
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
+import { slide } from './displaying-movies';
+export let pagination;
+export const options = {
+  itemsPerPage: 1,
+  visiblePages: 5,
+  // centerAlign: true,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+      '<span class="tui-ico-ellip">...</span>' +
+      '</a>',
+  },
+};
 
 export const API_KEY = 'c789b950e94d6ea5adbb471c5a6ee143';
 export const API_URL = 'https://api.themoviedb.org/3/';
@@ -115,7 +143,6 @@ export const renderGallery = movies => {
     const warningEl = document.querySelector('.warning');
     if (movies.length !== 0) {
       warningEl.classList.add('is-hidden');
-      
     } else {
       warningEl.classList.remove('is-hidden');
       setTimeout(() => {
@@ -217,9 +244,14 @@ export const renderGallery = movies => {
 
 export const RenderPopular = async page => {
   try {
-    
     const responses = await FetchTrending(page);
+    pagination = new Pagination(refs.pagination, options);
+    // console.log(slide);
     pagination.setTotalItems(lastPages);
+    pagination.movePageTo(slide);
+    if (lastPages > 20) {
+      refs.pagination.classList.remove('is-hidden');
+    }
     await renderGallery(responses);
   } catch {
     console.log('error:');
@@ -229,9 +261,16 @@ export const RenderPopular = async page => {
 export const RenderSearch = async (q, page) => {
   try {
     const responses = await FetchSearch(q, page);
+    pagination = new Pagination(refs.pagination, options);
     pagination.setTotalItems(lastPages);
+    console.log(slide);
+    pagination.movePageTo(slide);
+    if (lastPages > 1) {
+      refs.pagination.classList.remove('is-hidden');
+    }
     await renderGallery(responses);
   } catch {
     console.log('error:');
   }
 };
+
