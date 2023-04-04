@@ -222,7 +222,7 @@ function createMerkaup(storage) {
           <h3 class="film-list__name">${original_title}</h3>
           <p class="film-list__genre">${genres} | ${
           release_date ? release_date.split('-')[0] : 'Unknown'
-        } | ${Number(vote_average).toFixed(1)}</p>
+        } </p>
         </div>
       </li>`;
       }
