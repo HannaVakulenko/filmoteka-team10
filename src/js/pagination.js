@@ -30,9 +30,9 @@ export const pagination = new Pagination(refs.pagination, options);
 
 export function createPagination(totalPages) {
   if (totalPages <= 1) {
-    refs.divPagination.classList.add('hidden-tui');
+    refs.pagination.classList.add('hidden-tui');
   } else {
-    refs.divPagination.classList.remove('hidden-tui');
+    refs.pagination.classList.remove('hidden-tui');
     if (totalPages !== pagination._options.totalItems) {
       pagination.reset(totalPages);
     } else {

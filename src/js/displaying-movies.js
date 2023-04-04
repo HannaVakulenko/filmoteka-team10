@@ -38,6 +38,7 @@ if (document.querySelector('.search-form')) {
         slide = Number(e.target.textContent);
         console.log(slide);
         RenderPopular(slide);
+        pagination.setTotalItems(lastPages);
       }
       if (e.target.textContent === 'next') {
         if (slide === lastPages) {
@@ -45,6 +46,7 @@ if (document.querySelector('.search-form')) {
         }
         slide += 1;
         RenderPopular(slide);
+        pagination.setTotalItems(lastPages)
       }
       if (e.target.textContent === 'first') {
         slide = 1;
@@ -65,6 +67,7 @@ if (document.querySelector('.search-form')) {
       if (Number(e.target.textContent) > 0) {
         slide = Number(e.target.textContent);
         RenderSearch(inputText, slide);
+        pagination.setTotalItems(lastPages);
       }
       if (e.target.textContent === 'next') {
         if (slide === lastPages) {
