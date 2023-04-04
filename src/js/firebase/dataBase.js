@@ -40,10 +40,10 @@ function createFilmObj(e) {
   const targetFilm = e.target.dataset;
   if (
     e.target.textContent === 'add to queue' ||
-    e.target.textContent === 'remove to queue'
+    e.target.textContent === 'remove from queue'
   ) {
     if (e.target.textContent === 'add to queue') {
-      e.target.textContent = 'remove to queue';
+      e.target.textContent = 'remove from queue';
       filmsQueue.push({
         id: targetFilm.id,
         title: targetFilm.title,
@@ -58,7 +58,7 @@ function createFilmObj(e) {
         release_date: targetFilm.release_date || 'Unknown',
       });
     } else {
-      if (e.target.textContent === 'remove to queue') {
+      if (e.target.textContent === 'remove from queue') {
         const indexFilm = checkInQueue(targetFilm.id);
 
         if (indexFilm >= 0) {
@@ -114,7 +114,7 @@ function createFilmObj(e) {
     });
   } else {
     if (e.target.textContent === 'add to watched') {
-      e.target.textContent = 'remove to watched';
+      e.target.textContent = 'remove from watched';
       filmsWatched.push({
         id: targetFilm.id,
         title: targetFilm.title,
@@ -129,7 +129,7 @@ function createFilmObj(e) {
         release_date: targetFilm.release_date || 'Unknown',
       });
     } else {
-      if (e.target.textContent === 'remove to watched') {
+      if (e.target.textContent === 'remove from watched') {
         const indexFilmWatched = checkInWatched(targetFilm.id);
 
         if (indexFilmWatched >= 0) {
