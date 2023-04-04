@@ -79,7 +79,10 @@ export const FetchSearch = async (q, page) => {
       throw new Error(responseSearch.status);
     }
     // console.log(responseSearch.data.total_pages);
-    lastPages = responseSearch.data.total_pages;
+    if (responseSearch.data.total_pages > 0) {
+      lastPages = responseSearch.data.total_pages;
+    }
+
     return (searchFilms = responseSearch.data.results);
     console.log(searchFilms);
   } catch (error) {
@@ -145,6 +148,7 @@ export const renderGallery = movies => {
       warningEl.classList.add('is-hidden');
     } else {
       warningEl.classList.remove('is-hidden');
+      refs.pagination.classList.remove('is-hidden');
       setTimeout(() => {
         warningEl.classList.add('is-hidden');
       }, 3000);
@@ -271,4 +275,3 @@ export const RenderSearch = async (q, page) => {
     console.log('error:');
   }
 };
-
