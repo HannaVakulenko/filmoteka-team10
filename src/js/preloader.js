@@ -3,7 +3,8 @@ import 'animate.css';
 
 const img = new Image();
 img.src =
-  'https://media.tenor.com/ycXJZJnD2SwAAAAd/welcome-welcome-message-for-the-group.gif';
+  // 'https://media.tenor.com/ycXJZJnD2SwAAAAd/welcome-welcome-message-for-the-group.gif';
+  'https://media.tenor.com/Yvzvgu1EsA4AAAAd/%D0%BB%D0%B8%D1%81-metro-goldwyn-mayer.gif'
 let i = 0;
 
 window.addEventListener('beforeunload', () => {
