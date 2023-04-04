@@ -18,21 +18,21 @@ const bgImage = document.querySelector('.library-wrap');
 
 modal.addEventListener('click', createFilmObj);
 
-if (!document.querySelector('.search-form__input')) {
-  btnWatchedLibrary.addEventListener('click', () => {
-    filmList.innerHTML = '';
-    bgImage.classList.remove('library-wrap');
-    const markup = createMerkaup('filmsWatched');
-    filmList.insertAdjacentHTML('afterbegin', markup);
-  });
+// if (!document.querySelector('.search-form__input')) {
+//   btnWatchedLibrary.addEventListener('click', () => {
+//     filmList.innerHTML = '';
+//     bgImage.classList.remove('library-wrap');
+//     const markup = createMerkaup('filmsWatched');
+//     filmList.insertAdjacentHTML('afterbegin', markup);
+//   });
 
-  btnQueueLibrary.addEventListener('click', () => {
-    filmList.innerHTML = '';
-    bgImage.classList.remove('library-wrap');
-    const markup = createMerkaup('filmsQueue');
-    filmList.insertAdjacentHTML('afterbegin', markup);
-  });
-}
+//   btnQueueLibrary.addEventListener('click', () => {
+//     filmList.innerHTML = '';
+//     bgImage.classList.remove('library-wrap');
+//     const markup = createMerkaup('filmsQueue');
+//     filmList.insertAdjacentHTML('afterbegin', markup);
+//   });
+// }
 
 // abcd10@gamil.com
 
@@ -57,36 +57,37 @@ function createFilmObj(e) {
         overview: targetFilm.overview,
         release_date: targetFilm.release_date,
       });
-    } else {if(e.target.textContent === 'remove to queue'){
-      const indexFilm = checkInQueue(targetFilm.id);
+    } else {
+      if (e.target.textContent === 'remove to queue') {
+        const indexFilm = checkInQueue(targetFilm.id);
 
-      if (indexFilm >= 0) {
-        filmsQueue.splice(indexFilm, 1);
-      }
-      if (filmsQueue.length === 0) localStorage.removeItem('filmsQueue');
-      if (filmsQueue.length > 0) {
-        localStorage.setItem('filmsQueue', JSON.stringify(filmsQueue));
-      }
+        if (indexFilm >= 0) {
+          filmsQueue.splice(indexFilm, 1);
+        }
+        if (filmsQueue.length === 0) localStorage.removeItem('filmsQueue');
+        if (filmsQueue.length > 0) {
+          localStorage.setItem('filmsQueue', JSON.stringify(filmsQueue));
+        }
 
-      if (checkInQueue(targetFilm.id) === -1)
-        e.target.textContent = 'add to queue';
+        if (checkInQueue(targetFilm.id) === -1)
+          e.target.textContent = 'add to queue';
 
-      if (
-        filmsQueue.length > 0 &&
-        !document.querySelector('.search-form__input')
-      ) {
-        filmList.innerHTML = '';
-        bgImage.classList.remove('library-wrap');
-        const markup = createMerkaup('filmsQueue');
-        filmList.insertAdjacentHTML('afterbegin', markup);
-      } else {
-        if (!document.querySelector('.search-form__input')) {
+        if (
+          filmsQueue.length > 0 &&
+          !document.querySelector('.search-form__input')
+        ) {
           filmList.innerHTML = '';
-          bgImage.classList.add('library-wrap');
+          bgImage.classList.remove('library-wrap');
+          const markup = createMerkaup('filmsQueue');
+          filmList.insertAdjacentHTML('afterbegin', markup);
+        } else {
+          if (!document.querySelector('.search-form__input')) {
+            filmList.innerHTML = '';
+            bgImage.classList.add('library-wrap');
+          }
         }
       }
     }
-}
     onAuthStateChanged(auth, user => {
       if (user) {
         set(ref(db, 'users/' + 'ovrGn2FJIdTUQrajvyrFQ3Gb5bs1/'), filmsQueue);
@@ -186,7 +187,10 @@ function createFilmObj(e) {
 }
 
 function createMerkaup(storage) {
-  if(JSON.parse(localStorage.getItem(storage))===null){bgImage.classList.add('library-wrap');return `<li></li>`} ;
+  if (JSON.parse(localStorage.getItem(storage)) === null) {
+    bgImage.classList.add('library-wrap');
+    return `<li></li>`;
+  }
   return JSON.parse(localStorage.getItem(storage))
     .map(
       ({

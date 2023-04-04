@@ -12,6 +12,7 @@ import './js/firebase/firebaseRegAndSign';
 import './js/firebase/dataBase';
 import './js/scroll-up';
 import './js/search';
+import './js/testPag';
 
 // import './js/firebase/firebase';
 
