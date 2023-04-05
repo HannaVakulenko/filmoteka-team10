@@ -172,7 +172,7 @@
     width: 336px;
   }
   @include max-tablet() {
-    max-width: 280px;
+    width: 280px;
   }
   border-top: none;
   border-right: none;
@@ -230,9 +230,9 @@
   @include max-tablet() {
     gap: 20px;
   }
-  @include mobile() {
+  // @include mobile() {
     margin-top: 60px;
-  }
+  // }
   @include tablet() {
     margin-top: 46px;
   }
