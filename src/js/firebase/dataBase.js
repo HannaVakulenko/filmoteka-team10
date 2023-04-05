@@ -3,7 +3,7 @@ import { getDatabase, ref, set, child, get } from 'firebase/database';
 import { slide, options, pagMarkup } from '../testPag';
 import { refs } from '../refs';
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+// import 'tui-pagination/dist/tui-pagination.css';
 let pagination;
 
 const auth = getAuth();
