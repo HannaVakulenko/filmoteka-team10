@@ -32,7 +32,7 @@
   // transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   border: 3px solid transparent;
   transition: all $main-transition-duration;
-  padding: 3px;
+//   padding: 3px;
 
   @media screen and (max-width: 767px) {
     max-width: 280px;
@@ -41,6 +41,7 @@
 
   @media screen and (min-width: 768px) {
     flex-basis: calc((100% - 32px * (2 - 1)) / 2);
+    padding: 3px;
   }
 
   @media screen and (min-width: 1280px) {
