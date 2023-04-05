@@ -279,10 +279,12 @@ export const RenderPopular = async page => {
   try {
     const responses = await FetchTrending(page);
     if (badResponse > 1) {
+      
       pagination = new Pagination(refs.pagination, options);
       pagination.setTotalItems(lastPages);
       pagination.movePageTo(slide);
     } else {
+      
       pagination = new Pagination(refs.pagination, options);
       pagination.setTotalItems(lastPages);
       pagination.movePageTo(slide);
@@ -300,7 +302,7 @@ export const RenderPopular = async page => {
 export const RenderSearch = async (q, page) => {
   try {
     const responses = await FetchSearch(q, page);
-    
+
     if (badResponse > 1) {
       // console.log(lastPages);
       console.log(badResponse);
@@ -329,10 +331,7 @@ export const FirstRenderSearch = async (q, page) => {
       pagination = new Pagination(refs.pagination, options);
       pagination.setTotalItems(lastPages);
       pagination.movePageTo(slide);
-    } else {
-      pagination = new Pagination(refs.pagination, options);
-      pagination.movePageTo(slide);
-    }
+    } 
     await renderGallery(responses);
     onTopScroll();
   } catch {

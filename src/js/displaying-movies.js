@@ -182,7 +182,6 @@ if (document.querySelector('.search-form')) {
         }
       }
     }
-  
   });
   RenderPopular(slide);
 }
