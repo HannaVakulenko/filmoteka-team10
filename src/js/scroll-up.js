@@ -14,7 +14,7 @@ function scrollFunction () {
     }
 }
 
-function onTopScroll () {
+export function onTopScroll () {
     window.scrollTo({
         top: 0,
         behavior: 'smooth',

@@ -5,6 +5,7 @@ import { refs } from './refs';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { slide } from './displaying-movies';
+import { onTopScroll } from './scroll-up';
 export let pagination;
 export let badResponse;
 export const options = {
@@ -261,6 +262,7 @@ export const RenderPopular = async page => {
       refs.pagination.classList.remove('is-hidden');
     }
     await renderGallery(responses);
+    onTopScroll();
   } catch {
     console.log('error:');
   }
@@ -281,6 +283,7 @@ export const RenderSearch = async (q, page) => {
       pagination = new Pagination(refs.pagination, options);
     }
     await renderGallery(responses);
+    onTopScroll();
   } catch {
     console.log('error:');
   }

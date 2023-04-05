@@ -2,6 +2,7 @@ import { refs } from './refs';
 import { createMerkaup } from './firebase/dataBase';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import { onTopScroll } from './scroll-up';
 
 export let slide = 1;
 let lastPages = '';
@@ -29,7 +30,7 @@ export const options = {
       '</a>',
   },
 };
-
+const bgImage = document.querySelector('.wrap');
 const btnWatched = document.querySelector('.library__button.watched');
 const btnQueue = document.querySelector('.library__button.queue');
 const filmList = document.querySelector('.film-list');
@@ -41,13 +42,16 @@ refs.pagination.classList.add('is-hidden');
 if (!document.querySelector('.search-form__input')) {
   btnWatched.addEventListener('click', () => {
     lastPages = JSON.parse(localStorage.getItem('filmsWatched'))
-      ? Math.ceil(JSON.parse(localStorage.getItem('filmsWatched')).length / 2)
+      ? Math.ceil(JSON.parse(localStorage.getItem('filmsWatched')).length / 20)
       : '';
+    slide = 1;
     if (lastPages > 1) {
       pagination.movePageTo(1);
-      slide = 1;
+      // slide = 1;
       refs.pagination.classList.remove('is-hidden');
-    } else {refs.pagination.classList.add('is-hidden');}
+    } else {
+      refs.pagination.classList.add('is-hidden');
+    }
 
     if (lastPages < 5) {
       options.visiblePages = lastPages;
@@ -69,13 +73,16 @@ if (!document.querySelector('.search-form__input')) {
 
   btnQueue.addEventListener('click', () => {
     lastPages = JSON.parse(localStorage.getItem('filmsQueue'))
-      ? Math.ceil(JSON.parse(localStorage.getItem('filmsQueue')).length / 2)
+      ? Math.ceil(JSON.parse(localStorage.getItem('filmsQueue')).length / 20)
       : '';
+    slide = 1;
     if (lastPages > 1) {
       pagination.movePageTo(1);
-      slide = 1;
+
       refs.pagination.classList.remove('is-hidden');
-    } else {refs.pagination.classList.add('is-hidden');}
+    } else {
+      refs.pagination.classList.add('is-hidden');
+    }
     if (lastPages < 5) {
       options.visiblePages = lastPages;
     }
@@ -94,7 +101,7 @@ if (!document.querySelector('.search-form__input')) {
   });
 
   lastPages = JSON.parse(localStorage.getItem('filmsWatched'))
-    ? Math.ceil(JSON.parse(localStorage.getItem('filmsWatched')).length / 2)
+    ? Math.ceil(JSON.parse(localStorage.getItem('filmsWatched')).length / 20)
     : '';
 
   if (lastPages > 1) {
@@ -121,7 +128,7 @@ if (!document.querySelector('.search-form__input')) {
 
 export function pagMarkup(slide, storage) {
   return JSON.parse(localStorage.getItem(storage))
-    .slice(-2 + slide * 2, 0 + slide * 2)
+    .slice(-20 + slide * 20, 0 + slide * 20)
     .map(
       ({
         genre_name,
@@ -136,6 +143,7 @@ export function pagMarkup(slide, storage) {
         vote_count,
         release_date,
       }) => {
+        onTopScroll();
         return `<li class="film-list__item" data-id="${id}">
         <div class="film-thumb">
           <img class="film-poster" src='https://image.tmdb.org/t/p/original${poster_path}' alt="movie poster" />
@@ -168,11 +176,17 @@ if (!document.querySelector('.search-form__input')) {
   btnWatched.addEventListener('click', () => {
     btnWatched.classList.add('library__button--current');
     btnQueue.classList.remove('library__button--current');
+    if (!JSON.parse(localStorage.getItem('filmsWatched'))) {
+      bgImage.classList.add('library-wrap');
+    }
   });
 
   btnQueue.addEventListener('click', () => {
     btnWatched.classList.remove('library__button--current');
     btnQueue.classList.add('library__button--current');
+    if (!JSON.parse(localStorage.getItem('filmsQueue'))) {
+      bgImage.classList.add('library-wrap');
+    }
   });
 
   refs.pagination.addEventListener('click', e => {
@@ -182,7 +196,7 @@ if (!document.querySelector('.search-form__input')) {
       )
     ) {
       lastPages = Math.ceil(
-        JSON.parse(localStorage.getItem('filmsWatched')).length / 2
+        JSON.parse(localStorage.getItem('filmsWatched')).length / 20
       );
       pagination = new Pagination(refs.pagination, options);
       pagination.setTotalItems(lastPages);
@@ -302,7 +316,7 @@ if (!document.querySelector('.search-form__input')) {
       // !!!!!!!!!!!!!!!!
 
       lastPages = Math.ceil(
-        JSON.parse(localStorage.getItem('filmsQueue')).length / 2
+        JSON.parse(localStorage.getItem('filmsQueue')).length / 20
       );
       pagination = new Pagination(refs.pagination, options);
       pagination.setTotalItems(lastPages);
