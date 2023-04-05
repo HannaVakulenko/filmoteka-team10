@@ -9,7 +9,7 @@
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
-  @include mobile() {
+  // @include mobile() {
     padding: 40px 0px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/home-mob-1x.jpg);
@@ -21,7 +21,7 @@
         ),
         url(../images/home-mob-2x.jpg);
     }
-  }
+  // }
   @include tablet() {
     padding: 40px 0px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
@@ -48,7 +48,7 @@
   }
 }
 .header__library {
-  @include mobile() {
+  // @include mobile() {
     padding: 40px 0px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/library-mob-1x.jpg);
@@ -60,7 +60,7 @@
         ),
         url(../images/library-mob-2x.jpg);
     }
-  }
+  // }
   @include tablet() {
     padding: 40px 0px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
@@ -151,9 +151,9 @@
   display: flex;
 
   justify-content: center;
-  @include mobile() {
+  // @include mobile() {
     margin-top: 55px;
-  }
+  // }
   @include tablet() {
     margin-top: 40px;
   }
@@ -172,7 +172,7 @@
     width: 336px;
   }
   @include max-tablet() {
-    width: 280px;
+    max-width: 280px;
   }
   border-top: none;
   border-right: none;
