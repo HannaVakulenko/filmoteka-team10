@@ -82,7 +82,13 @@ function modalFilmMarkup({
         <p class="modal-film__about modal-film__info--uppercase">About</p>
         <p class="modal-film__text">${overview}</p>
       <div class="modal-film__buttons">
-        <button type="button" class="btn-watched button" data-id="${id}"
+        <button type="button"  class="btn-watched button ${
+          document.querySelector(
+            '.nav__item.list.list-library.is-hidden-firebase'
+          )
+            ? 'is-hidden'
+            : ''
+        }" data-id="${id}"
         data-poster_path="${poster_path}"
         data-title="${title}"
         data-genre_name="${name}"
@@ -93,7 +99,13 @@ function modalFilmMarkup({
         data-overview="${overview}"
         data-release_date="${release_date}"
         data-genres="${filmGenres}">${checkInWatched(id)}</button>
-        <button type="button" class="btn-queue button"  data-id="${id}"         data-poster_path="${poster_path}"
+        <button type="button"  class="btn-queue button ${
+          document.querySelector(
+            '.nav__item.list.list-library.is-hidden-firebase'
+          )
+            ? 'is-hidden'
+            : ''
+        }"  data-id="${id}"         data-poster_path="${poster_path}"
         data-title="${title}"
         data-genre_name="${name}"
         data-original_title="${original_title}"
