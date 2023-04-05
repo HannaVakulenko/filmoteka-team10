@@ -84,14 +84,19 @@ function createFilmObj(e) {
           !document.querySelector('.search-form__input')
         ) {
           if (btnQueueLibrary.classList.contains('library__button--current')) {
-            lastPages = Math.ceil(filmsQueue.length / 2);
-            if (lastPages < slide) {
+            lastPages = Math.ceil(filmsQueue.length / 20);
+
+            if (lastPages < slide && lastPages !== 1) {
               pagination.movePageTo(1);
               zero = 1;
 
               options.visiblePages = lastPages;
               pagination = new Pagination(refs.pagination, options);
             }
+            if (lastPages < slide) {
+              zero = 1;
+            }
+
             if (lastPages === 1) {
               refs.pagination.classList.add('is-hidden');
             }
@@ -184,12 +189,15 @@ function createFilmObj(e) {
           if (
             btnWatchedLibrary.classList.contains('library__button--current')
           ) {
-            lastPages = Math.ceil(filmsWatched.length / 2);
-            if (lastPages < slide) {
+            lastPages = Math.ceil(filmsWatched.length / 20);
+            if (lastPages < slide && lastPages !== 1) {
               pagination.movePageTo(1);
               zero = 1;
               options.visiblePages = lastPages;
               pagination = new Pagination(refs.pagination, options);
+            }
+            if (lastPages < slide) {
+              zero = 1;
             }
             if (lastPages === 1) {
               refs.pagination.classList.add('is-hidden');
