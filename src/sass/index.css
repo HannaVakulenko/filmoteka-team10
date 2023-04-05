@@ -1231,6 +1231,7 @@ body.modal-open {
 @media screen and (min-width: 768px) {
   .film-list__item {
     flex-basis: calc((100% - 32px) / 2);
+    padding: 3px;
   }
 }
 @media screen and (min-width: 1280px) {
