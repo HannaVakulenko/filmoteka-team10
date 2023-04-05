@@ -6,6 +6,7 @@ import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { slide } from './displaying-movies';
 export let pagination;
+export let badResponse;
 export const options = {
   itemsPerPage: 1,
   visiblePages: 5,
@@ -78,8 +79,9 @@ export const FetchSearch = async (q, page) => {
     if (responseSearch.status !== 200) {
       throw new Error(responseSearch.status);
     }
-    // console.log(responseSearch.data.total_pages);
-    if (responseSearch.data.total_pages > 0) {
+    badResponse = responseSearch.data.total_pages;
+    console.log(badResponse);
+    if (responseSearch.data.total_pages > 1) {
       lastPages = responseSearch.data.total_pages;
     }
 
@@ -148,10 +150,13 @@ export const renderGallery = movies => {
       warningEl.classList.add('is-hidden');
     } else {
       warningEl.classList.remove('is-hidden');
-      refs.pagination.classList.remove('is-hidden');
+
       setTimeout(() => {
         warningEl.classList.add('is-hidden');
       }, 3000);
+      if (lastPages > 1) {
+        refs.pagination.classList.remove('is-hidden');
+      }
     }
   }
   // document.querySelector('.film-list').innerHTML = '';
@@ -264,11 +269,16 @@ export const RenderPopular = async page => {
 export const RenderSearch = async (q, page) => {
   try {
     const responses = await FetchSearch(q, page);
-    pagination = new Pagination(refs.pagination, options);
-    pagination.setTotalItems(lastPages);
-    pagination.movePageTo(slide);
-    if (lastPages > 1) {
+    // pagination.movePageTo(slide);
+    if (badResponse > 1) {
+      // console.log(lastPages);
+      console.log(badResponse);
       refs.pagination.classList.remove('is-hidden');
+      pagination = new Pagination(refs.pagination, options);
+      pagination.setTotalItems(lastPages);
+      pagination.movePageTo(slide);
+    } else {
+      pagination = new Pagination(refs.pagination, options);
     }
     await renderGallery(responses);
   } catch {

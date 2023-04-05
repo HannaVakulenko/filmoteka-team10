@@ -31,7 +31,6 @@ import { submit } from './search';
 import { inputText } from './search';
 export let slide = 1;
 
-
 refs.pagination.classList.add('is-hidden');
 if (document.querySelector('.search-form')) {
   refs.pagination.addEventListener('click', e => {
@@ -183,6 +182,7 @@ if (document.querySelector('.search-form')) {
         }
       }
     }
+  
   });
   RenderPopular(slide);
 }
