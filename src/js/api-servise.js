@@ -154,7 +154,7 @@ export const renderGallery = movies => {
       setTimeout(() => {
         warningEl.classList.add('is-hidden');
       }, 3000);
-      if (movies.length > 1) {
+      if (lastPages > 1) {
         refs.pagination.classList.remove('is-hidden');
       }
     }
@@ -269,7 +269,7 @@ export const RenderPopular = async page => {
 export const RenderSearch = async (q, page) => {
   try {
     const responses = await FetchSearch(q, page);
-    pagination.movePageTo(slide);
+    // pagination.movePageTo(slide);
     if (badResponse > 1) {
       // console.log(lastPages);
       console.log(badResponse);
