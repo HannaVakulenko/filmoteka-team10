@@ -6,6 +6,7 @@ import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { slide } from './displaying-movies';
 import { onTopScroll } from './scroll-up';
+import { resetSlide } from './displaying-movies';
 export let pagination;
 export let badResponse;
 export const options = {
@@ -84,6 +85,28 @@ export const FetchSearch = async (q, page) => {
     console.log(badResponse);
     if (responseSearch.data.total_pages > 1) {
       lastPages = responseSearch.data.total_pages;
+      // resetSlide();
+    }
+
+    return (searchFilms = responseSearch.data.results);
+    console.log(searchFilms);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const FirstSearch = async (q, page) => {
+  try {
+    const responseSearch = await axios.get(
+      `${API_URL}search/${MEDIA_TYPE}?api_key=${API_KEY}&query=${q}&page=${page}`
+    );
+    if (responseSearch.status !== 200) {
+      throw new Error(responseSearch.status);
+    }
+    badResponse = responseSearch.data.total_pages;
+    console.log(badResponse);
+    if (responseSearch.data.total_pages > 1) {
+      lastPages = responseSearch.data.total_pages;
+      resetSlide();
     }
 
     return (searchFilms = responseSearch.data.results);
@@ -255,10 +278,15 @@ export const renderGallery = movies => {
 export const RenderPopular = async page => {
   try {
     const responses = await FetchTrending(page);
-    pagination = new Pagination(refs.pagination, options);
-    pagination.setTotalItems(lastPages);
-    pagination.movePageTo(slide);
-    if (lastPages > 20) {
+    if (badResponse > 1) {
+      pagination = new Pagination(refs.pagination, options);
+      pagination.setTotalItems(lastPages);
+      pagination.movePageTo(slide);
+    } else {
+      pagination = new Pagination(refs.pagination, options);
+      pagination.movePageTo(slide);
+    }
+    if (lastPages > 1) {
       refs.pagination.classList.remove('is-hidden');
     }
     await renderGallery(responses);
@@ -271,7 +299,7 @@ export const RenderPopular = async page => {
 export const RenderSearch = async (q, page) => {
   try {
     const responses = await FetchSearch(q, page);
-    // pagination.movePageTo(slide);
+    
     if (badResponse > 1) {
       // console.log(lastPages);
       console.log(badResponse);
@@ -281,6 +309,28 @@ export const RenderSearch = async (q, page) => {
       pagination.movePageTo(slide);
     } else {
       pagination = new Pagination(refs.pagination, options);
+      pagination.movePageTo(slide);
+    }
+    await renderGallery(responses);
+    onTopScroll();
+  } catch {
+    console.log('error:');
+  }
+};
+export const FirstRenderSearch = async (q, page) => {
+  try {
+    const responses = await FirstSearch(q, page);
+
+    if (badResponse > 1) {
+      // console.log(lastPages);
+      console.log(badResponse);
+      refs.pagination.classList.remove('is-hidden');
+      pagination = new Pagination(refs.pagination, options);
+      pagination.setTotalItems(lastPages);
+      pagination.movePageTo(slide);
+    } else {
+      pagination = new Pagination(refs.pagination, options);
+      pagination.movePageTo(slide);
     }
     await renderGallery(responses);
     onTopScroll();

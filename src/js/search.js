@@ -16,7 +16,7 @@ import {
   FetchSearch,
   FetchFilmID,
   renderGallery,
-  RenderSearch,
+  FirstRenderSearch,
   FirstSearch,
 } from './api-servise';
 import { resetSlide } from './displaying-movies';
@@ -44,8 +44,8 @@ if (document.querySelector('.search-form')) {
       return;
     }
 
-    resetSlide();
-    RenderSearch(inputText, 1);
+    
+    FirstRenderSearch(inputText, 1);
     setTimeout(() => {
       console.log(badResponse);
       if (badResponse > 1) {
