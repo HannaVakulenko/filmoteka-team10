@@ -284,6 +284,7 @@ export const RenderPopular = async page => {
       pagination.movePageTo(slide);
     } else {
       pagination = new Pagination(refs.pagination, options);
+      pagination.setTotalItems(lastPages);
       pagination.movePageTo(slide);
     }
     if (lastPages > 1) {
