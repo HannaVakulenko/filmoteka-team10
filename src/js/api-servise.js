@@ -3,7 +3,7 @@ import './allgenres';
 // import { pagination, options, createPagination } from './pagination';
 import { refs } from './refs';
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+// import 'tui-pagination/dist/tui-pagination.css';
 import { slide } from './displaying-movies';
 import { onTopScroll } from './scroll-up';
 export let pagination;
