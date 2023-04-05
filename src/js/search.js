@@ -24,9 +24,10 @@ import { refs } from './refs';
 import { Loading } from 'notiflix';
 import { spinnerStart, spinnerEnd } from './spinner';
 import { scrollOnTop } from './scroll-up';
-import { pagination, options, createPagination } from './api-servise';
+import { lastPages, badResponse } from './api-servise';
 export let submit = 0;
-export let inputText;
+export let inputText = '';
+let goodText = '';
 if (document.querySelector('.search-form')) {
   const searchForm = document.querySelector('.search-form');
   const searchInp = document.querySelector('.search-form__input');
@@ -42,8 +43,20 @@ if (document.querySelector('.search-form')) {
     if (inputText === '') {
       return;
     }
-   
+
     resetSlide();
     RenderSearch(inputText, 1);
+    setTimeout(() => {
+      console.log(badResponse);
+      if (badResponse > 1) {
+        goodText = inputText;
+      } else {
+        inputText = goodText;
+        if (!inputText) {
+          submit = 0;
+        }
+      }
+      console.log(inputText);
+    }, 1000);
   });
 }

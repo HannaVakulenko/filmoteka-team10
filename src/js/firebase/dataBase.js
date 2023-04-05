@@ -109,9 +109,12 @@ function createFilmObj(e) {
             filmList.insertAdjacentHTML('afterbegin', markup);
           }
         } else {
-          if (btnQueueLibrary.classList.contains('library__button--current')) {
-            refs.pagination.classList.add('is-hidden');
-            if (!document.querySelector('.search-form__input')) {
+          if (!document.querySelector('.search-form__input')) {
+            if (
+              btnQueueLibrary.classList.contains('library__button--current')
+            ) {
+              refs.pagination.classList.add('is-hidden');
+
               filmList.innerHTML = '';
               bgImage.classList.add('library-wrap');
             }
@@ -206,11 +209,12 @@ function createFilmObj(e) {
             filmList.insertAdjacentHTML('afterbegin', markup);
           }
         } else {
-          if (
-            btnWatchedLibrary.classList.contains('library__button--current')
-          ) {
-            refs.pagination.classList.add('is-hidden');
-            if (!document.querySelector('.search-form__input')) {
+          if (!document.querySelector('.search-form__input')) {
+            if (
+              btnWatchedLibrary.classList.contains('library__button--current')
+            ) {
+              refs.pagination.classList.add('is-hidden');
+
               filmList.innerHTML = '';
               bgImage.classList.add('library-wrap');
             }
