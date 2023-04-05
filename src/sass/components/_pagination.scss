@@ -1,10 +1,10 @@
 #pagination {
     flex-shrink: 0;
-    margin-bottom: 40px;
-    margin-top: 0;
+    margin-top: 40px;
+    
 
     @media (min-width: 768px) {
-        margin-bottom: 60px;
+        margin-top: 60px;
     }
 
     .tui-page-btn {
@@ -27,6 +27,15 @@
             margin-right: 20px;
         }
     }
+        .tui-page-btn:not(:last-child) {
+            @media (min-width: 768px) {
+                    margin-right: 15px;
+                }
+            
+                @media (min-width: 1280px) {
+                    margin-right: 20px;
+                }
+        }
 
     .tui-is-selected {
         width: 25px;
