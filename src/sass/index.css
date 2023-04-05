@@ -114,12 +114,11 @@ body {
 
 #pagination {
   flex-shrink: 0;
-  margin-bottom: 40px;
-  margin-top: 0;
+  margin-top: 40px;
 }
 @media (min-width: 768px) {
   #pagination {
-    margin-bottom: 60px;
+    margin-top: 60px;
   }
 }
 #pagination .tui-page-btn {
@@ -140,6 +139,16 @@ body {
 @media (min-width: 1280px) {
   #pagination .tui-page-btn {
     font-size: 12px;
+    margin-right: 20px;
+  }
+}
+@media (min-width: 768px) {
+  #pagination .tui-page-btn:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+@media (min-width: 1280px) {
+  #pagination .tui-page-btn:not(:last-child) {
     margin-right: 20px;
   }
 }
@@ -626,7 +635,6 @@ body.modal-open {
 
 .btn-modal-open {
   position: relative;
-  margin-left: 7px;
 }
 .btn-modal-open::after {
   content: "";
@@ -946,7 +954,7 @@ body.modal-open {
   height: auto;
   overflow: hidden;
   z-index: 1001;
-  background-color: #000000;
+  background-color: #090E11;
   transition: background-color 0s;
 }
 
@@ -999,11 +1007,12 @@ body.modal-open {
 }
 
 .film-list__item {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  transition-property: scale, outline, outline-offset, border-radius;
-  transition-duration: 500ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  border: 3px solid transparent;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 3px;
 }
 @media screen and (max-width: 767px) {
   .film-list__item {
@@ -1023,9 +1032,8 @@ body.modal-open {
 }
 .film-list__item:hover, .film-list__item:focus-within {
   scale: 1.03;
-  outline: 5px solid #ff6b08;
-  outline-offset: 1px;
-  border-radius: 4px;
+  border-radius: 5px;
+  border: 3px solid #FF6B01;
 }
 
 .film-poster {
@@ -1050,7 +1058,6 @@ body.modal-open {
 .film-list__info {
   flex-grow: 1;
   margin-top: 10px;
-  font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
 }
@@ -1071,11 +1078,13 @@ body.modal-open {
   text-transform: uppercase;
   color: #000000;
   margin: 0px;
+  font-weight: 500;
 }
 
 .film-list__genre {
   color: #ff6b08;
   margin: 0px;
+  font-weight: 500;
 }
 
 .btn-scroll {
@@ -1430,6 +1439,7 @@ body.modal-open {
 }
 
 .warning {
+  opacity: 1;
   font-size: 14px;
   line-height: 1.1428571429;
   font-weight: 400;
@@ -1437,6 +1447,11 @@ body.modal-open {
   margin-top: 20px;
   display: flex;
   justify-content: center;
+  transition: opacity 0.5s linear;
+}
+
+.warning.is-hidden {
+  opacity: 0;
 }
 
 .footer {
@@ -1476,6 +1491,8 @@ body.modal-open {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 16px;
+  line-height: 1.19;
 }
 
 .footer__svg {
@@ -1535,10 +1552,10 @@ body.modal-open {
   }
 }
 .library-section {
-  padding: 20px 20px 40px 20px;
+  padding: 20px 0 40px 0;
 }
 @media screen and (min-width: 768px) {
   .library-section {
-    padding: 60px 32px 60px 32px;
+    padding: 60px 0 60px 0;
   }
 }/*# sourceMappingURL=index.css.map */
