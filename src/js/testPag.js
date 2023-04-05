@@ -1,7 +1,7 @@
 import { refs } from './refs';
 import { createMerkaup } from './firebase/dataBase';
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+// import 'tui-pagination/dist/tui-pagination.css';
 
 export let slide = 1;
 let lastPages = '';
